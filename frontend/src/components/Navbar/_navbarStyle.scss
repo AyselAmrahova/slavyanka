@@ -1,0 +1,96 @@
+.navbarSlider {
+    background: linear-gradient(326.09deg, rgb(225, 236, 246) -0.1%, rgb(4, 63, 144) 97.67%);
+
+    nav {
+        display: block;
+
+        .navborder {
+            color: #f8f9fa;
+            border-bottom: 1px solid#cedef3;
+            display: flex;
+            align-items: stretch;
+            justify-content: space-around;
+
+            .navLogo {
+
+                img {
+                    border-right: 1px solid#7a9ac5;
+                    padding: 0 24px 0 8px;
+                    margin-top: 1rem !important;
+                    margin-bottom: 1rem !important;
+                    vertical-align: middle;
+                    // height: 72px;
+                    overflow: clip;
+                }
+            }
+
+            .navNum {
+                display: flex;
+                align-items: center;
+                font-size: 15px;
+                border: 1px solid red;
+
+                h6 {
+                    padding-left: 0.5rem;
+                    font-weight: 500;
+                    line-height: 1.2;
+                    font-size: 20px;
+                }
+            }
+
+            ul {
+                display: flex;
+                align-items: stretch;
+
+                li {
+                    display: flex;
+                    align-items: center;
+                    font-size: 15px;
+                    border-bottom: 2px solid transparent;
+                    font-weight: bold;
+                    margin-right: 0.5rem !important;
+                    margin-left: 0.5rem !important;
+                    line-height: 1.5;
+                    text-align: center;
+                    text-decoration: none;
+                    vertical-align: middle;
+                    background-color: transparent;
+                    border: 1px solid transparent;
+                    border-radius: 0.25rem;
+
+                    &:hover {
+                        border-bottom: 2px solid red;
+                        border-radius: 0;
+                    }
+
+                    h5 {
+                        .navLink {
+                            color: #fff;
+                            display: flex;
+                            font-size: 15px;
+                            margin-bottom: 0.5rem;
+                            font-weight: 500;
+                            line-height: 1.2;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+.navUser {
+    border: 1px solid #cedef3 !important;
+    border-radius: 0.2rem !important;
+    padding: 0.5rem 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #212529;
+    text-align: center;
+    text-decoration: none;
+    vertical-align: middle;
+    // user-select: none;
+    background-color: transparent;
+    font-size: 1rem;
+    transition: color .15s ease-in-out, background-color .15s ease-in-out, border-color .15s ease-in-out, box-shadow .15s ease-in-out;
+}
