@@ -1,5 +1,6 @@
 import React from 'react'
 import "../Home/_homeStyle.scss"
+import { Link } from 'react-router-dom';
 
 export default function Home() {
   return (
@@ -16,11 +17,18 @@ export default function Home() {
               </div>
               <div className='staticSect-products'>
                 <div className='staticSect-pro'>
-                  Məhsullar
-                  <img height={12} src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAkAAAAMCAYAAACwXJejAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAABSSURBVHgBzZFBDQAhDATbU3ASkIBUJOAECQ0KsICDsgS+LQkvJtnXTtrHEgFVjUhBfrJAKboQU0QRkPaI+JFPZebuXcmnNxfClsQVtjRnSVY/AKupn2s32eZUAAAAAElFTkSuQmCC" alt="fotod" />
+                  <Link
+                    style={{ display: 'flex', alignItems: 'center', color: '#f8f9fa' }}
+                    to='/products'>
+                    Məhsullar
+                    <img height={12} src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAkAAAAMCAYAAACwXJejAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAABSSURBVHgBzZFBDQAhDATbU3ASkIBUJOAECQ0KsICDsgS+LQkvJtnXTtrHEgFVjUhBfrJAKboQU0QRkPaI+JFPZebuXcmnNxfClsQVtjRnSVY/AKupn2s32eZUAAAAAElFTkSuQmCC" alt="fotod" />
+                  </Link>
                 </div>
               </div>
             </div>
+          </div>
+          <div className='staticSect-col-6-img'>
+            <img height="600px" src="https://slavyanka.az/static/media/Hand.d194eb4c.png" alt="fotohtn" />
           </div>
         </div>
       </div>
