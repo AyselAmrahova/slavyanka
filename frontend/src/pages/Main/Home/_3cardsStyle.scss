@@ -1,0 +1,143 @@
+@mixin for-tablet-landscape-up {
+    @media (max-width:992px) {
+        @content;
+    }
+}
+
+@mixin for-tablet-portrait-up {
+    @media (max-width: 768px) {
+        @content;
+    }
+}
+
+// @include for-tablet-landscape-up(){}
+// @include for-tablet-portrait-up(){}  
+// @media (min-width: 1200px)
+// @media (min-width: 992px)
+// @media (min-width: 768px)
+// @media (min-width: 576px)
+
+
+.container {
+    .row {
+        .cards {
+            padding-right: 0.75rem;
+            padding-left: 0.75rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+            margin: 0 auto;
+            gap: 20px;
+
+            .card-col-3 {
+                border-radius: 1rem !important;
+                box-shadow: 1px 1px 20px 10px #f3f0f0 !important;
+                padding: 3rem !important;
+                background-color: #fff;
+                width: 28%;
+                text-align: center;
+
+                @include for-tablet-landscape-up() {
+                    padding: 1rem !important;
+                }
+
+                @include for-tablet-portrait-up() {
+                    width: 70%;
+                }
+
+                img {
+                    object-fit: cover;
+                    padding-bottom: 1rem !important;
+                    vertical-align: middle;
+
+                    @include for-tablet-landscape-up() {
+                        width: 20%;
+                    }
+
+                    @include for-tablet-portrait-up() {
+                        width: 10%;
+                    }
+                }
+
+                .card-head {
+                    font-size: 15px;
+                    color: #212529;
+                    line-height: 22.5px;
+                    white-space: wrap;
+                    font-weight: 500 !important;
+                    margin-top: 0;
+                    margin-bottom: 1rem;
+                }
+
+                .card-desc {
+                    font-size: 13px;
+                    color: #9b9b9b;
+                    line-height: 19.5px;
+                    white-space: wrap;
+                    font-weight: 400;
+                    text-align: center !important;
+                    margin-top: 0;
+                    margin-bottom: 1rem;
+                }
+            }
+
+            .card-col-3-second {
+                border-radius: 1rem !important;
+                box-shadow: 1px 1px 20px 10px #f3f0f0 !important;
+                padding: 3rem !important;
+                background-color: #fff;
+                width: 27%;
+                text-align: center;
+                padding: 3rem;
+
+                @include for-tablet-portrait-up() {
+                    width: 80%;
+                    padding: 3rem !important;
+                    width: 70%;
+                    padding: 1rem;
+                }
+
+                @include for-tablet-landscape-up() {
+                    padding: 1.5rem !important;
+                }
+
+                img {
+                    object-fit: cover;
+                    padding-bottom: 1rem !important;
+                    vertical-align: middle;
+
+                    @include for-tablet-landscape-up() {
+                        width: 20% !important;
+                    }
+
+                    @include for-tablet-portrait-up() {
+                        width: 8% !important;
+                    }
+                }
+
+                .card-head {
+                    font-size: 15px;
+                    color: #212529;
+                    line-height: 22.5px;
+                    white-space: wrap;
+                    font-weight: 500 !important;
+                    // text-align: justify;
+                    margin-top: 0;
+                    margin-bottom: 1rem;
+                }
+
+                .card-desc {
+                    font-size: 13px;
+                    color: #9b9b9b;
+                    line-height: 19.5px;
+                    white-space: wrap;
+                    font-weight: 400;
+                    text-align: center !important;
+                    margin-top: 0;
+                    margin-bottom: 1rem;
+                }
+            }
+        }
+    }
+}
