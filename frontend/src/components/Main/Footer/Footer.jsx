@@ -16,7 +16,7 @@ export default function Footer() {
             <li className='footer-div-ul-li-2'>
               <img src="https://slavyanka.az/static/media/PhoneDark.7f003459.svg" alt="phone-icon" />
               <span>Sifariş üçün</span>
-              <b class="contactNum">*2121</b>
+              <b className="contactNum">*2121</b>
             </li>
             <li>info@slavyanka.az</li>
           </ul>

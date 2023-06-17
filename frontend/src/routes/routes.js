@@ -3,6 +3,7 @@ import Contact from "../pages/Main/Contact/Contact";
 import Home from "../pages/Main/Home/Home";
 import Products from "../pages/Main/Products/Products";
 import MainRoot from "../pages/Main/MainRoot";
+import NotFound from '../pages/Main/NotFound/NotFound'
 
 import AdminRoot from '../pages/Admin/AdminRoot'
 import Dashboard from '../pages/Admin/Dashboard'
@@ -15,7 +16,7 @@ export const ROUTES = [
     element: <MainRoot />,
     children: [
       {
-        path: "/home",
+        path: "",
         element: <Home />,
       },
       {
@@ -29,7 +30,11 @@ export const ROUTES = [
       {
         path: "/contact",
         element: <Contact />,
-      }
+      },
+      {
+        path: '*',
+        element: <NotFound />
+      },
     ],
   },
   //Admin Root - admin side

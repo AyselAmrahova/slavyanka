@@ -25,14 +25,14 @@ export default function Navbar() {
                 <nav>
                     <div className='navborder'>
                         <div className="navLogo">
-                            <Link to='/home' style={{ color: '#0d6efd', backgroundColor: 'transparent' }}><img src="https://slavyanka.az/static/media/LogoLight.50bd6f96.svg" alt="Example" height={'72px'} /></Link>
+                            <Link to='' style={{ color: '#0d6efd', backgroundColor: 'transparent' }}><img src="https://slavyanka.az/static/media/LogoLight.50bd6f96.svg" alt="Example" height={'72px'} /></Link>
                         </div>
                         <div className='navNum'>
-                            <p> Sifariş üçün </p>
+                            <p> Sifariş üçün : </p>
                             <h6>*2121</h6>
                         </div>
                         <ul className='navUl'>
-                            <li><h5><Link to='/home' className='navLink'>Ana səhifə</Link></h5></li>
+                            <li><h5><Link to='' className='navLink'>Ana səhifə</Link></h5></li>
                             <li><h5><Link to='/products' className='navLink'>Məhsullar</Link></h5></li>
                             <li><h5><Link to='/about' className='navLink'>Haqqımızda</Link></h5></li>
                             <li><h5><Link to='/contact' className='navLink'>Əlaqə</Link></h5></li>
@@ -48,7 +48,7 @@ export default function Navbar() {
                                     }}
                                 >
                                     <Typography.Link>
-                                        <Space style={{ color: '#f8f9fa ' }}>
+                                        <Space style={{ color: '#f8f9fa ', fontWeight: '700', fontSize: "16px" }}>
                                             AZE
                                             <DownOutlined />
                                         </Space>
