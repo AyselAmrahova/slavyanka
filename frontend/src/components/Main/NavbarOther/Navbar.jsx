@@ -72,7 +72,7 @@ export default function Navbar() {
                         </div>
                         <div className='navCall'>
                             <img src="https://slavyanka.az/static/media/PhoneLight.b5e0dced.svg" alt="Example" />
-                            <h6> Zəng sifarişi </h6>
+                            <a href="tel:+994997897877">Zəng sifarişi</a>
                         </div>
                     </div>
                 </nav>

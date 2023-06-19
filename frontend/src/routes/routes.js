@@ -8,6 +8,7 @@ import NotFound from '../pages/Main/NotFound/NotFound'
 import AdminRoot from '../pages/Admin/AdminRoot'
 import Dashboard from '../pages/Admin/Dashboard'
 import Add from "../pages/Admin/Add";
+import Login from "../pages/Admin/Login";
 
 export const ROUTES = [
   //Main Root - user side
@@ -49,6 +50,10 @@ export const ROUTES = [
       {
         path: 'add',
         element: <Add />,
+      },
+      {
+        path: 'login',
+        element: <Login />,
       },
     ],
   },

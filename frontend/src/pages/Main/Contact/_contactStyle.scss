@@ -5,6 +5,13 @@
 }
 
 // @include for-tablet-portrait-up(){}
+@mixin for-tablet-landscape-up {
+    @media (max-width:992px) {
+        @content;
+    }
+}
+
+// @include for-tablet-landscape-up(){}
 
 section {
     width: 100%;
@@ -40,7 +47,10 @@ section {
     padding: 0;
     margin: 0;
 
-    // border: 1px solid red;
+    @include for-tablet-landscape-up() {
+        width: 100%;
+    }
+
     @include for-tablet-portrait-up() {
         width: 100%;
         margin-top: 5vh;
@@ -48,7 +58,6 @@ section {
 
     .contact-address {
         display: flex;
-        // border: 1px solid red;
     }
 
     .info-img {
@@ -74,7 +83,6 @@ section {
             color: #051934;
             padding-bottom: 25px;
             text-align: left;
-            // font-size: 24px;
             font-size: 1rem;
             font-weight: 400;
             line-height: 1.5;
@@ -95,15 +103,16 @@ section {
 }
 
 .contact-map {
-    // border: 1px solid red;
     flex: 0 0 auto;
     width: 41.6666666667%;
     position: relative;
-    // padding-right: 15px;
-    // padding-left: 15px;
     width: 41.6%;
 
     @include for-tablet-portrait-up() {
+        width: 100%;
+    }
+
+    @include for-tablet-landscape-up() {
         width: 100%;
     }
 

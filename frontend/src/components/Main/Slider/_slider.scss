@@ -1,0 +1,99 @@
+.containerSlide {
+    height: 80vh;
+    width: 100%;
+    margin-bottom: 14vh;
+
+    .each-slide {
+        background: linear-gradient(250deg, rgb(162 191 218) -0.1%, rgb(4, 63, 144) 97.67%);
+
+        img {
+            object-fit: contain;
+            height: auto;
+            max-width: 100%;
+            vertical-align: middle;
+        }
+    }
+
+    .each-slide-1 {
+        background: linear-gradient(250deg, rgb(162 191 218) -0.1%, rgb(4, 63, 144) 97.67%);
+        display: flex;
+        justify-content: space-around;
+
+        .slide-1-text {
+            color: #f8f9fa;
+            display: flex;
+            margin: auto 0;
+            flex-direction: column;
+            padding-left: 3rem;
+
+            h1 {
+                max-width: 350px;
+                line-height: 1.5;
+                white-space: wrap;
+                margin-bottom: 1rem;
+                font-size: 39px;
+            }
+
+            p {
+                margin: 1rem 0;
+                opacity: 0.7;
+                max-width: 350px;
+                line-height: 1.5;
+                text-align: justify;
+                white-space: wrap;
+            }
+        }
+
+        img {
+            height: 85vh;
+        }
+    }
+}
+
+.slider-button {
+    padding-bottom: 3rem;
+    margin-bottom: 3rem;
+    margin-left: 0;
+
+    button {
+        display: inline-block;
+        font-weight: 400;
+        line-height: 1.5;
+        border: 1px solid transparent;
+        border-radius: 0.25rem;
+        transition: color .15s ease-in-out, background-color .15s ease-in-out, border-color .15s ease-in-out, box-shadow .15s ease-in-out;
+        text-align: center;
+        text-decoration: none;
+        vertical-align: middle;
+        color: #f8f9fa;
+        padding: 0.5rem 1.5rem;
+        cursor: pointer;
+    }
+
+    .btn-order {
+        background-color: rgb(63, 201, 100);
+        font-size: 14px;
+        margin-right: 1rem;
+    }
+
+    .btn-why {
+        background: rgba(255, 255, 255, 0.1);
+        font-size: 14px;
+    }
+}
+
+.default-nav {
+    margin-left: 20px;
+    margin-right: 20px;
+
+    svg {
+        width: 20px !important;
+        height: 20px !important;
+        font-size: 20px;
+        padding: 2px;
+    }
+}
+
+// .indicators {
+//     display: none !important;
+// }
