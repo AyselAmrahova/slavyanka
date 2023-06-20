@@ -1,0 +1,126 @@
+.about-img {
+    padding-bottom: 3rem;
+    margin-bottom: 3rem;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+}
+
+.container {
+    width: 100%;
+    margin-bottom: 1.5rem;
+
+    .about-row {
+        margin: 0 auto;
+        width: 84%;
+
+        .about-first {
+            display: flex;
+            justify-content: center;
+            flex-direction: column;
+
+            h3 {
+                // margin-top: 3rem;
+                margin-bottom: 0.5rem;
+                font-weight: 700;
+                font-size: 1.75rem;
+                line-height: 1.2;
+                color: #212529;
+            }
+
+            p {
+                white-space: wrap;
+                text-align: justify;
+                margin-top: 0;
+                margin-bottom: 1rem;
+                font-size: 1rem;
+                font-weight: 400;
+                line-height: 1.5;
+                color: #212529;
+            }
+        }
+
+        .about-first-img {
+            margin: 1rem auto 3rem;
+            display: block;
+            padding-bottom: 1rem;
+            width: 100%;
+        }
+
+    }
+}
+
+.about-second {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    padding: 0;
+    margin-top: 1.5rem;
+    margin-bottom: 1.5rem;
+
+    .about-second-img-div {
+        display: flex;
+        align-items: flex-end;
+
+        img {
+            width: 100%;
+        }
+    }
+
+    .about-second-text-div {
+        margin-left: 1rem;
+        margin-right: 1rem;
+        max-height: 300px;
+        overflow-y: auto;
+
+        .text-danger {
+            color: #dc3545;
+            font-size: 2.5rem;
+            margin-top: 0;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+            line-height: 1.2;
+        }
+
+        p {
+            white-space: wrap;
+            text-align: justify;
+            margin-top: 0;
+            margin-bottom: 1rem;
+            line-height: 24px;
+            color: #212529;
+        }
+    }
+}
+
+.about-third {
+    display: flex;
+    flex-direction: row;
+    padding: 0;
+    margin-top: 1.5rem;
+    margin-bottom: 1.5rem;
+    justify-content: center;
+
+    .about-third-text-div {
+        margin-right: 1rem;
+        margin-left: 1rem;
+
+        .text-danger {
+            color: #dc3545;
+            font-size: 2.5rem;
+            margin-top: 0;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+            line-height: 1.2;
+        }
+
+        p {
+            white-space: wrap;
+            text-align: justify;
+            margin-top: 0;
+            margin-bottom: 1rem;
+            line-height: 24px;
+            color: #212529;
+        }
+    }
+}

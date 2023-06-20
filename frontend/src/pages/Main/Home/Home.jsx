@@ -3,10 +3,14 @@ import StaticSection from '../../../components/Main/StaticSect/StaticSection'
 import ThreeCards from '../../../components/Main/ThreeCards/ThreeCards'
 import Navbar from '../../../components/Main/HomeNavbar/Navbar';
 import Slider from '../../../components/Main/Slider/Slider';
+import { Helmet } from "react-helmet";
 
 export default function Home() {
   return (
     <>
+      <Helmet>
+        <title>Slavyanka || Gedebey Water</title>
+      </Helmet>
       <Navbar />
       <Slider />
       <ThreeCards />
