@@ -1,0 +1,60 @@
+.login-div {
+    border: 1px solid rebeccapurple;
+    text-align: center;
+
+    .login-text {
+        font-style: normal;
+        letter-spacing: 0;
+        // text-align: left;
+        font-weight: 700;
+        line-height: 23px;
+        color: #051934;
+        padding-top: 3rem;
+        font-size: 20px;
+        padding: 3rem 1rem 1rem 1rem;
+    }
+
+    form {
+        .input-div {
+            padding-top: 1rem !important;
+            display: flex;
+            justify-content: center;
+            width: 100%;
+            position: relative;
+            min-height: 1px;
+            padding-right: 15px;
+            padding-left: 15px;
+
+            .input-div-Button {
+                background-color: #3fc964;
+                height: 60px;
+                color: #fff;
+                border-color: #198754;
+
+
+
+
+                width: 30%;
+                background-color: #3fc964;
+                font-size: 15px;
+                font-weight: 500;
+                line-height: 18px;
+                color: #fff;
+                padding: 13px;
+                text-align: center;
+                display: inline-block;
+                vertical-align: middle;
+                border: 1px solid transparent;
+                border-radius: 0.25rem;
+                transition: color .15s ease-in-out,
+                    background-color .15s ease-in-out,
+                    border-color .15s ease-in-out,
+                    box-shadow .15s ease-in-out;
+
+                &:hover {
+                    color: #212529;
+                }
+            }
+        }
+    }
+}

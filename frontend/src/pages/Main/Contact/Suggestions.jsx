@@ -1,7 +1,6 @@
 import React from 'react'
-import TextField from '@mui/material/TextField';
+import { Button, TextField } from '@mui/material';
 import './_suggestions.scss'
-import { Button } from '@mui/material';
 
 
 export default function Suggestions() {

@@ -57,7 +57,9 @@ export default function Navbar() {
                             </div>
                             <div className='navUser'>
                                 <div className='navUserIcon'>
-                                    <img src="https://slavyanka.az/static/media/PersonDark.5c33bb01.svg" alt="Example" width="18" height="18" />
+                                    <Link to='http://localhost:3000/login'>
+                                        <img src="https://slavyanka.az/static/media/PersonDark.5c33bb01.svg" alt="Example" width="18" height="18" />
+                                    </Link>
                                 </div>
                             </div>
                             <div className='navBasket'>

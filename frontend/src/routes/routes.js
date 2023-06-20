@@ -4,6 +4,7 @@ import Home from "../pages/Main/Home/Home";
 import Products from "../pages/Main/Products/Products";
 import MainRoot from "../pages/Main/MainRoot";
 import NotFound from '../pages/Main/NotFound/NotFound'
+import LoginM from "../pages/Main/Login/LoginM";
 
 import AdminRoot from '../pages/Admin/AdminRoot'
 import Dashboard from '../pages/Admin/Dashboard'
@@ -31,6 +32,10 @@ export const ROUTES = [
       {
         path: "/contact",
         element: <Contact />,
+      },
+      {
+        path: '/login',
+        element: <LoginM />
       },
       {
         path: '*',
