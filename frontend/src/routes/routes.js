@@ -4,12 +4,15 @@ import Home from "../pages/Main/Home/Home";
 import Products from "../pages/Main/Products/Products";
 import MainRoot from "../pages/Main/MainRoot";
 import NotFound from '../pages/Main/NotFound/NotFound'
+
 import LoginM from "../pages/Main/Login/LoginM";
+import ForgetPassword from "../pages/Main/Login/ForgetPassword";
 
 import AdminRoot from '../pages/Admin/AdminRoot'
 import Dashboard from '../pages/Admin/Dashboard'
 import Add from "../pages/Admin/Add";
 import Login from "../pages/Admin/Login";
+import NewAcc from "../pages/Main/Login/NewAcc";
 
 export const ROUTES = [
   //Main Root - user side
@@ -36,6 +39,14 @@ export const ROUTES = [
       {
         path: '/login',
         element: <LoginM />
+      },
+      {
+        path: '/forget-password',
+        element: <ForgetPassword />
+      },
+      {
+        path: '/new-account',
+        element: <NewAcc />
       },
       {
         path: '*',

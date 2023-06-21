@@ -25,14 +25,14 @@ export default function Navbar() {
                 <nav>
                     <div className='navborder'>
                         <div className="navLogo">
-                            <Link to='' style={{ color: '#0d6efd', backgroundColor: 'transparent' }}><img src="https://slavyanka.az/static/media/LogoLight.50bd6f96.svg" alt="Example" height={'72px'} /></Link>
+                            <Link to='http://localhost:3000/' style={{ color: '#0d6efd', backgroundColor: 'transparent' }}><img src="https://slavyanka.az/static/media/LogoLight.50bd6f96.svg" alt="Example" height={'72px'} /></Link>
                         </div>
                         <div className='navNum'>
                             <p> Sifariş üçün : </p>
                             <h6>*2121</h6>
                         </div>
                         <ul className='navUl'>
-                            <li><h5><Link to='' className='navLink'>Ana səhifə</Link></h5></li>
+                            <li><h5><Link to='http://localhost:3000/' className='navLink'>Ana səhifə</Link></h5></li>
                             <li><h5><Link to='/products' className='navLink'>Məhsullar</Link></h5></li>
                             <li><h5><Link to='/about' className='navLink'>Haqqımızda</Link></h5></li>
                             <li><h5><Link to='/contact' className='navLink'>Əlaqə</Link></h5></li>
@@ -57,7 +57,7 @@ export default function Navbar() {
                             </div>
                             <div className='navUser'>
                                 <div className='navUserIcon'>
-                                    <Link to='login'>
+                                    <Link to='http://localhost:3000/login'>
                                         <img src="https://slavyanka.az/static/media/PersonLight.8bad44e1.svg" alt="Example" width="18" height="18" />
                                     </Link>
                                 </div>

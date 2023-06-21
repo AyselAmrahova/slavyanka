@@ -13,6 +13,15 @@
 //     }
 // }
 // @include for-tablet-portrait-up(){}
+
+// @mixin for-mobile-L {
+//     @media (max-width:576px) {
+//         @content;
+//     }
+// }
+
+// @include for-mobile-L(){}
+
 * {
     margin: 0;
     padding: 0;
