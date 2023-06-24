@@ -212,9 +212,9 @@ app.post('/api/login', async (req, res) => {
         //username password + 
         //access token - JWT
         //refresh token
-        const token = jwt.sign({ id }, process.env.SECRET_KEY, {
-            expiresIn: '7d'
-        })
+                const token = jwt.sign({ id }, process.env.SECRET_KEY, {
+                    expiresIn: '7d'
+                })
         if (!isValid) {
             res.json({ auth: false, message: 'password is incorrect!' });
         }
