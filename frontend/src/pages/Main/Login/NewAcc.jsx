@@ -1,10 +1,45 @@
 import React from 'react'
 import Navbar from '../../../components/Main/HomeNavbar/Navbar'
-import { Input, Space } from 'antd';
+// import { Input, Space } from 'antd';
 import { Button, TextField } from '@mui/material';
 import '../Login/_style.scss'
 
+import { useNavigate } from "react-router-dom";
+import { useFormik } from 'formik';
+import { signUp } from '../../../api/requests';
+import Swal from 'sweetalert2';
+
 export default function NewAcc() {
+    const navigate = useNavigate();
+    const handleSubmit = async (values, actions) => {
+        await signUp({
+            name: values.name,
+            username: values.username,
+            email: values.email,
+            password: values.password,
+            isAdmin: false
+        });
+        Swal.fire({
+            position: 'top-end',
+            icon: 'success',
+            title: 'User signed up successfully!',
+            showConfirmButton: false,
+            timer: 1200
+        })
+        actions.resetForm();
+        navigate('/login');
+        console.log(values);
+    }
+    const formik = useFormik({
+        initialValues: {
+            name: '',
+            username: '',
+            email: '',
+            password: '',
+            confirmPassword: ''
+        },
+        onSubmit: handleSubmit
+    })
     return (
         <>
             <Navbar />
@@ -15,18 +50,30 @@ export default function NewAcc() {
                 <div className='na-sub-text'>
                     Müvafiq xanalara məlumatları daxil edin
                 </div>
-                <form>
+                <form onSubmit={formik.handleSubmit}>
                     <div className='input-div'>
-                        <TextField label="Ad"
+                        <TextField
+                            name="name"
+                            label="Ad"
                             className="form-input"
-                            type="text" />
+                            type="text"
+                            onBlur={formik.handleBlur}
+                            value={formik.values.name}
+                            onChange={formik.handleChange}
+                        />
                     </div>
                     <div className='input-div' >
-                        <TextField label='Soyad'
+                        <TextField
+                            type='text'
+                            label='Soyad'
+                            name="username"
                             className="form-input"
-                            type='text' />
+                            onBlur={formik.handleBlur}
+                            value={formik.values.username}
+                            onChange={formik.handleChange}
+                        />
                     </div>
-                    <div className='input-div'>
+                    {/* <div className='input-div'>
                         <Space.Compact style={{
                             width: '100%',
                             height: '60px',
@@ -52,21 +99,39 @@ export default function NewAcc() {
                                 placeholder='xxxxxxxxx'
                             />
                         </Space.Compact>
-                    </div>
+                    </div> */}
                     <div className='input-div'>
-                        <TextField label="Email"
+                        <TextField
+                            name="email"
+                            label="Email"
+                            type="email"
                             className="form-input"
-                            type="email" />
+                            onBlur={formik.handleBlur}
+                            value={formik.values.email}
+                            onChange={formik.handleChange}
+                        />
                     </div>
                     <div className='input-div' >
-                        <TextField label='Şifrəniz'
+                        <TextField
+                            type='password'
+                            name="password"
+                            label='Şifrəniz'
                             className="form-input"
-                            type='password' />
+                            onBlur={formik.handleBlur}
+                            onChange={formik.handleChange}
+                            value={formik.values.password}
+                        />
                     </div>
                     <div className='input-div' >
-                        <TextField label='Şifrəniz yenidən'
+                        <TextField
+                            name="confirmPassword"
+                            type="password"
                             className="form-input"
-                            type='password' />
+                            label='Şifrəniz yenidən'
+                            onBlur={formik.handleBlur}
+                            onChange={formik.handleChange}
+                            value={formik.values.confirmPassword}
+                        />
                     </div>
                     <div className='login-btn-div'>
                         <Button

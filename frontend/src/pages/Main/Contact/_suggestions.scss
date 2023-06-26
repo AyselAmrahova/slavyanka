@@ -32,12 +32,15 @@ main {
             padding-top: 1rem !important;
             display: flex;
             justify-content: center;
+            align-items: center;
             width: 100%;
             position: relative;
             min-height: 1px;
             padding-right: 15px;
             padding-left: 15px;
-
+            display: flex;
+            flex-direction: column;
+         
             .form-input {
                 width: 30% !important;
                 border: 1px solid rgba(0, 0, 0, .04) !important;
@@ -73,4 +76,13 @@ main {
             }
         }
     }
+}
+
+.span-err {
+    color: red;
+    visibility: visible;
+}
+
+.span-2 {
+   visibility: hidden; 
 }

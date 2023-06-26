@@ -11,8 +11,8 @@ import ForgetPassword from "../pages/Main/Login/ForgetPassword";
 import AdminRoot from '../pages/Admin/AdminRoot'
 import Dashboard from '../pages/Admin/Dashboard'
 import Add from "../pages/Admin/Add";
-import Login from "../pages/Admin/Login";
 import NewAcc from "../pages/Main/Login/NewAcc";
+import Users from './../pages/Main/Login/Users';
 
 export const ROUTES = [
   //Main Root - user side
@@ -49,6 +49,10 @@ export const ROUTES = [
         element: <NewAcc />
       },
       {
+        path: '/users',
+        element: <Users/>
+      },
+      {
         path: '*',
         element: <NotFound />
       },
@@ -66,10 +70,6 @@ export const ROUTES = [
       {
         path: 'add',
         element: <Add />,
-      },
-      {
-        path: 'login',
-        element: <Login />,
       },
     ],
   },

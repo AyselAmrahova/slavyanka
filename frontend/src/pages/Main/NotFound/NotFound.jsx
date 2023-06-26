@@ -1,7 +1,11 @@
 import React from 'react'
 import './_notFoundStyle.scss'
+import Navbar from '../../../components/Main/HomeNavbar/Navbar'
 export default function index() {
     return (
-        <div>Not Found</div>
+        <>
+            <Navbar />
+            <div>Not Found</div>
+        </>
     )
 }

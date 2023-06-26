@@ -4,14 +4,16 @@ import {
   createBrowserRouter,
   RouterProvider,
 } from "react-router-dom";
-
+import { UserContextProvider } from "../src/pages/Main/Login/context/UserContext";
 
 const router = createBrowserRouter(ROUTES)
 
 function App() {
   return (
     <>
-      <RouterProvider router={router} />
+      <UserContextProvider>
+        <RouterProvider router={router} />
+      </UserContextProvider>
     </>
   );
 }

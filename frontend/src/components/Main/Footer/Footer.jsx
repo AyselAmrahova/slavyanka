@@ -27,7 +27,7 @@ export default function Footer() {
               <Link style={{ color: "#212529", fontWeight: '700' }} to='/home'>© "Gədəbəy Mineral Suları" MMC</Link>
             </li>
             <li>
-              <Link style={{ color: "#212529" }} to='/home'>Ana səhifə</Link>
+              <Link style={{ color: "#212529" }} to='/'>Ana səhifə</Link>
             </li>
             <li>
               <Link style={{ color: "#212529" }} to='/products'>Məhsullar</Link>

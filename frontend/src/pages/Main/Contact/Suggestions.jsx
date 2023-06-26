@@ -29,6 +29,7 @@ export default function Suggestions() {
         (result) => {
           console.log(result.text);
           console.log("message sent");
+          
           setOpen(true);
 
         },
@@ -57,12 +58,11 @@ export default function Suggestions() {
   //   setOpen(false);
   // };
 
-
   const Validation = yup.object().shape({
-    user_name: yup.string().required('Required'),
-    user_username: yup.string().required('Required'),
-    email: yup.string().required('Required'),
-    message: yup.string().required('Required'),
+    user_name: yup.string().min(3, 'minimum 3 herfden ibaret ola biler').required('Zəhmət olmasa xananı düzgün doldurun'),
+    user_username: yup.string().min(3).required('Zəhmət olmasa xananı düzgün doldurun'),
+    user_email: yup.string().min(3).email().required('Zəhmət olmasa xananı düzgün doldurun'),
+    message: yup.string().min(4).required('Zəhmət olmasa xananı düzgün doldurun'),
   })
   const formik = useFormik({
     initialValues: {
@@ -74,8 +74,6 @@ export default function Suggestions() {
     onSubmit: sendEmail,
     validationSchema: Validation,
   })
-
-
 
 
 
@@ -111,9 +109,9 @@ export default function Suggestions() {
               onBlur={formik.handleBlur}
               value={formik.values.user_name}
             />
-            {formik.errors.user_name && formik.touched.user_name && (
-              <span style={{ color: "red" }}>{formik.errors.user_name}</span>
-            )}
+            {/* {formik.errors.user_name && formik.touched.user_name && ( */}
+            <span  style={{ color: formik.errors.user_name ? 'transparent' : 'transparent', visibility: formik.errors.user_name ? 'visible' : 'hidden' }}>{formik.errors.user_name}</span>
+            {/* // )} */}
           </div>
           <div className='input-div' >
             <TextField
