@@ -1,7 +1,8 @@
 const mongoose = require('mongoose');
 
 // Slider
-const SliderModel = mongoose.model("SLider", new mongoose.Schema({
+
+const SliderModel = mongoose.model("Slider", new mongoose.Schema({
     imageURL: String,
     button: Boolean,
 }));

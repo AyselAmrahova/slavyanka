@@ -4,11 +4,11 @@ const ThreeCardsController = {
   getAll: async (req, res) => {
     const ThreeCards = await ThreeCardsModel.find();
     if (ThreeCards === undefined) {
-      res.status(404).send("Card not found");
+      res.status(404).send("Data not found");
     } else {
       res.status(200).send({
         data: ThreeCards,
-        message: "data get success!",
+        message: "Data get success!",
       });
     }
   },
@@ -28,11 +28,11 @@ const ThreeCardsController = {
     const threeCard = await ThreeCardsModel.findByIdAndDelete(id);
     await ThreeCardsModel.deleteMany({ threeCardID: id });
     if (threeCard === undefined) {
-      res.status(404).send("Card not found");
+      res.status(404).send("Data not found");
     } else {
       res.status(203).send({
         data: threeCard,
-        message: "Card deleted successfully",
+        message: "Data deleted successfully",
       });
     }
   },
@@ -45,9 +45,9 @@ const ThreeCardsController = {
       imageURL: imageURL,
     });
     if (existedThreeCard == undefined) {
-      res.status(404).send("Card not found!");
+      res.status(404).send("Data not found!");
     } else {
-      res.status(200).send(`${title} updated successfully!`);
+      res.status(200).send('Data updated successfully!');
     }
   },
 };

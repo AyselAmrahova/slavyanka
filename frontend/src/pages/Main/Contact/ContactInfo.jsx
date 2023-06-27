@@ -1,8 +1,16 @@
 import React from 'react'
 import './_contactStyle.scss'
 import StaticSection from '../../../components/Main/StaticSect/StaticSection';
+import { useState, useEffect } from "react";
+import { getAllContact } from '../../../api/requests';
 
 export default function ContactInfo() {
+    const [contacts, setContacts] = useState([])
+    useEffect(() => {
+        getAllContact().then((res) => {
+            setContacts(res);
+        });
+    }, []);
     return (
         <>
             <section>
@@ -12,35 +20,40 @@ export default function ContactInfo() {
                         <StaticSection />
                     </div>
                     <div className='contact-section'>
-                        <div className='contact-info'>
-                            <div className='contact-address'>
-                                <div className='info-img'>
-                                    <img src="https://slavyanka.az/static/media/Location.a118b987.svg" alt="Location" />
+                        {contacts && contacts.map((contact) => {
+                            return (
+                                <div key={contact._id} className='contact-info'>
+                                    <div className='contact-address'>
+                                        <div className='info-img'>
+                                            <img src="https://slavyanka.az/static/media/Location.a118b987.svg" alt="Location" />
+                                        </div>
+                                        <div className='info-text'>
+                                            <label className="text-center">Ünvan</label>
+                                            <div>{contact.address}</div>
+                                        </div>
+                                    </div>
+                                    <div className='contact-address'>
+                                        <div className='info-img'>
+                                            <img src="https://slavyanka.az/static/media/PhoneCircle.5cf6064b.svg" alt="Phone" />
+                                        </div>
+                                        <div className="info-text">
+                                            <label className="text-center">Telefon</label>
+                                            <div>{contact.phone}</div>
+                                        </div>
+                                    </div>
+                                    <div className='contact-address'>
+                                        <div className='info-img'>
+                                            <img src="https://slavyanka.az/static/media/Letter.f569f7c1.svg" alt="E-mail" />
+                                        </div>
+                                        <div className="info-text">
+                                            <label className="text-center">E-mail</label>
+                                            <div>{contact.email}</div>
+                                        </div>
+                                    </div>
                                 </div>
-                                <div className='info-text'>
-                                    <label className="text-center">Ünvan</label>
-                                    <div>Bakı şəhəri, N.Nərimanov rayonu Ziya Bünyadov prospekti 20/61</div>
-                                </div>
-                            </div>
-                            <div className='contact-address'>
-                                <div className='info-img'>
-                                    <img src="https://slavyanka.az/static/media/PhoneCircle.5cf6064b.svg" alt="Phone" />
-                                </div>
-                                <div className="info-text">
-                                    <label className="text-center">Telefon</label>
-                                    <div>+994 12 567 79 66  /  +994 55 515 21 21</div>
-                                </div>
-                            </div>
-                            <div className='contact-address'>
-                                <div className='info-img'>
-                                    <img src="https://slavyanka.az/static/media/Letter.f569f7c1.svg" alt="E-mail" />
-                                </div>
-                                <div className="info-text">
-                                    <label className="text-center">E-mail</label>
-                                    <div>info@slavyanka.az</div>
-                                </div>
-                            </div>
-                        </div>
+
+                            )
+                        })}
                         <div className='contact-map'>
                             <iframe
                                 title="Location"

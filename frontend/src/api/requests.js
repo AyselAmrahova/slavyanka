@@ -1,7 +1,7 @@
 import { base_url } from "./base_url";
 import axios from "axios";
 
-// ALL
+// ALL SLIDER
 export const getAllSlider = async () => {
     let globalData;
     await axios.get(`${base_url}/slider/`)
@@ -10,15 +10,15 @@ export const getAllSlider = async () => {
         })
     return globalData;
 }
-// PUT
+// PUT SLIDER
 export const editSlider = (id, payload) => {
     axios.put(`${base_url}/slider/${id}`, payload);
 }
-// POST
+// POST SLIDER
 export const postSlider = (payload) => {
     axios.post(`${base_url}/slider`, payload);
 };
-// DELETE
+// DELETE SLIDER
 export const deleteSliderByID = async (ID) => {
     let deleteSlider;
     await axios.delete(`${base_url}/slider/${ID}`).then((res) => {
@@ -85,16 +85,28 @@ export const getUsers = async (token) => {
 
 
 
-    // import { base_url } from './base_url';
-    // import axios from 'axios';
-    // export const getAllSliders = async () => {
-    //     let allSliders;
-    //     await axios.get(`${base_url}/sliders`)
-    //         .then((res) => {
-    //             allSliders = res.data.data;
-    //         })
-    //     return allSliders;
-    // }
-    // export const postSlider = (payload) => {
-    //     axios.post(`${base_url}/sliders`, payload);
-    // }
+// All contact
+export const getAllContact = async () => {
+    let globalData;
+    await axios.get(`${base_url}/contact`)
+        .then((res) => {
+            globalData = res.data.data;
+        })
+    return globalData;
+}
+// delete contact
+export const deleteContactByID = async (ID) => {
+    let deleteContact;
+    await axios.delete(`${base_url}/contact/${ID}`).then((res) => {
+        deleteContact = res.data.data;
+    });
+    return deleteContact;
+};
+//post contact
+export const postContact = (payload) => {
+    axios.post(`${base_url}/contact`, payload);
+};
+//edit contact
+export const editContact = (id, payload) => {
+    axios.put(`${base_url}/contact/${id}`, payload);
+}

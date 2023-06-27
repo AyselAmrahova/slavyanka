@@ -1,8 +1,15 @@
 import React from 'react'
 import "./_staticSectStyle.scss"
 import { Link } from 'react-router-dom';
-
+import { getAllContact } from '../../../api/requests';
+import { useState, useEffect } from "react";
 export default function StaticSection() {
+    const [contacts, setContacts] = useState([])
+    useEffect(() => {
+        getAllContact().then((res) => {
+            setContacts(res);
+        });
+    }, []);
     return (
         <>
             {/* STATIC SECTION */}
@@ -12,10 +19,16 @@ export default function StaticSection() {
                         <h3>Evdə, ofisdə, həyatın hər anında!</h3>
                         <p>Slavyanka sifariş edin, biz cəmi 24 saat ərzində ünvanınıza çatdırırıq</p>
                         <div className='staticSect-call'>
-                            <div className='staticSect-call-icon'>
-                                <img src="https://slavyanka.az/static/media/PhoneLight.b5e0dced.svg" alt="phonefoto" />
-                                <p>*2121</p>
-                            </div>
+                            {contacts && contacts.map((contact) => {
+                                return (
+                                    <div key={contact._id} className='staticSect-call-icon'>
+                                        <a href="tel:+994997897877">
+                                            <img src="https://slavyanka.az/static/media/PhoneLight.b5e0dced.svg" alt="phonefoto" />
+                                        </a>
+                                        <p>*{contact.connect}</p>
+                                    </div>
+                                )
+                            })}
                             <div className='staticSect-products'>
                                 <div className='staticSect-pro'>
                                     <Link

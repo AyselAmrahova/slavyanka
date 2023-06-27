@@ -4,8 +4,11 @@ const cors = require("cors");
 const bodyParser = require("body-parser");
 const dotenv = require('dotenv');
 const mongoose = require('mongoose');
+
 const ThreeCards_router = require('./routes/ThreeCards.routes');
-const SLider_router = require('./routes/SLider.routes')
+const Slider_router  = require('./routes/Slider.routes')
+const Contact_router  = require('./routes/Contact.routes')
+
 dotenv.config();
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -22,7 +25,9 @@ mongoose.connect(DB_CONNECTION.replace("<password>", DB_PASSWORD))
 //cards
 app.use('/api/three-cards/', ThreeCards_router)
 // slider
-app.use('/api/slider/', SLider_router)
+app.use('/api/slider/', Slider_router)
+// contact
+app.use('/api/contact/', Contact_router)
 
 
 
@@ -52,6 +57,12 @@ const verifyJWT = (req,res,next)=>{
         })
     }
 }
+
+
+
+
+// LOGIN REGISTER
+
 
 //mongoose model
 const Users = mongoose.model('Users', new mongoose.Schema({
@@ -124,24 +135,8 @@ app.post('/api/login', async (req, res) => {
     }
 })
 
-//logout
-
 //users - get
 app.get('/api/users', verifyJWT, async (req, res) => {
     const users = await Users.find();
     res.json({ users: users });
 })
-
-
-
-// const express = require('express');
-// const app = express();
-// const cors = require('cors');
-// const bodyParser = require('body-parser');
-// const dotenv = require('dotenv');
-// const mongoose = require('mongoose');
-// dotenv.config();
-// app.use(bodyParser.json());
-// app.use(cors());
-
-

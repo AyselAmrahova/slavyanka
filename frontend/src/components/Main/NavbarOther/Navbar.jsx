@@ -1,23 +1,20 @@
 import React from 'react'
 import './_navbarOther.scss'
-import { DownOutlined } from '@ant-design/icons';
-import { Dropdown, Space, Typography } from 'antd';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from "react-router-dom";
+import { useUserContext } from "../../../pages/Main/Login/context/UserContext";
+import { FiLogOut } from "react-icons/fi";
+import { Button } from '@mui/material';
+import { getAllContact } from '../../../api/requests';
+import { useState, useEffect } from "react";
 export default function Navbar() {
-    const items = [
-        {
-            key: '1',
-            label: <Link to=''> AZE </Link>,
-        },
-        {
-            key: '2',
-            label: <Link to=''> ENG </Link>,
-        },
-        {
-            key: '3',
-            label: <Link to=''> RUS </Link>,
-        },
-    ];
+    const [user, setUser] = useUserContext();
+    const navigate = useNavigate();
+    const [contacts, setContacts] = useState([])
+    useEffect(() => {
+        getAllContact().then((res) => {
+            setContacts(res);
+        });
+    }, []);
     return (
         <>
             {/* bu divdə slider də olmalıdı */}
@@ -27,10 +24,14 @@ export default function Navbar() {
                         <div className="navLogo">
                             <Link to='http://localhost:3000' style={{ color: '#0d6efd', backgroundColor: 'transparent' }}><img src="https://slavyanka.az/static/media/LogoDark.9ce611ae.svg" alt="Example" height={'72px'} /></Link>
                         </div>
-                        <div className='navNum'>
-                            <p> Sifariş üçün </p>
-                            <h6>*2121</h6>
-                        </div>
+                        {contacts && contacts.map((contact) => {
+                            return (
+                                <div key={contact._id} className='navNum'>
+                                    <p> Sifariş üçün : </p>
+                                    <h6>*{contact.connect}</h6>
+                                </div>
+                            )
+                        })}
                         <ul className='navUl'>
                             <li><h5><Link to='http://localhost:3000' className='navLink'>Ana səhifə</Link></h5></li>
                             <li><h5><Link to='/products' className='navLink'>Məhsullar</Link></h5></li>
@@ -38,30 +39,32 @@ export default function Navbar() {
                             <li><h5><Link to='/contact' className='navLink'>Əlaqə</Link></h5></li>
                         </ul>
                         <div className='navIcon'>
-                            <div className='navLang'>
-                                <Dropdown
-                                    className='navDropDown'
-                                    menu={{
-                                        items,
-                                        selectable: true,
-                                        defaultSelectedKeys: ['1'],
-                                    }}
-                                >
-                                    <Typography.Link>
-                                        <Space style={{ color: '#212529 ', fontSize: "16px", fontWeight: '700' }}>
-                                            AZE
-                                            <DownOutlined />
-                                        </Space>
-                                    </Typography.Link>
-                                </Dropdown>
-                            </div>
-                            <div className='navUser'>
-                                <div className='navUserIcon'>
-                                    <Link to='http://localhost:3000/login'>
-                                        <img src="https://slavyanka.az/static/media/PersonDark.5c33bb01.svg" alt="Example" width="18" height="18" />
-                                    </Link>
-                                </div>
-                            </div>
+                            {user ? (
+                                <>
+                                    <Button style={{ border: '1px solid #cedef3', marginRight: '10px' }} color="inherit">
+                                        <Link to=''><p style={{ color: 'black' }}>{user.name}</p></Link>
+                                    </Button>
+                                    <Button onClick={async () => {
+                                        localStorage.removeItem('token');
+                                        localStorage.removeItem('user');
+                                        await setUser(null);
+                                        navigate('/login');
+                                    }} style={{ border: '1px solid #cedef3', padding: '0.4rem 0rem', marginRight: '10px' }} color="inherit">
+                                        <FiLogOut style={{ color: 'black', fontSize: '23px' }} />
+                                    </Button>
+                                </>
+                            ) : (
+                                <>
+                                    <div className='navUser'>
+                                        <div className='navUserIcon'>
+                                            <Link to='http://localhost:3000/login'>
+                                                <img src="https://slavyanka.az/static/media/PersonDark.5c33bb01.svg" alt="Example" width="18" height="18" />
+                                            </Link>
+                                        </div>
+                                    </div>
+                                </>
+                            )}
+
                             <div className='navBasket'>
                                 <div className='navBasketIcon'>
                                     <img src="https://slavyanka.az/static/media/ShoppingDark.b6cc94ef.svg" alt="Example" />

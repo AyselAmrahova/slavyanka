@@ -1,6 +1,6 @@
-const SliderModel = require('../models/Slider.model');
+const Slider = require('../models/Slider.model');
 
-const SLiderController = {
+const SliderController = {
     getAll: async (req, res) => {
         const Sliders = await SliderModel.find();
         if (Sliders === undefined) {
@@ -25,7 +25,7 @@ const SLiderController = {
     delete: async (req, res) => {
         const id = req.params.id;
         const Slider = await SliderModel.findByIdAndDelete(id);
-        await SliderModel.deleteMany({ SLiderID: id });
+        await SliderModel.deleteMany({ SliderID: id });
         if (Slider === undefined) {
             res.status(404).send("data not found");
         } else {
@@ -50,4 +50,4 @@ const SLiderController = {
     },
 };
 
-module.exports = SLiderController
+module.exports = SliderController

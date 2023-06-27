@@ -1,25 +1,38 @@
 import React from 'react'
 import './_navbarStyle.scss'
 import { Button } from '@mui/material';
-import { useUserContext } from "../../../pages/Main/Login/context/UserContext";
 import { Link, useNavigate } from "react-router-dom";
+import { useUserContext } from "../../../pages/Main/Login/context/UserContext";
+import { FiLogOut } from "react-icons/fi";
+import { getAllContact } from '../../../api/requests';
+import { useState, useEffect } from "react";
+
 export default function Navbar() {
     const [user, setUser] = useUserContext();
     const navigate = useNavigate();
-    console.log(user);
+
+    const [contacts, setContacts] = useState([])
+    useEffect(() => {
+        getAllContact().then((res) => {
+            setContacts(res);
+        });
+    }, []);
     return (
         <>
-            {/* bu divdə slider də olmalıdı */}
             <div className='navbarSlider'>
                 <nav>
                     <div className='navborder'>
                         <div className="navLogo">
                             <Link to='http://localhost:3000/' style={{ color: '#0d6efd', backgroundColor: 'transparent' }}><img src="https://slavyanka.az/static/media/LogoLight.50bd6f96.svg" alt="Example" height={'72px'} /></Link>
                         </div>
-                        <div className='navNum'>
-                            <p> Sifariş üçün : </p>
-                            <h6>*2121</h6>
-                        </div>
+                        {contacts && contacts.map((contact) => {
+                            return (
+                                <div key={contact._id} className='navNum'>
+                                    <p> Sifariş üçün : </p>
+                                    <h6>*{contact.connect}</h6>
+                                </div>
+                            )
+                        })}
                         <ul className='navUl'>
                             <li><h5><Link to='http://localhost:3000/' className='navLink'>Ana səhifə</Link></h5></li>
                             <li><h5><Link to='/products' className='navLink'>Məhsullar</Link></h5></li>
@@ -27,36 +40,18 @@ export default function Navbar() {
                             <li><h5><Link to='/contact' className='navLink'>Əlaqə</Link></h5></li>
                         </ul>
                         <div className='navIcon'>
-                            {/* <div className='navLang'>
-                                <Dropdown
-                                    className='navDropDown'
-                                    menu={{
-                                        items,
-                                        selectable: true,
-                                        defaultSelectedKeys: ['1'],
-                                    }}
-                                >
-                                    <Typography.Link>
-                                        <Space style={{ color: '#f8f9fa ', fontWeight: '700', fontSize: "16px" }}>
-                                            AZE
-                                            <DownOutlined />
-                                        </Space>
-                                    </Typography.Link>
-                                </Dropdown>
-                            </div> */}
-
                             {user ? (
                                 <>
-                                    <Button color="inherit">
-                                        <p>{user.name}</p>
+                                    <Button style={{ border: '1px solid #cedef3', marginRight: '10px' }} color="inherit">
+                                        <Link to=''><p style={{ color: '#fff' }}>{user.name}</p></Link>
                                     </Button>
                                     <Button onClick={async () => {
                                         localStorage.removeItem('token');
                                         localStorage.removeItem('user');
                                         await setUser(null);
                                         navigate('/login');
-                                    }} color="inherit">
-                                        Logout
+                                    }} style={{ border: '1px solid #cedef3', padding: '0.4rem 0rem', marginRight: '10px' }} color="inherit">
+                                        <FiLogOut style={{ fontSize: '23px' }} />
                                     </Button>
                                 </>
                             ) : (
