@@ -15,6 +15,7 @@ import { useUserContext } from "../Login/context/UserContext";
 export default function LoginM() {
 
   const [user, setUser] = useUserContext();
+  console.log(user);
   const navigate = useNavigate();
   const handleSubmit = async (values, actions) => {
     const response = await signIn({

@@ -6,8 +6,11 @@ const dotenv = require('dotenv');
 const mongoose = require('mongoose');
 
 const ThreeCards_router = require('./routes/ThreeCards.routes');
-const Slider_router  = require('./routes/Slider.routes')
-const Contact_router  = require('./routes/Contact.routes')
+const Slider_router = require('./routes/Slider.routes')
+const Contact_router = require('./routes/Contact.routes')
+const About_router = require('./routes/About.routes')
+const Water_router = require('./routes/Water.routes')
+const Benefit_router = require('./routes/Benefit.routes')
 
 dotenv.config();
 app.use(bodyParser.json());
@@ -28,7 +31,12 @@ app.use('/api/three-cards/', ThreeCards_router)
 app.use('/api/slider/', Slider_router)
 // contact
 app.use('/api/contact/', Contact_router)
-
+// about
+app.use('/api/about/', About_router)
+// benefit
+app.use('/api/benefit/', Benefit_router)
+// water
+app.use('/api/water/', Water_router)
 
 
 PORT = process.env.PORT;
@@ -40,23 +48,37 @@ app.listen(PORT, () => {
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 //verify JWT
-const verifyJWT = (req,res,next)=>{
+const verifyJWT = (req, res, next) => {
     const token = req.headers['x-access-token'];
     if (!token) {
-        res.json({message: 'you need token to get data!'})
+        res.json({ message: 'you need token to get data!' })
     }
-    else{
-        jwt.verify(token,process.env.SECRET_KEY,(err,decoded)=>{
+    else {
+        jwt.verify(token, process.env.SECRET_KEY, (err, decoded) => {
             if (err) {
-                res.json({auth: false,message: 'authentication failed'});
+                res.json({ auth: false, message: 'authentication failed' });
             }
-            else{
+            else {
                 req.userId = decoded.id;
                 next();
             }
         })
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -75,7 +97,7 @@ const Users = mongoose.model('Users', new mongoose.Schema({
 
 //register
 app.post('/api/register', async (req, res) => {
-    const {name, username, email, password } = req.body;
+    const { name, username, email, password } = req.body;
 
     const existedUsername = await Users.findOne({ username: username });
     const existedMail = await Users.findOne({ email: email });
@@ -90,7 +112,7 @@ app.post('/api/register', async (req, res) => {
     const salt = await bcrypt.genSalt(10); //500ms
     const hashedPassword = await bcrypt.hash(password, salt);
     const newUser = new Users({
-        name:name,
+        name: name,
         username: username,
         email: email,
         password: hashedPassword,
@@ -140,3 +162,6 @@ app.get('/api/users', verifyJWT, async (req, res) => {
     const users = await Users.find();
     res.json({ users: users });
 })
+
+// const currentDate = new Date();
+// console.log(currentDate.toString());

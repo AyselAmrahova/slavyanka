@@ -3,16 +3,18 @@ import Contact from "../pages/Main/Contact/Contact";
 import Home from "../pages/Main/Home/Home";
 import Products from "../pages/Main/Products/Products";
 import MainRoot from "../pages/Main/MainRoot";
+import ProductDetails from './../pages/Main/Products/ProductDetails';
 import NotFound from '../pages/Main/NotFound/NotFound'
 
 import LoginM from "../pages/Main/Login/LoginM";
+import NewAcc from "../pages/Main/Login/NewAcc";
 import ForgetPassword from "../pages/Main/Login/ForgetPassword";
+import Users from './../pages/Main/Login/Users';
 
 import AdminRoot from '../pages/Admin/AdminRoot'
 import Dashboard from '../pages/Admin/Dashboard'
 import Add from "../pages/Admin/Add";
-import NewAcc from "../pages/Main/Login/NewAcc";
-import Users from './../pages/Main/Login/Users';
+
 
 export const ROUTES = [
   //Main Root - user side
@@ -50,7 +52,11 @@ export const ROUTES = [
       },
       {
         path: '/users',
-        element: <Users/>
+        element: <Users />
+      },
+      {
+        path: '/products/:id',
+        element: <ProductDetails />
       },
       {
         path: '*',

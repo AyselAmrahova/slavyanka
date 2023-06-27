@@ -4,22 +4,22 @@ import { useNavigate } from "react-router-dom";
 
 const Users = () => {
   const navigate = useNavigate();
-  const[users,setUsers] = useState([]);
-  useEffect(()=>{
+  const [users, setUsers] = useState([]);
+  useEffect(() => {
     if (!localStorage.getItem('user')) {
       navigate('http://localhost:3000/');
     }
-  },[])
-  useEffect(()=>{
-    if(localStorage.getItem('token')){
-      getUsers(localStorage.getItem('token')).then((res)=>{
+  }, [])
+  useEffect(() => {
+    if (localStorage.getItem('token')) {
+      getUsers(localStorage.getItem('token')).then((res) => {
         setUsers(res.users);
       });
     }
-  },[])
+  }, [])
   return (
     <ul>
-      {users && users.map((user)=>{
+      {users && users.map((user) => {
         return <li key={user._id}>{user.username}</li>
       })}
     </ul>

@@ -1,4 +1,4 @@
-const Slider = require('../models/Slider.model');
+const SliderModel = require('../models/Slider.model');
 
 const SliderController = {
     getAll: async (req, res) => {
