@@ -5,6 +5,10 @@ const bodyParser = require("body-parser");
 const dotenv = require('dotenv');
 const mongoose = require('mongoose');
 
+const multer = require("multer");
+const uuid = require('uuid');
+const fs = require('fs');
+
 const ThreeCards_router = require('./routes/ThreeCards.routes');
 const Slider_router = require('./routes/Slider.routes')
 const Contact_router = require('./routes/Contact.routes')
@@ -71,6 +75,89 @@ const verifyJWT = (req, res, next) => {
         })
     }
 }
+
+
+
+
+
+
+
+app.use(bodyParser.urlencoded({ extended: false }))
+const DIR = './uploads/';
+app.use('/uploads', express.static('uploads'));
+
+const storage = multer.diskStorage({
+    destination: (req, file, cb) => {
+        cb(null, DIR);
+    },
+    filename: (req, file, cb) => {
+        const fileName = file.originalname.toLowerCase().split(' ').join('-');
+        cb(null, uuid.v4() + '-' + fileName)
+    }
+});
+var upload = multer({
+    storage: storage,
+    fileFilter: (req, file, cb) => {
+        if (file.mimetype == "image/png" || file.mimetype == "image/jpg" || file.mimetype == "image/jpeg") {
+            cb(null, true);
+        } else {
+            cb(null, false);
+            return cb(new Error('Only .png, .jpg and .jpeg format allowed!'));
+        }
+    }
+});
+
+
+//Schema
+const ImageSchema = new mongoose.Schema({
+    aboutImg: String
+})
+
+const ImageModel = new mongoose.model('Imagees', ImageSchema);
+
+
+app.get('/', (req, res) => {
+    res.send('welcome to our API!')
+})
+
+app.get('/imagees', async (req, res) => {
+    const imagees = await ImageModel.find();
+    res.json(imagees);
+})
+
+app.post('/imagees', upload.single('aboutImg'), async (req, res) => {
+    const url = req.protocol + '://' + req.get('host');
+    const newImage = new ImageModel({
+        aboutImg: url + '/uploads/' + req.file.filename
+    })
+    newImage.save().then(result => {
+        res.status(201).json({
+            message: "Image posted successfully!",
+            userCreated: newImage
+        })
+    }).catch(err => {
+        console.log(err),
+            res.status(500).json({
+                error: err
+            });
+    })
+})
+app.delete('/imagees/:id', async (req, res) => {
+    const id = req.params.id;
+    const deleted = await ImageModel.findByIdAndDelete(id);
+    const idx = deleted.aboutImg.indexOf("uploads/");
+    const imageName = deleted.aboutImg.substr(idx);
+    fs.unlinkSync('./' + imageName);
+    res.status(200).send({
+        message: 'deleted successfully!'
+    })
+})
+//----------------------------------------------------------------------------
+
+
+
+
+
 
 
 

@@ -3,6 +3,15 @@ import './_aboutStyle.scss'
 import { getAllAbout, getAllBenefit, getAllWater } from '../../../api/requests';
 
 export default function AboutSection() {
+    // const [imagees, setImagees] = useState([]);
+    // useEffect(() => {
+    //     getAll().then((res) => {
+    //         setImagees(res);
+    //         console.log(res);
+    //         console.log(res.data);
+    //     })
+    // }, [])
+
 
     const [abouts, setAbouts] = useState([]);
     useEffect(() => {
@@ -29,7 +38,13 @@ export default function AboutSection() {
 
     return (
         <>
-            <img className='about-img' src="https://slavyanka.az/static/media/banner.3f0bf8e7.jpg" width='100%' alt="banner" />
+            {/* {imagees && imagees.map((image) => {
+                return (
+                    <div  key={image._id}>
+                        <img className='about-img' src={image.aboutImg} width='100%' alt="banner" />
+                    </div>
+                )
+            })} */}
             <div className='container'>
                 <div className='about-row'>
                     {abouts && abouts.map((about) => {

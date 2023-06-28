@@ -5,7 +5,7 @@ export default function index() {
     return (
         <>
             <Navbar />
-            <div>Not Found</div>
+            <div className='not-found-div'>Not Found</div>
         </>
     )
 }

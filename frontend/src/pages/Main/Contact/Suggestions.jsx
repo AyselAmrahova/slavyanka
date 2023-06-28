@@ -46,10 +46,10 @@ export default function Suggestions() {
 
 
   const Validation = yup.object().shape({
-    user_name: yup.string().min(3, 'Minimum 3 hərfdən ibarət ola bilər').required('Zəhmət olmasa xananı düzgün doldurun'),
-    user_username: yup.string().min(3, 'Minimum 3 hərfdən ibarət ola bilər').required('Zəhmət olmasa xananı düzgün doldurun'),
-    user_email: yup.string().email().required('Zəhmət olmasa xananı düzgün doldurun'),
-    message: yup.string().required('Zəhmət olmasa xananı düzgün doldurun'),
+    user_name: yup.string().min(3, 'Minimum 3 hərfdən ibarət ola bilər').required('Zəhmət olmasa xananı doldurun'),
+    user_username: yup.string().min(3, 'Minimum 3 hərfdən ibarət ola bilər').required('Zəhmət olmasa xananı doldurun'),
+    user_email: yup.string().email('Email hesabınızı daxil edin').required('Zəhmət olmasa xananı doldurun'),
+    message: yup.string().required('Zəhmət olmasa xananı doldurun'),
   })
   const formik = useFormik({
     initialValues: {

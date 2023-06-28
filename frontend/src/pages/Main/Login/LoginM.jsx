@@ -22,7 +22,7 @@ export default function LoginM() {
       email: values.email,
       password: values.password,
     });
-    console.log(response); 
+    console.log(response);
     if (response.auth) {
       localStorage.setItem('token', response.token);
       localStorage.setItem('user', JSON.stringify(response.user));
@@ -87,7 +87,7 @@ export default function LoginM() {
           </div>
           <div className='login-text'>
             <div>Hesabınız yoxdur?
-              <span>
+              <span style={{ borderBottom: '1px solid #051934' }}>
                 <Link style={{ color: '#051934' }} to='http://localhost:3000/new-account'>
                   Qeydiyyatdan keçin.
                 </Link>
