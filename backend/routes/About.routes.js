@@ -1,7 +1,7 @@
 const express = require('express');
 const About_router = express.Router()
 const AboutController = require('../controllers/About.controller');
-
+// const AboutPostValidation = require('../middlewares/About.middleware')
 //get All 
 About_router.get('/', AboutController.getAll)
 

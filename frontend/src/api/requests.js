@@ -1,7 +1,82 @@
 import { base_url } from "./base_url";
 import axios from "axios";
 
-// 3CARDS
+
+
+//CATEGORY AND PRODUCT----------------------------------------------------------------------------------------------------------------
+//get all Categories
+
+export const getAllCategories = async () => {
+    let globalData;
+    await axios.get(`${base_url}/categories`)
+        .then((res) => {
+            globalData = res.data.data;
+        })
+    return globalData;
+}
+
+
+
+//get Category by ID
+export const getCategoryByID = async (ID) => {
+    let globalData;
+    await axios.get(`${base_url}/categories/${ID}`).then((res) => {
+        globalData = res.data.data;
+    });
+    return globalData;
+};
+
+//delete Category by  ID
+export const deleteCategorytByID = async (ID) => {
+    let deletedCategory;
+    await axios.delete(`${base_url}/categories/${ID}`).then((res) => {
+        deletedCategory = res.data.data;
+    });
+
+    return deletedCategory;
+};
+//post category
+export const postCategory = (payload) => {
+    axios.post(`${base_url}/categories`, payload);
+};
+//edit category
+export const editCategory = (id, payload) => {
+    axios.put(`${base_url}/categories/${id}`, payload);
+}
+
+
+//get All products
+export const getCategoryProducts = async (id) => {
+    let globalData;
+    await axios.get(`${base_url}/products/${id}`)
+        .then(res => {
+            globalData = res.data;
+        })
+    return globalData
+}
+export const getAllProducts = async () => {
+    let globalData;
+    await axios.get(`${base_url}/products`)
+        .then(res => {
+            globalData = res.data;
+        })
+    return globalData
+}
+export const deleteProductByID = async (id) => {
+    let deletedProduct;
+    await axios.delete(`${base_url}/products/${id}`)
+        .then(res => {
+            deletedProduct = res.data.data;
+        })
+    return deletedProduct;
+}
+export const postProduct = (payload) => {
+    axios.post(`${base_url}/products`, payload);
+}
+
+
+
+// 3CARDS------------------------------------------------------------------------------------------------------------------------------------
 export const getAllThreeCards = async () => {
     let globalData;
     await axios.get(`${base_url}/three-cards`)
@@ -14,7 +89,7 @@ export const editThreeCard = (id, payload) => {
     axios.put(`${base_url}/three-cards/${id}`, payload);
 }
 
-//register
+//register------------------------------------------------------------------------------------------------------------------------------------
 export const signUp = (payload) => {
     axios.post(`${base_url}/register`, payload)
 }
@@ -25,7 +100,7 @@ export const signIn = async (payload) => {
     return response.data;
 }
 
-//users
+//users------------------------------------------------------------------------------------------------------------------------------------
 export const getUsers = async (token) => {
     let users;
     await axios.get(`${base_url}/users`, {
@@ -38,7 +113,7 @@ export const getUsers = async (token) => {
     return users;
 }
 
-// CONTACT
+// CONTACT------------------------------------------------------------------------------------------------------------------------------------
 export const getAllContact = async () => {
     let globalData;
     await axios.get(`${base_url}/contact`)
@@ -51,7 +126,7 @@ export const editContact = (id, payload) => {
     axios.put(`${base_url}/contact/${id}`, payload);
 }
 
-// ABOUT
+// ABOUT------------------------------------------------------------------------------------------------------------------------------------
 export const getAllAbout = async () => {
     let globalData;
     await axios.get(`${base_url}/about`)
@@ -64,7 +139,7 @@ export const editAbout = (id, payload) => {
     axios.put(`${base_url}/about/${id}`, payload);
 }
 
-// WATER
+// WATER------------------------------------------------------------------------------------------------------------------------------------
 export const getAllWater = async () => {
     let globalData;
     await axios.get(`${base_url}/water`)
@@ -77,7 +152,7 @@ export const editWater = (id, payload) => {
     axios.put(`${base_url}/water/${id}`, payload);
 }
 
-// BENEFIT
+// BENEFIT------------------------------------------------------------------------------------------------------------------------------------
 export const getAllBenefit = async () => {
     let globalData;
     await axios.get(`${base_url}/benefit`)
@@ -94,7 +169,7 @@ export const editBenefit = (id, payload) => {
 
 
 
-// ALL SLIDER
+// ALL SLIDER------------------------------------------------------------------------------------------------------------------------------------
 export const getAllSlider = async () => {
     let globalData;
     await axios.get(`${base_url}/slider/`)

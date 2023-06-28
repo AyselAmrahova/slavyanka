@@ -27,8 +27,8 @@
     padding: 0;
     box-sizing: border-box;
     list-style: none;
-    text-decoration: none;
-    font-family: 'Roboto', sans-serif;
+    text-decoration: none !important;
+    font-family: 'Roboto', sans-serif !important;
     white-space: nowrap;
 }
 

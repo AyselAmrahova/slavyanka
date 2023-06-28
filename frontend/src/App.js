@@ -4,7 +4,7 @@ import {
   createBrowserRouter,
   RouterProvider,
 } from "react-router-dom";
-import { UserContextProvider } from "../src/pages/Main/Login/context/UserContext";
+import { UserContextProvider } from "../src/pages/Main/context/UserContext";
 
 const router = createBrowserRouter(ROUTES)
 

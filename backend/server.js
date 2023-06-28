@@ -11,6 +11,8 @@ const Contact_router = require('./routes/Contact.routes')
 const About_router = require('./routes/About.routes')
 const Water_router = require('./routes/Water.routes')
 const Benefit_router = require('./routes/Benefit.routes')
+const Product_router = require('./routes/Product.routes')
+const Category_router = require('./routes/Category.routes')
 
 dotenv.config();
 app.use(bodyParser.json());
@@ -37,6 +39,10 @@ app.use('/api/about/', About_router)
 app.use('/api/benefit/', Benefit_router)
 // water
 app.use('/api/water/', Water_router)
+// product
+app.use('/api/products/', Product_router)
+// catgory
+app.use('/api/categories/', Category_router)
 
 
 PORT = process.env.PORT;
@@ -94,6 +100,16 @@ const Users = mongoose.model('Users', new mongoose.Schema({
     password: String,
     isAdmin: Boolean
 }));
+
+// const UserSchema = Joi.object.keys({
+//     name: Joi.string().required(),
+//     username: Joi.string().required(),
+//     email: Joi.string().email().lowercase().required(),
+//     password: Joi.string().min(7).required().strict(),
+//     confirmPassword: Joi.string().valid(Joi.ref('password')).required().strict()
+// });
+
+
 
 //register
 app.post('/api/register', async (req, res) => {

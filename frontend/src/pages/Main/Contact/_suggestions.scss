@@ -40,7 +40,7 @@ main {
             padding-left: 15px;
             display: flex;
             flex-direction: column;
-         
+
             .form-input {
                 width: 30% !important;
                 border: 1px solid rgba(0, 0, 0, .04) !important;
@@ -51,6 +51,8 @@ main {
                 margin-bottom: 0.5rem;
                 background-color: #fff;
             }
+
+
 
             .input-div-Button {
                 width: 30%;
@@ -79,10 +81,14 @@ main {
 }
 
 .span-err {
-    color: red;
+    color: #bb221a;
     visibility: visible;
 }
 
 .span-2 {
-   visibility: hidden; 
+    visibility: hidden;
+}
+
+.form-inp-err {
+    border: 1px solid red;
 }
