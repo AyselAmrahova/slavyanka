@@ -4,17 +4,18 @@ const ProductController = require('../controllers/Product.controller')
 
 
 //get Category All Products
-Product_router.get('/:id', ProductController.getCategoryAllProducts)
+Product_router.get('/category/:categoryID', ProductController.getCategoryAllProducts)
 
 //get All Products
 Product_router.get('/', ProductController.getAllProducts)
+
 //get Product by ID
 Product_router.get('/:id', ProductController.getByID)
 
 //post Product
 Product_router.post('/', ProductController.post)
 
-//delete Product
+//delete Productc
 Product_router.delete('/:id', ProductController.delete)
 
 module.exports = Product_router

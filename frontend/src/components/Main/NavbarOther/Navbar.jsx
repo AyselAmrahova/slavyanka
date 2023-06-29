@@ -1,7 +1,7 @@
 import React from 'react'
 import './_navbarOther.scss'
 import { Link, useNavigate } from "react-router-dom";
-import { useUserContext } from "../../../pages/Main/context/UserContext";
+// import { useUserContext } from "../../../pages/Main/context/UserContext";
 import { FiLogOut } from "react-icons/fi";
 import { Button } from '@mui/material';
 import { getAllContact } from '../../../api/requests';

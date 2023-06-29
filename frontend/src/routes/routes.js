@@ -13,7 +13,7 @@ import Users from './../pages/Main/Login/Users';
 
 import AdminRoot from '../pages/Admin/AdminRoot'
 import Dashboard from '../pages/Admin/Dashboard'
-import Add from "../pages/Admin/Add";
+import AddImage from "../pages/Admin/AddImage";
 
 
 export const ROUTES = [
@@ -74,8 +74,8 @@ export const ROUTES = [
         element: <Dashboard />,
       },
       {
-        path: 'add',
-        element: <Add />,
+        path: 'imagees',
+        element: <AddImage />,
       },
     ],
   },

@@ -85,7 +85,6 @@ const verifyJWT = (req, res, next) => {
 app.use(bodyParser.urlencoded({ extended: false }))
 const DIR = './uploads/';
 app.use('/uploads', express.static('uploads'));
-
 const storage = multer.diskStorage({
     destination: (req, file, cb) => {
         cb(null, DIR);
@@ -110,7 +109,7 @@ var upload = multer({
 
 //Schema
 const ImageSchema = new mongoose.Schema({
-    aboutImg: String
+    profileImg: String
 })
 
 const ImageModel = new mongoose.model('Imagees', ImageSchema);
@@ -120,15 +119,15 @@ app.get('/', (req, res) => {
     res.send('welcome to our API!')
 })
 
-app.get('/imagees', async (req, res) => {
+app.get('/api/imagees', async (req, res) => {
     const imagees = await ImageModel.find();
     res.json(imagees);
 })
 
-app.post('/imagees', upload.single('aboutImg'), async (req, res) => {
+app.post('/api/imagees', upload.single('profileImg'), async (req, res) => {
     const url = req.protocol + '://' + req.get('host');
     const newImage = new ImageModel({
-        aboutImg: url + '/uploads/' + req.file.filename
+        profileImg: url + '/uploads/' + req.file.filename
     })
     newImage.save().then(result => {
         res.status(201).json({
@@ -142,11 +141,11 @@ app.post('/imagees', upload.single('aboutImg'), async (req, res) => {
             });
     })
 })
-app.delete('/imagees/:id', async (req, res) => {
+app.delete('/api/imagees/:id', async (req, res) => {
     const id = req.params.id;
     const deleted = await ImageModel.findByIdAndDelete(id);
-    const idx = deleted.aboutImg.indexOf("uploads/");
-    const imageName = deleted.aboutImg.substr(idx);
+    const idx = deleted.profileImg.indexOf("uploads/");
+    const imageName = deleted.profileImg.substr(idx);
     fs.unlinkSync('./' + imageName);
     res.status(200).send({
         message: 'deleted successfully!'

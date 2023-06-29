@@ -4,19 +4,19 @@ import axios from "axios";
 
 // multer
 //image----------------------------------------------------------------
-export const getAll = async()=>{
+export const getAll = async () => {
     let globalData;
     await axios.get(`${base_url}/imagees`)
-    .then((res)=>{
-        globalData = res.data;
-    })
+        .then((res) => {
+            globalData = res.data;
+        })
     return globalData;
 }
-export const postImg = (payload)=>{
-    axios.post(`${base_url}/imagees`,payload);
+export const postImg = (payload) => {
+    axios.post(`${base_url}/imagees`, payload);
 }
-export const deleteImg = (id)=>{
-  axios.delete(`${base_url}/imagees/${id}`);
+export const deleteImg = (id) => {
+    axios.delete(`${base_url}/imagees/${id}`);
 }
 
 //CATEGORY AND PRODUCT----------------------------------------------------------------------------------------------------------------
@@ -30,8 +30,6 @@ export const getAllCategories = async () => {
         })
     return globalData;
 }
-
-
 
 //get Category by ID
 export const getCategoryByID = async (ID) => {
@@ -78,6 +76,15 @@ export const getAllProducts = async () => {
         })
     return globalData
 }
+
+export const GetProductId = async (id) => {
+    let globalData
+    await axios.get(`${base_url}/products/${id}`).then((res) => {
+        globalData = res.data
+    })
+    return globalData
+}
+
 export const deleteProductByID = async (id) => {
     let deletedProduct;
     await axios.delete(`${base_url}/products/${id}`)

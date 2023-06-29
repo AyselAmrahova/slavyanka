@@ -1,16 +1,14 @@
 import React, { useState, useEffect } from 'react'
 import './_aboutStyle.scss'
-import { getAllAbout, getAllBenefit, getAllWater } from '../../../api/requests';
+import { getAll, getAllAbout, getAllBenefit, getAllWater } from '../../../api/requests';
 
 export default function AboutSection() {
-    // const [imagees, setImagees] = useState([]);
-    // useEffect(() => {
-    //     getAll().then((res) => {
-    //         setImagees(res);
-    //         console.log(res);
-    //         console.log(res.data);
-    //     })
-    // }, [])
+    const [imagees, setImagees] = useState([]);
+    useEffect(() => {
+        getAll().then((res) => {
+            setImagees(res);
+        })
+    }, [])
 
 
     const [abouts, setAbouts] = useState([]);
@@ -45,6 +43,13 @@ export default function AboutSection() {
                     </div>
                 )
             })} */}
+            {imagees && imagees.map((image) => {
+                return (
+                    <div key={image._id}>
+                        <img width='100%' alt="banner" className='about-img' src={image.profileImg} />
+                    </div>
+                )
+            })}
             <div className='container'>
                 <div className='about-row'>
                     {abouts && abouts.map((about) => {
