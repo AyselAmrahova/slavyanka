@@ -8,7 +8,14 @@ import { getAllContact } from '../../../api/requests';
 import { useState, useEffect } from "react";
 
 export default function Navbar() {
-    const [user, setUser] = useUserContext();
+    // const [user, setUser] = useUserContext();
+    const [user, setUser] = useState(null);
+    useEffect(() => {
+        if (localStorage.getItem('user')) {
+            setUser(localStorage.getItem('user'));
+        }
+    }, [])
+
     const navigate = useNavigate();
 
     const [contacts, setContacts] = useState([])
@@ -43,7 +50,7 @@ export default function Navbar() {
                             {user ? (
                                 <>
                                     <Button style={{ border: '1px solid #cedef3', marginRight: '10px' }} color="inherit">
-                                        <Link to=''><p style={{ color: '#fff' }}>{user.name}</p></Link>
+                                        <Link to=''><p style={{ color: '#fff' }}>{JSON.parse(user).name}</p></Link>
                                     </Button>
                                     <Button onClick={async () => {
                                         localStorage.removeItem('token');

@@ -6,9 +6,19 @@ import { FiLogOut } from "react-icons/fi";
 import { Button } from '@mui/material';
 import { getAllContact } from '../../../api/requests';
 import { useState, useEffect } from "react";
+
 export default function Navbar() {
-    const [user, setUser] = useUserContext();
+
+    // const [user, setUser] = useUserContext();
+    const [user, setUser] = useState(null);
+    useEffect(() => {
+        if (localStorage.getItem('user')) {
+            setUser(localStorage.getItem('user'));
+        }
+    }, [])
+
     const navigate = useNavigate();
+
     const [contacts, setContacts] = useState([])
     useEffect(() => {
         getAllContact().then((res) => {
@@ -17,7 +27,6 @@ export default function Navbar() {
     }, []);
     return (
         <>
-            {/* bu divdə slider də olmalıdı */}
             <div className='navbarSlider-other'>
                 <nav>
                     <div className='navborder'>
@@ -42,7 +51,7 @@ export default function Navbar() {
                             {user ? (
                                 <>
                                     <Button style={{ border: '1px solid #cedef3', marginRight: '10px' }} color="inherit">
-                                        <Link to=''><p style={{ color: 'black' }}>{user.name}</p></Link>
+                                        <Link to=''><p style={{ color: 'black' }}>{JSON.parse(user).name}</p></Link>
                                     </Button>
                                     <Button onClick={async () => {
                                         localStorage.removeItem('token');

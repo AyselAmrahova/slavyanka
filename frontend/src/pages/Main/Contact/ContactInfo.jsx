@@ -11,6 +11,7 @@ export default function ContactInfo() {
             setContacts(res);
         });
     }, []);
+
     return (
         <>
             <section>
@@ -21,7 +22,7 @@ export default function ContactInfo() {
                     </div>
                     <div className='contact-section'>
                         {contacts && contacts.map((contact) => {
-                            return (
+                            return (<>
                                 <div key={contact._id} className='contact-info'>
                                     <div className='contact-address'>
                                         <div className='info-img'>
@@ -51,19 +52,19 @@ export default function ContactInfo() {
                                         </div>
                                     </div>
                                 </div>
-
+                                    <div className='contact-map'>
+                                        <iframe
+                                            title="Location"
+                                            src={`https://maps.google.com/maps?q=${contact.address}&t=&z=15&ie=UTF8&iwloc=&output=embed`}
+                                            width="600"
+                                            height="450"
+                                            style={{ border: 0 }}
+                                            allowFullScreen=""
+                                            loading="lazy"></iframe>
+                                    </div>
+                                </>
                             )
                         })}
-                        <div className='contact-map'>
-                            <iframe
-                                title="Location"
-                                src="https://maps.google.com/maps?q=Bakı şəhəri, N.Nərimanov rayonu Ziya Bünyadov prospekti 20/61&t=&z=15&ie=UTF8&iwloc=&output=embed"
-                                width="600"
-                                height="450"
-                                style={{ border: 0 }}
-                                allowFullScreen=""
-                                loading="lazy"></iframe>
-                        </div>
                     </div>
                 </div>
             </section >
