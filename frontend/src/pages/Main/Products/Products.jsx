@@ -12,29 +12,29 @@ export default function Products() {
       setCategories(res);
     });
   }, []);
-  
+
   useEffect(() => {
     getAllProducts().then((res) => {
       setProducts(res);
     });
   }, []);
 
-  const filterProducts = (e) =>{
+  const filterProducts = (e) => {
     let id = e.target.getAttribute('id');
-    
+
     let lis = document.querySelectorAll(".products-actions-items");
-    lis.forEach(x=>{
+    lis.forEach(x => {
       x.classList.remove("active")
     })
 
     e.target.classList.add("active")
-    if(id === null){
+    if (id === null) {
       getAllProducts().then((res) => {
         setProducts(res);
       });
     }
-    else{
-      getCategoryProducts(id).then(res=>{
+    else {
+      getCategoryProducts(id).then(res => {
         setProducts(res)
       })
     }
@@ -44,21 +44,21 @@ export default function Products() {
     <>
       <Navbar />
       <div className='products-page'>
-         <div className='products-header'>
-           <span className="products-header-text">Saf, təbii və sağlam Slavyanka suları</span>
-         </div>
-      <div className='products-actions'>
-        <div className='products-actions-col'>
-          <ul id="products-main">
-          <li className="products-actions-items" onClick={filterProducts}>Bütün məhsullar</li>
-            {
-              categories.map((cat, index)=>{
-                return <li key={index} onClick={filterProducts} id={cat._id} className="products-actions-items">{cat.name}</li> 
-              })
-            }
-          </ul>
+        <div className='products-header'>
+          <span className="products-header-text">Saf, təbii və sağlam Slavyanka suları</span>
         </div>
-      </div>
+        <div className='products-actions'>
+          <div className='products-actions-col'>
+            <ul id="products-main">
+              <li className="products-actions-items" onClick={filterProducts}>Bütün məhsullar</li>
+              {
+                categories.map((cat, index) => {
+                  return <li key={index} onClick={filterProducts} id={cat._id} className="products-actions-items">{cat.name}</li>
+                })
+              }
+            </ul>
+          </div>
+        </div>
       </div>
       <div className="products">
         {

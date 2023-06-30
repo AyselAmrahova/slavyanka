@@ -14,6 +14,7 @@ import Users from './../pages/Main/Login/Users';
 import AdminRoot from '../pages/Admin/AdminRoot'
 import Dashboard from '../pages/Admin/Dashboard'
 import AddImage from "../pages/Admin/AddImage";
+import Basket from "../pages/Main/Basket/Basket";
 
 
 export const ROUTES = [
@@ -57,6 +58,10 @@ export const ROUTES = [
       {
         path: '/products/:id',
         element: <ProductDetails />
+      },
+      {
+        path: '/basket',
+        element: <Basket />
       },
       {
         path: '*',

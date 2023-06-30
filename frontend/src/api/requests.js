@@ -62,7 +62,7 @@ export const editCategory = (id, payload) => {
 //get All products
 export const getCategoryProducts = async (id) => {
     let globalData;
-    await axios.get(`${base_url}/products/${id}`)
+    await axios.get(`${base_url}/products/category/${id}`)
         .then(res => {
             globalData = res.data;
         })

@@ -277,5 +277,90 @@
 }
 
 .one-product-count {
+    margin-bottom: 0.25rem;
+    margin-top: 1rem;
+    margin: 1rem 0.5rem 0.25rem;
     display: flex;
+    justify-content: space-between;
+
+    .one-product-price {
+        color: rgb(0, 0, 0);
+        margin-left: 0.25rem;
+        font-weight: 700;
+        margin-top: 0;
+        margin-bottom: 1rem;
+
+        span {
+            padding-left: 5px;
+        }
+    }
+}
+
+.one-product-basket-div {
+    margin-top: 0.5rem;
+    display: flex;
+    flex-wrap: wrap;
+    margin-right: 0.5rem;
+    margin-left: 0.5rem;
+    align-items: center;
+
+    .one-product-basket {
+        margin-bottom: 1rem;
+        display: flex;
+
+        .one-product-basket-icon {
+            cursor: pointer;
+            background-color: #3fc964;
+            font-size: 14px;
+            border-radius: 12px;
+            color: #f8f9fa;
+            padding: 1rem;
+
+            display: inline-block;
+            font-weight: 400;
+            line-height: 1.5;
+            text-align: center;
+            text-decoration: none;
+            vertical-align: middle;
+            border: 1px solid transparent;
+            transition: color .15s ease-in-out, background-color .15s ease-in-out, border-color .15s ease-in-out, box-shadow .15s ease-in-out;
+        }
+
+        .order-complete {
+            background-color: #3fc964;
+            font-size: 14px;
+            border-radius: 12px;
+            margin-left: 1rem;
+            margin-right: 1rem;
+            color: #f8f9fa;
+            padding: 1rem 0.75rem;
+            display: inline-block;
+            font-weight: 400;
+            line-height: 1.5;
+            text-align: center;
+            text-decoration: none;
+            vertical-align: middle;
+cursor: pointer;
+            transition: color .15s ease-in-out, background-color .15s ease-in-out, border-color .15s ease-in-out, box-shadow .15s ease-in-out;
+        }
+
+        .disabled-btn {
+            opacity: .4;
+            cursor: default;
+        }
+    }
+
+    .continue-shop {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border: 1px solid #3fc964;
+        border-radius: 12px;
+        cursor: pointer;
+        font-size: 14px;
+        color: #3fc964;
+        flex-shrink: 1;
+        margin-bottom: 16px;
+        padding: 18px 16px;
+    }
 }

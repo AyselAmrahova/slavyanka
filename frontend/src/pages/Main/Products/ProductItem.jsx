@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom"
+
 const ProductItem = (props) => {
   console.log(props.product)
   return (
@@ -5,7 +7,9 @@ const ProductItem = (props) => {
       <div className='col'>
         <div className='product-card'>
           <div className='product-img-div'>
-            <img className='product-img' width={250} height={250} src={props.product.imageURL} alt="" />
+            <Link to={`http://localhost:3000/products/${props.product._id}`}>
+              <img className='product-img' width={250} height={250} src={props.product.imageURL} alt="" />
+            </Link>
             <div className='product-text'>
               <p>{props.product.name}</p>
               <p style={{ marginTop: "0.25rem", color: '#dc3545' }}>{props.product.count} ədəd</p>

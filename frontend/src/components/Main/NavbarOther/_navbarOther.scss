@@ -45,7 +45,6 @@
                 display: flex;
                 align-items: center;
                 font-size: 15px;
-                // border: 1px solid red;
                 color: #212529;
 
                 @include for-tablet-landscape-up() {
@@ -106,14 +105,11 @@
 }
 
 .navIcon {
-    // border: 1px solid red;
     display: flex;
     justify-content: space-around;
     align-items: center;
 
     .navLang {
-        // border: 1px solid red;
-
         @include for-tablet-landscape-up() {
             display: none;
         }

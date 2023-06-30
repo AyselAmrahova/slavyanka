@@ -1,0 +1,262 @@
+.basket-page {
+    display: flex;
+    justify-content: center;
+
+    .basket-content {
+        padding: 0;
+        margin: 0;
+        width: 50%;
+        margin-top: 1rem;
+
+        h1 {
+            font-size: 2.5rem;
+            margin-top: 0;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+            line-height: 1.2;
+        }
+
+        .basket-items-list {
+            display: flex;
+            justify-content: center;
+
+            .basket {
+                background-color: #fff;
+                margin: 0;
+                padding: 0;
+                margin-top: 0.5rem;
+                width: 100%;
+
+                .basket-products {
+                    border-bottom: 1px solid #f2f2f2;
+                    padding: 25px 10px 10px;
+                    display: flex;
+                    justify-content: space-between;
+
+                    .basket-product {
+                        display: flex;
+                        margin: 0;
+                        padding: 0;
+                        flex: 0 0 auto;
+                        width: 50%;
+
+                        .basket-product-img {
+                            img {
+                                vertical-align: middle;
+                            }
+                        }
+
+                        .basket-product-details {
+                            margin-left: 5%;
+
+                            .product-name {
+                                color: #051934;
+                                font-weight: 700;
+                                font-size: 15px;
+                                font-style: normal;
+                            }
+
+                            .product-count {
+                                .solorized {
+                                    color: #929caa;
+                                    font-weight: 400;
+                                    font-size: 15px;
+                                }
+                            }
+
+                            .product-total-amount {
+                                font-weight: 700;
+
+                                .solorized {
+                                    color: #929caa;
+                                    font-weight: 400;
+                                    font-size: 15px;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+.pmcounter {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+}
+
+.counter {
+    width: 50px;
+    height: 50px;
+    border-radius: 16px;
+    font-size: 30px;
+    color: #929caa;
+    cursor: pointer;
+    background-color: #f7f7f8;
+}
+
+.el-center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.counter-num {
+    font-size: 25px;
+    font-weight: 400;
+    line-height: 29px;
+    color: #707070;
+    text-align: center;
+}
+
+.eMS {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    justify-content: none;
+}
+
+.delete-from-basket {
+    display: flex;
+    background-color: #f7f7f8;
+    justify-content: center;
+    align-items: center;
+    color: #000;
+    font-size: 20px;
+    padding: 15px 20px;
+    margin-top: 15px;
+    border-radius: 12px;
+
+    .icon {
+        cursor: pointer;
+    }
+
+    .cpointer {
+        padding-left: 0.5rem;
+        cursor: pointer;
+    }
+}
+
+
+#basketPrice {
+    padding: 0;
+    margin: 0;
+    margin-left: 50px;
+    flex: 0 0 auto;
+    width: 33.3333333333%;
+
+    .basket-amount {
+        margin-top: 1.4rem;
+
+        h1 {
+            font-size: 2.5rem;
+            margin-top: 0;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+            line-height: 1.2;
+        }
+
+        .total-div {
+            background-color: #fff;
+            font-weight: 700;
+            border-bottom: 1px solid #f7f7f8;
+            border-top: 1px solid #f7f7f8;
+            line-height: 22px;
+            letter-spacing: 0;
+            text-align: left;
+            width: 100%;
+
+            .col-12 {
+                flex: 0 0 auto;
+                width: 100%;
+                padding-right: 15px;
+                padding-left: 15px;
+
+            }
+        }
+    }
+}
+
+.subtotal {
+    background-color: #fff;
+    margin-top: 1rem;
+    display: flex;
+    justify-content: space-between;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 22px;
+    letter-spacing: 0;
+    text-align: left;
+    padding: 10px;
+}
+
+.cargo {
+    background-color: #fff;
+    margin-top: 15px;
+    display: flex;
+    justify-content: space-between;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 22px;
+    letter-spacing: 0;
+    text-align: left;
+    padding: 10px;
+}
+
+.edv {
+    background-color: #fff;
+    margin-top: 15px;
+    display: flex;
+    justify-content: space-between;
+    font-size: 20px;
+    font-style: normal;
+    line-height: 22px;
+    letter-spacing: 0;
+    text-align: left;
+    padding: 10px;
+    font-weight: 400;
+}
+
+.total {
+    font-weight: 700;
+    border-bottom: 1px solid #f7f7f8;
+    border-top: 1px solid #f7f7f8;
+    background-color: #fff;
+    margin-top: 15px;
+    display: flex;
+    justify-content: space-between;
+    font-size: 20px;
+    font-style: normal;
+    line-height: 22px;
+    letter-spacing: 0;
+    text-align: left;
+    padding: 10px;
+}
+
+.book-btn {
+    cursor: pointer;
+    text-overflow: clip;
+    background-color: #3fc964;
+    color: #fff;
+    outline: none !important;
+    border: none !important;
+    margin-left: 5px;
+    padding: 15px 25px;
+    border-radius: 12px;
+    display: inline-block;
+    font-weight: 400;
+    line-height: 1.5;
+    margin-top: 1.5rem;
+    width: 100%;
+    text-align: center;
+    text-decoration: none;
+    vertical-align: middle;
+    font-size: 1rem;
+    transition: color .15s ease-in-out, background-color .15s ease-in-out, border-color .15s ease-in-out, box-shadow .15s ease-in-out;
+}
