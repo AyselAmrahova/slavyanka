@@ -1,13 +1,27 @@
 import React from 'react'
-import Navbar from '../../components/Admin/Navbar/Navbar'
-import Footer from '../../components/Admin/Footer/Footer'
 import { Outlet } from 'react-router-dom'
+// import Login from './Login/Login';
+import Navbar from './../../components/Admin/Navbar/Navbar';
+// import { useUserContext } from '../Main/context/UserContext';
+
 export default function Root() {
+
+    // const [user] = useUserContext()
+
     return (
         <>
             <Navbar />
             <Outlet />
-            <Footer />
+            {/* {
+                user?.isAdmin ? (
+                    <>
+                        <Navbar />
+                        <Outlet />
+                    </>
+                ) : (
+                    <Login />
+                )
+            } */}
         </>
     )
 }

@@ -13,7 +13,7 @@ export default function ThreeCards() {
   }, []);
   return (
     <>
-      <div className='container'>
+      <div  className='container'>
         <div className="row">
           <div className='cards'>
             {

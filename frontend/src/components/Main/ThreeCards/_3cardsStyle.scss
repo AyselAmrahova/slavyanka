@@ -12,6 +12,7 @@
 
 // @include for-tablet-landscape-up(){}
 // @include for-tablet-portrait-up(){}  
+
 // @media (min-width: 1200px)
 // @media (min-width: 992px)
 // @media (min-width: 768px)
@@ -19,6 +20,8 @@
 
 
 .container {
+    // margin-top: 15vh;
+    // padding-top: 15vh;
     .row {
         .cards {
             padding-right: 0.75rem;

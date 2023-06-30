@@ -3,9 +3,9 @@ import './_productsStyle.scss'
 import Navbar from './../../../components/Main/NavbarOther/Navbar';
 import { Link, useParams } from 'react-router-dom';
 import { GetProductId } from '../../../api/requests';
+// import { getCategoryProducts} from '../../../api/requests';
 
 export default function ProductDetails() {
-
   const [user, setUser] = useState(null);
   useEffect(() => {
     if (localStorage.getItem('user')) {
@@ -13,16 +13,38 @@ export default function ProductDetails() {
     }
   }, [])
 
+
+  // const categoryID = undefined
+
   const [product, setProduct] = useState({})
   const { id } = useParams()
   useEffect(() => {
     GetProductId(id).then((res) => {
       setProduct(res.data)
+      console.log(res.data.categoryID)
+
+      // categoryID = res.data.categoryID
     })
   }, [id])
+
+  // const [productsCategory, setProductsCategory] = useState([])
+  // useEffect(() => {
+  //   getCategoryProducts().then((res) => {
+  //     setProductsCategory(res.data)
+
+  //     console.log(res.data);
+  //     console.log(res);
+  //     console.log(categoryID);
+  //   })
+  // }, [])
+
   return (
     <>
       <Navbar />
+      {/* {productsCategory.map((data) => (
+        <div key={data._id}>{data.name}</div>
+      ))} */}
+
       <div key={product._id} className='oneProduct'>
         <div className='one-product-image'>
           <img height={500} src={product.imageURL} alt="" />
@@ -68,6 +90,30 @@ export default function ProductDetails() {
               <Link to='/products' style={{ color: "#3fc964" }}>
                 Alış-verişə davam et
               </Link>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div>
+        <h2 className="text-center">Oxşar məhsullar</h2>
+        <div className="products">
+          <div className='products-col'>
+            <div className='col'>
+              <div className='product-card'>
+                <div className='product-img-div'>
+                  <img className='product-img' width={250} height={250} src='https://cdn.slavyanka.az/uploads/9a21bf09-e8f2-45bf-bae4-b2cbcfb949d6.png' alt="" />
+                  <div className='product-text'>
+                    <p>3 l, Pet</p>
+                    <p style={{ marginTop: "0.25rem", color: '#dc3545' }}>4 ədəd</p>
+                  </div>
+                  <div className='product-count-basket'>
+                    <p>5.00 AZN</p>
+                    <div className='product-basket'>
+                      <img width={21} height={21} src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABcAAAAWCAYAAAArdgcFAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAHGSURBVHgBzVVBTuNAEKwee1c5rbw/8BPMZUNW2mX2B7svWCNy4Aa8gPAC4IaEEeEF5Ac4RBDgEviBf0AuICTCND2GSHY0FpDkQB2smZ5STU3PdJt0Pw5ZeQOAAgjMEzZ6P5MdzAEK3pdgLJwHPGxiTiD70YP1APd3Ift8IlPZiDPMAlbX3cX9f1SM/e43W6Tm45y+jr6rYkDVRjbXQ8wIcbyVLrSHJXEbYINdzATKYPy2HanJpVf3U8MYcd3Yy5ziuXvgCFOBsl5jvz2eKRdFGb+FKWBdl7aqIi5dNU/A0Hgn5LTd03pS4qtKMiPFByCnjSdjvouYtwRw/HIwvmFQ9fNkDJmp03u9xDfFjfJaBArtBXXrSYQp4RQX4f+5KcNHi/3VEO/ExYR754UuXTZvkfeYD4KQdn8kf8ZT5ebwcl5pnxnOtOizOGLP35bVQE6xldYPOlUCv86b68rjNTBlxKPltNHOxmvOtLDvHYuwlmEkz/BYD2Jn/u2TlZ/LtngMLV8MHRbXK4pIyEU8+BXPUemyK0RvijNxoe1SljaS1MVDzXSKFy85LrXryt6iL1f+wnCA2rdOurBTWaHa1oF6jGBoOGniGew+mLbFJMRAAAAAAElFTkSuQmCC" alt="" />
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </div>

@@ -1,0 +1,39 @@
+.admin-nav {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 20%;
+    text-align: center;
+    color: #5e6e82 !important;
+    background-color: #EDF2F9;
+    border-right: 1px solid #7a9ac5;
+
+    .admin-navbar {
+        .admin-navbar-link {
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            // height: 81.2px;
+            padding-top: 28px;
+            padding-bottom: 28px;
+            border-bottom: 1px solid #7a9ac5;
+            transition: all 0.3s ease;
+
+            li {
+                color: #5e6e82;
+                transition: all 0.3s ease;
+                font-size: 20px;
+            }
+
+            &:hover {
+                background-color: #d9e5f7;
+            }
+
+            &:hover li {
+                color: #061d38;
+
+            }
+        }
+    }
+}

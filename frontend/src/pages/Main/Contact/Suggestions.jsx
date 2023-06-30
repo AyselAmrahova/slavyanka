@@ -14,10 +14,23 @@ const Alert = React.forwardRef(function Alert(props, ref) {
 });
 
 export default function Suggestions() {
+  const handleClick = () => {
+  };
+
+  const handleClose = (event, reason) => {
+    if (reason === 'clickaway') {
+      return;
+    }
+    setOpen(false);
+  };
+  const [open, setOpen] = React.useState(false);
+
+
   // mailjs
   const form = useRef();
   const sendEmail = (e) => {
     e.preventDefault();
+
     emailjs
       .sendForm(
         "service_71iykcp",
@@ -36,14 +49,6 @@ export default function Suggestions() {
         }
       );
   };
-  const handleClose = (event, reason) => {
-    if (reason === 'clickaway') {
-      return;
-    }
-    setOpen(false);
-  };
-  const [open, setOpen] = React.useState(false);
-
 
   const Validation = yup.object().shape({
     user_name: yup.string().min(3, 'Minimum 3 hərfdən ibarət ola bilər').required('Zəhmət olmasa xananı doldurun'),
@@ -67,7 +72,9 @@ export default function Suggestions() {
       <main>
         <form
           ref={form}
-          onSubmit={sendEmail} >
+          onSubmit={sendEmail}
+        // onSubmit={formik.handleSubmit}
+        >
           <div className='suggestions-text'>
             <p>Təklif və iradlarını bildir!</p>
             <p className='suggestions-text-2p'>Müştərilərimizin düşüncələri önəmlidir</p>
@@ -127,14 +134,16 @@ export default function Suggestions() {
               value={formik.values.message}
             />
             {formik.errors.message && formik.touched.message ? (
-              <span style={{  color: "#bb221a" }}>{formik.errors.message}</span>
+              <span style={{ color: "#bb221a" }}>{formik.errors.message}</span>
             ) : <span style={{ visibility: "hidden" }}>error message</span>}
           </div>
           <div className='input-div'>
             <button
-              disabled={Object.keys(formik.errors).length !== 0 ? true : false}
-              // onClick={sendEmail}
+              // disabled={formik.isSubmitting || Object.keys(formik.errors).length > 0}
+              // disabled={Object.keys(formik.errors).length !== 0 ? true : false}
+              disabled={formik.isSubmitting || Object.keys(formik.errors).length > 0 ? true : false}
               type="submit"
+              onClick={handleClick}
               // value="Send"
               className='input-div-Button'
               variant="contained"

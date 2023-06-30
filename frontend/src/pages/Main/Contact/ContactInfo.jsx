@@ -22,36 +22,37 @@ export default function ContactInfo() {
                     </div>
                     <div className='contact-section'>
                         {contacts && contacts.map((contact) => {
-                            return (<>
-                                <div key={contact._id} className='contact-info'>
-                                    <div className='contact-address'>
-                                        <div className='info-img'>
-                                            <img src="https://slavyanka.az/static/media/Location.a118b987.svg" alt="Location" />
+                            return (
+                                <>
+                                    <div key={contact._id} className='contact-info'>
+                                        <div className='contact-address'>
+                                            <div className='info-img'>
+                                                <img src="https://slavyanka.az/static/media/Location.a118b987.svg" alt="Location" />
+                                            </div>
+                                            <div className='info-text'>
+                                                <label className="text-center">Ünvan</label>
+                                                <div>{contact.address}</div>
+                                            </div>
                                         </div>
-                                        <div className='info-text'>
-                                            <label className="text-center">Ünvan</label>
-                                            <div>{contact.address}</div>
+                                        <div className='contact-address'>
+                                            <div className='info-img'>
+                                                <img src="https://slavyanka.az/static/media/PhoneCircle.5cf6064b.svg" alt="Phone" />
+                                            </div>
+                                            <div className="info-text">
+                                                <label className="text-center">Telefon</label>
+                                                <div>{contact.phone}</div>
+                                            </div>
+                                        </div>
+                                        <div className='contact-address'>
+                                            <div className='info-img'>
+                                                <img src="https://slavyanka.az/static/media/Letter.f569f7c1.svg" alt="E-mail" />
+                                            </div>
+                                            <div className="info-text">
+                                                <label className="text-center">E-mail</label>
+                                                <div>{contact.email}</div>
+                                            </div>
                                         </div>
                                     </div>
-                                    <div className='contact-address'>
-                                        <div className='info-img'>
-                                            <img src="https://slavyanka.az/static/media/PhoneCircle.5cf6064b.svg" alt="Phone" />
-                                        </div>
-                                        <div className="info-text">
-                                            <label className="text-center">Telefon</label>
-                                            <div>{contact.phone}</div>
-                                        </div>
-                                    </div>
-                                    <div className='contact-address'>
-                                        <div className='info-img'>
-                                            <img src="https://slavyanka.az/static/media/Letter.f569f7c1.svg" alt="E-mail" />
-                                        </div>
-                                        <div className="info-text">
-                                            <label className="text-center">E-mail</label>
-                                            <div>{contact.email}</div>
-                                        </div>
-                                    </div>
-                                </div>
                                     <div className='contact-map'>
                                         <iframe
                                             title="Location"

@@ -4,18 +4,22 @@ import Home from "../pages/Main/Home/Home";
 import Products from "../pages/Main/Products/Products";
 import MainRoot from "../pages/Main/MainRoot";
 import ProductDetails from './../pages/Main/Products/ProductDetails';
-import NotFound from '../pages/Main/NotFound/NotFound'
+// import NotFound from '../pages/Main/NotFound/NotFound'
 
 import LoginM from "../pages/Main/Login/LoginM";
 import NewAcc from "../pages/Main/Login/NewAcc";
 import ForgetPassword from "../pages/Main/Login/ForgetPassword";
-import Users from './../pages/Main/Login/Users';
+// import Users from './../pages/Main/Login/Users';
 
 import AdminRoot from '../pages/Admin/AdminRoot'
 import Dashboard from '../pages/Admin/Dashboard'
-import AddImage from "../pages/Admin/AddImage";
 import Basket from "../pages/Main/Basket/Basket";
-
+import Login from "../pages/Admin/Login/Login";
+import AddImage from './../pages/Admin/Multer/AddImage';
+import ContactAdmin from '../pages/Admin/ContactAdmin/ContactAdmin'
+import Categories from "../pages/Admin/Categories/Categories";
+import Users from "../pages/Admin/Users/Users";
+import ProductsAdmin from "../pages/Admin/ProductsAdmin/ProductsAdmin";
 
 export const ROUTES = [
   //Main Root - user side
@@ -51,10 +55,10 @@ export const ROUTES = [
         path: '/new-account',
         element: <NewAcc />
       },
-      {
-        path: '/users',
-        element: <Users />
-      },
+      // {
+      //   path: '/users',
+      //   element: <Users />
+      // },
       {
         path: '/products/:id',
         element: <ProductDetails />
@@ -63,20 +67,40 @@ export const ROUTES = [
         path: '/basket',
         element: <Basket />
       },
-      {
-        path: '*',
-        element: <NotFound />
-      },
+      // {
+      //   path: '*',
+      //   element: <NotFound />
+      // },
     ],
   },
   //Admin Root - admin side
   {
-    path: '/admin/',
+    path: '/admin',
     element: <AdminRoot />,
     children: [
       {
         path: '',
         element: <Dashboard />,
+      },
+      {
+        path: 'login',
+        element: <Login />,
+      },
+      {
+        path: 'contact',
+        element: <ContactAdmin />,
+      },
+      {
+        path: 'categories',
+        element: <Categories />,
+      },
+      {
+        path: 'users',
+        element: <Users />,
+      },
+      {
+        path: 'products',
+        element: <ProductsAdmin />,
       },
       {
         path: 'imagees',
