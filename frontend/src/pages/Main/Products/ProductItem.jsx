@@ -10,17 +10,17 @@ const ProductItem = (props) => {
       let basketItems = JSON.parse(localStorage.getItem("basket"));
       let basketItem = basketItems.find(x=>x.id === id);
       if(basketItem !== undefined){
-        basketItem.count++;
+        basketItem.basketCount++;
       }
       else{
-        basketItem = {id:id,count:1};
+        basketItem = {id:id,basketCount:1};
         basketItems.push(basketItem);
       }
 
       localStorage.setItem("basket",JSON.stringify(basketItems))
     }
     else{
-      localStorage.setItem("basket",JSON.stringify([{id:id,count:1}]))
+      localStorage.setItem("basket",JSON.stringify([{id:id,basketCount:1}]))
     }
   }
 

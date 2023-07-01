@@ -18,6 +18,10 @@
 .navbarSlider-other {
     background-color: #FAFAFA;
 
+    @include for-tablet-landscape-up() {
+        color: red;
+    }
+
     nav {
         display: block;
 
@@ -181,12 +185,9 @@
 
 .navHamburger {
     display: none;
-    // display: block;
     margin-left: 8px;
     text-align: center;
-    // vertical-align: middle;
     background-color: transparent;
-    // border: 1px solid olive;
     padding: 1rem;
     padding: 1.2rem 1rem;
     border: 1px solid #cedef3 !important;

@@ -5,6 +5,7 @@ import { getAllProducts } from '../../../api/requests';
 
 export default function Basket() {
     const [products, setProducts] = useState([]);
+    const [ count, setCount ] = useState(0);
     const basketArr = [];
     useEffect(() => {
         getAllProducts().then(res => {
@@ -15,10 +16,18 @@ export default function Basket() {
     JSON.parse(localStorage.getItem("basket")).forEach(element => {
         for (let i = 0; i < products.length; i++) {
             if (products[i]._id === element.id) {
-                basketArr.push(products[i]);
+                basketArr.push({...products[i],count:element.basketCount});
             }
         }
     });
+
+    const decrementHandler = () => {
+        setCount(count !== 0 ? count-1 : count);
+    }
+
+    const incrementHandler = () => {
+        setCount(count+1);
+    }
 
     return (
         <>
@@ -47,9 +56,9 @@ export default function Basket() {
                                     <div className='buttons'>
                                         <div className='pmcounter'>
                                             <div className='eMS'>
-                                                <div className="counter el-center">-</div>
-                                                <div className="counter-num">{x.count}</div>
-                                                <div className="counter el-center">+</div>
+                                                <div className="counter el-center" onClick={decrementHandler}>-</div>
+                                                <div className="counter-num">{count}</div>
+                                                <div className="counter el-center" onClick={incrementHandler}>+</div>
                                             </div>
                                         </div>
                                         <div className="delete-from-basket">
