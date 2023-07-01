@@ -1,11 +1,12 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
+
 import './products.scss'
 import { TextField } from '@mui/material';
 // import Snackbar from '@mui/material/Snackbar';
 // import MuiAlert from '@mui/material/Alert';
 import * as yup from 'yup';
 import { useFormik } from 'formik'
-import { postProduct } from '../../../api/requests';
+import { getAllProducts, postProduct } from '../../../api/requests';
 import Swal from 'sweetalert2'
 
 // const Alert = React.forwardRef(function Alert(props, ref) {
@@ -49,15 +50,20 @@ export default function Products() {
     validationSchema: Validation,
   })
 
+  const [products, setProducts] = useState([])
+  useEffect(() => {
+    getAllProducts().then(res => {
+      setProducts(res);
+    })
+  }, [])
 
   return (
     <>
       <main>
-        <form
-          onSubmit={formik.handleSubmit}>
+        <form onSubmit={formik.handleSubmit}>
           <div className='suggestions-text'>
-            <p>product added</p>
-            <p className='suggestions-text-2p'>Müştərilərimizin düşüncələri önəmlidir</p>
+            <p>Product add</p>
+            {/* <p className='suggestions-text-2p'>Müştərilərimizin düşüncələri önəmlidir</p> */}
           </div>
           <div className='input-div'>
             <TextField
@@ -193,6 +199,18 @@ export default function Products() {
           </div>
         </form>
       </main>
+      <section>
+        <div>
+          <ul>
+            {products && products.map((product) => {
+              return (
+                <li>{product.name}</li>
+
+              )
+            })}
+          </ul>
+        </div>
+      </section>
 
     </>
   )

@@ -6,13 +6,12 @@ import { useNavigate } from "react-router-dom";
 import { useFormik } from "formik";
 import { signIn } from '../../../api/requests';
 
-import Swal from "sweetalert2";
 import { useUserContext } from "../../Main/context/UserContext";
-// import Navbar from './../../../components/Admin/Navbar/Navbar';
 
 export default function Login() {
 
     const [user, setUser] = useUserContext();
+    console.log(user);
     const navigate = useNavigate();
     const handleSubmit = async (values, actions) => {
         const response = await signIn({
