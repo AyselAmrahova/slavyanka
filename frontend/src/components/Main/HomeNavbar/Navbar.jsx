@@ -7,7 +7,21 @@ import { FiLogOut } from "react-icons/fi";
 import { getAllContact } from '../../../api/requests';
 import { useState, useEffect } from "react";
 
+// import Button from '@mui/material/Button';
+import Menu from '@mui/material/Menu';
+import MenuItem from '@mui/material/MenuItem';
+
 export default function Navbar() {
+    const [anchorEl, setAnchorEl] = React.useState(null);
+    const open = Boolean(anchorEl);
+    const handleClick = (event) => {
+        setAnchorEl(event.currentTarget);
+    };
+    const handleClose = () => {
+        setAnchorEl(null);
+    };
+
+
     // const [user, setUser] = useUserContext();
     const [user, setUser] = useState(null);
     useEffect(() => {
@@ -75,13 +89,39 @@ export default function Navbar() {
 
                             <div className='navBasket'>
                                 <div className='navBasketIcon'>
-                                    <img src="https://slavyanka.az/static/media/ShoppingLight.8e403ab1.svg" alt="Example" />
+                                    <Link to='http://localhost:3000/basket'>
+                                        <img src="https://slavyanka.az/static/media/ShoppingLight.8e403ab1.svg" alt="Example" />
+                                    </Link>
                                 </div>
                             </div>
-                            <div className='navHamburger'>
+                            {/* <div className='navHamburger'>
                                 <img src="https://slavyanka.az/static/media/togglewhite.61779455.svg" alt="Example" />
+                            </div> */}
+                            <div className='navHamburger' style={{ padding: "14px 0" }}>
+                                <Button
+                                    id="basic-button"
+                                    aria-controls={open ? 'basic-menu' : undefined}
+                                    aria-haspopup="true"
+                                    aria-expanded={open ? 'true' : undefined}
+                                    onClick={handleClick}
+                                >
+                                    <img src="https://slavyanka.az/static/media/togglewhite.61779455.svg" alt="Example" />
+                                </Button>
+                                <Menu
+                                    id="basic-menu"
+                                    anchorEl={anchorEl}
+                                    open={open}
+                                    onClose={handleClose}
+                                    MenuListProps={{
+                                        'aria-labelledby': 'basic-button',
+                                    }}
+                                >
+                                    <Link to='http://localhost:3000'><MenuItem onClick={handleClose} style={{ color: "#212529" }}>Ana səhifə</MenuItem></Link>
+                                    <Link to='http://localhost:3000/products'><MenuItem onClick={handleClose} style={{ color: "#212529" }}>Məhsullar</MenuItem></Link>
+                                    <Link to='http://localhost:3000/about'><MenuItem onClick={handleClose} style={{ color: "#212529" }}>Haqqımızda</MenuItem></Link>
+                                    <Link to='http://localhost:3000/contact'><MenuItem onClick={handleClose} style={{ color: "#212529" }}>Əlaqə</MenuItem></Link>
+                                </Menu>
                             </div>
-
                         </div>
                         <div className='navCall'>
                             <img src="https://slavyanka.az/static/media/PhoneLight.b5e0dced.svg" alt="Example" />

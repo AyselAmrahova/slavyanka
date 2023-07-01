@@ -93,8 +93,8 @@ export const deleteProductByID = async (id) => {
         })
     return deletedProduct;
 }
-export const postProduct = (payload) => {
-    axios.post(`${base_url}/products`, payload);
+export const postProduct = async(payload) => {
+   await axios.post(`${base_url}/products`, payload);
 }
 
 

@@ -1,27 +1,27 @@
 import React from 'react'
 import { Outlet } from 'react-router-dom'
-// import Login from './Login/Login';
+import Login from './Login/Login';
 import Navbar from './../../components/Admin/Navbar/Navbar';
-// import { useUserContext } from '../Main/context/UserContext';
+import { useUserContext } from '../Main/context/UserContext';
 
 export default function Root() {
 
-    // const [user] = useUserContext()
+    const [user] = useUserContext()
 
     return (
         <>
-            <Navbar />
-            <Outlet />
-            {/* {
-                user?.isAdmin ? (
-                    <>
-                        <Navbar />
-                        <Outlet />
-                    </>
-                ) : (
-                    <Login />
-                )
-            } */}
+            <>
+                {
+                    user?.isAdmin ? (
+                        <>
+                            <Navbar />
+                            <Outlet />
+                        </>
+                    ) : (
+                        <Login />
+                    )
+                }
+            </>
         </>
     )
 }

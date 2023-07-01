@@ -8,7 +8,7 @@ import { signIn } from '../../../api/requests';
 
 import Swal from "sweetalert2";
 import { useUserContext } from "../../Main/context/UserContext";
-import Navbar from './../../../components/Admin/Navbar/Navbar';
+// import Navbar from './../../../components/Admin/Navbar/Navbar';
 
 export default function Login() {
 
@@ -23,13 +23,6 @@ export default function Login() {
             localStorage.setItem('token', response.token);
             localStorage.setItem('user', JSON.stringify(response.user));
             setUser(response.user);
-            Swal.fire({
-                position: "top-end",
-                icon: "success",
-                title: "User signed in successfully!",
-                showConfirmButton: false,
-                timer: 1200,
-            });
             actions.resetForm();
             navigate("/admin");
         }
@@ -43,8 +36,8 @@ export default function Login() {
     });
     return (
         <>
-            <Navbar />
-            <div className='login-div'>
+            {/* <Navbar /> */}
+            <div style={{ marginTop: "90px" }} className='login-div'>
                 <div className='login-desc'>Şəxsi kabinetə giriş</div>
                 <form onSubmit={formik.handleSubmit}>
                     <div className='input-div'>

@@ -7,7 +7,20 @@ import { Button } from '@mui/material';
 import { getAllContact } from '../../../api/requests';
 import { useState, useEffect } from "react";
 
+import Menu from '@mui/material/Menu';
+import MenuItem from '@mui/material/MenuItem';
+
 export default function Navbar() {
+    const [anchorEl, setAnchorEl] = React.useState(null);
+    const open = Boolean(anchorEl);
+    const handleClick = (event) => {
+        setAnchorEl(event.currentTarget);
+    };
+    const handleClose = () => {
+        setAnchorEl(null);
+    };
+
+
 
     // const [user, setUser] = useUserContext();
     const [user, setUser] = useState(null);
@@ -43,9 +56,9 @@ export default function Navbar() {
                         })}
                         <ul className='navUl'>
                             <li><h5><Link to='http://localhost:3000' className='navLink'>Ana səhifə</Link></h5></li>
-                            <li><h5><Link to='/products' className='navLink'>Məhsullar</Link></h5></li>
-                            <li><h5><Link to='/about' className='navLink'>Haqqımızda</Link></h5></li>
-                            <li><h5><Link to='/contact' className='navLink'>Əlaqə</Link></h5></li>
+                            <li><h5><Link to='http://localhost:3000/products' className='navLink'>Məhsullar</Link></h5></li>
+                            <li><h5><Link to='http://localhost:3000/about' className='navLink'>Haqqımızda</Link></h5></li>
+                            <li><h5><Link to='http://localhost:3000/contact' className='navLink'>Əlaqə</Link></h5></li>
                         </ul>
                         <div className='navIcon'>
                             {user ? (
@@ -76,13 +89,38 @@ export default function Navbar() {
 
                             <div className='navBasket'>
                                 <div className='navBasketIcon'>
-                                    <img src="https://slavyanka.az/static/media/ShoppingDark.b6cc94ef.svg" alt="Example" />
+                                    <Link to='http://localhost:3000/basket'>
+                                        <img src="https://slavyanka.az/static/media/ShoppingDark.b6cc94ef.svg" alt="Example" />
+                                    </Link>
                                 </div>
                             </div>
-                            <div className='navHamburger'>
-                                <img src="https://slavyanka.az/static/media/toggleblack.a68a54bc.svg" alt="Example" />
-                            </div>
+                            <div className='navHamburger' style={{ padding: "14px 0" }}>
+                                <Button
+                                    id="basic-button"
+                                    aria-controls={open ? 'basic-menu' : undefined}
+                                    aria-haspopup="true"
+                                    aria-expanded={open ? 'true' : undefined}
+                                    onClick={handleClick}
+                                >
 
+                                    <img src="https://slavyanka.az/static/media/toggleblack.a68a54bc.svg" alt="Example" />
+                                </Button>
+                                <Menu
+                                    id="basic-menu"
+                                    anchorEl={anchorEl}
+                                    open={open}
+                                    onClose={handleClose}
+                                    MenuListProps={{
+                                        'aria-labelledby': 'basic-button',
+                                    }}
+                                >
+
+                                    <Link to='http://localhost:3000'><MenuItem onClick={handleClose} style={{ color: "#212529" }}>Ana səhifə</MenuItem></Link>
+                                    <Link to='http://localhost:3000/products'><MenuItem onClick={handleClose} style={{ color: "#212529" }}>Məhsullar</MenuItem></Link>
+                                    <Link to='http://localhost:3000/about'><MenuItem onClick={handleClose} style={{ color: "#212529" }}>Haqqımızda</MenuItem></Link>
+                                    <Link to='http://localhost:3000/contact'><MenuItem onClick={handleClose} style={{ color: "#212529" }}>Əlaqə</MenuItem></Link>
+                                </Menu>
+                            </div>
                         </div>
                         <div className='navCall'>
                             <img src="https://slavyanka.az/static/media/PhoneLight.b5e0dced.svg" alt="Example" />

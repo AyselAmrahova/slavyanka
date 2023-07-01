@@ -1,8 +1,24 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import './basket.scss'
 import Navbar from './../../../components/Main/NavbarOther/Navbar';
+import { getAllProducts } from '../../../api/requests';
 
 export default function Basket() {
+    const [products, setProducts] = useState([]);
+    const basketArr = [];
+    useEffect(() => {
+        getAllProducts().then(res => {
+            setProducts(res);
+        })
+    }, [])
+
+    JSON.parse(localStorage.getItem("basket")).forEach(element => {
+        for (let i = 0; i < products.length; i++) {
+            if (products[i]._id === element.id) {
+                basketArr.push(products[i]);
+            }
+        }
+    });
 
     return (
         <>
@@ -12,37 +28,39 @@ export default function Basket() {
                     <h1>Səbət</h1>
                     <div className='basket-items-list'>
                         <div className='basket'>
-                            <div className='basket-products'>
-                                <div className='basket-product'>
-                                    <div className="basket-product-img">
-                                        <img width="80px" alt="productImg" src="https://cdn.slavyanka.az/uploads/56712f15-0d6c-4326-9716-d70ae2b8d371.png" />
-                                    </div>
-                                    <div className="basket-product-details">
-                                        <div className='product-name'></div>
-                                        <div className='product-count'>
-                                            <span className="solorized">Say: </span> 1
+                            {basketArr.map(x => {
+                                return <div className='basket-products'>
+                                    <div className='basket-product'>
+                                        <div className="basket-product-img">
+                                            <img width="80px" alt="productImg" src={x.imageURL} />
                                         </div>
-                                        <div className="product-total-amount">
-                                            <span class="solorized">Ümumi məbləğ:</span> 8.40
+                                        <div className="basket-product-details">
+                                            <div className='product-name'></div>
+                                            <div className='product-count'>
+                                                <span className="solorized">Say: </span> <span>{x.count}</span>
+                                            </div>
+                                            <div className="product-total-amount">
+                                                <span class="solorized">Ümumi məbləğ:</span> <span>{x.price}</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div className='buttons'>
+                                        <div className='pmcounter'>
+                                            <div className='eMS'>
+                                                <div className="counter el-center">-</div>
+                                                <div className="counter-num">{x.count}</div>
+                                                <div className="counter el-center">+</div>
+                                            </div>
+                                        </div>
+                                        <div className="delete-from-basket">
+                                            <div className="icon">
+                                                <img src="https://slavyanka.az/static/media/TrashBox.96f72515.svg" alt="delete-icon" />
+                                            </div>
+                                            <span className="cpointer">Səbətdən sil</span>
                                         </div>
                                     </div>
                                 </div>
-                                <div className='buttons'>
-                                    <div className='pmcounter'>
-                                        <div className='eMS'>
-                                            <div className="counter el-center">-</div>
-                                            <div className="counter-num">1</div>
-                                            <div className="counter el-center">+</div>
-                                        </div>
-                                    </div>
-                                    <div className="delete-from-basket">
-                                        <div className="icon">
-                                            <img src="https://slavyanka.az/static/media/TrashBox.96f72515.svg" alt="delete-icon" />
-                                        </div>
-                                        <span className="cpointer">Səbətdən sil</span>
-                                    </div>
-                                </div>
-                            </div>
+                            })}
                         </div>
                     </div>
                 </div>
