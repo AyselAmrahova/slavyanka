@@ -26,7 +26,6 @@ export default function ContactAdmin() {
       width: "400px",
       heightAuto: "80px"
     })
-    console.log(values);
     actions.resetForm()
   }
   const formik = useFormik({
@@ -45,6 +44,7 @@ export default function ContactAdmin() {
     getAllContact().then(res => {
       setContacts(res);
       console.log(res);
+      // console.log(res.data);
     })
   }, [])
   return (
@@ -130,7 +130,7 @@ export default function ContactAdmin() {
       <div>
         {contacts && contacts.map((contact) => {
           return (
-            <div>
+            <div key={contact._id}>
               <div className='admin-contact-card' key={contact._id}>
                 <p><b style={{ marginRight: "10px" }}>Address : </b>{contact.address}</p>
                 <p><b style={{ marginRight: "10px" }}>Əlaqə nömrəsi : </b> {contact.phone}</p>

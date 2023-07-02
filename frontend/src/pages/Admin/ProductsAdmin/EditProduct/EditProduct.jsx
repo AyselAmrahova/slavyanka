@@ -11,6 +11,7 @@ import Snackbar from '@mui/material/Snackbar';
 const Alert = React.forwardRef(function Alert(props, ref) {
   return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
 });
+
 export default function EditProduct() {
   const [open, setOpen] = React.useState(false);
   const handleClick = () => {
@@ -29,14 +30,12 @@ export default function EditProduct() {
   async function fetchData() {
     const datas = await GetProductId(id);
     setProduct(datas.data);
-    console.log(datas.data);
-    // console.log(datas.data.releaseDate);
+
     formik.setValues({
       name: datas.data.name,
       count: datas.data.count,
       price: datas.data.price,
       imageURL: datas.data.imageURL,
-      // releaseDate: datas.data.releaseDate,
       categoryName: datas.data.categoryName,
       categoryID: datas.data.categoryID,
     });
@@ -48,7 +47,6 @@ export default function EditProduct() {
   const handleSubmit = async (values, actions) => {
     putProduct(id, values);
     setProduct(values);
-    console.log(values);
     navigate("/admin/products");
     actions.resetForm();
   };
@@ -57,7 +55,6 @@ export default function EditProduct() {
     count: Yup.number().required(),
     price: Yup.number().required(),
     imageURL: Yup.string().required(),
-    // releaseDate: Yup.date().required(),
     categoryName: Yup.string().required(),
     categoryID: Yup.string().required(),
   });
@@ -67,7 +64,6 @@ export default function EditProduct() {
       count: product.count,
       price: product.price,
       imageURL: product.imageURL,
-      // releaseDate: product.releaseDate,
       categoryName: product.categoryName,
       categoryID: product.categoryID,
     },
@@ -171,22 +167,6 @@ export default function EditProduct() {
             ) : <span style={{ visibility: "hidden", marginBottom: "10px" }}>error message</span>}
           </div>
         </div>
-        {/* <div className='admin-product-div'>
-          <div className='admin-product-div'>
-            <Input
-              type="datetime-local"
-              className='admin-product-inp'
-              placeholder='releaseDate'
-              name="releaseDate"
-              onChange={formik.handleChange}
-              onBlur={formik.handleBlur}
-              value={formik.values.releaseDate}
-            />
-            {formik.errors.releaseDate && formik.touched.releaseDate ? (
-              <span style={{ color: "#bb221a", marginBottom: "10px" }}>{formik.errors.releaseDate}</span>
-            ) : <span style={{ visibility: "hidden", marginBottom: "10px" }}>error message</span>}
-          </div>
-        </div> */}
         <div className='input-div'>
           <button
             disabled={formik.isSubmitting || Object.keys(formik.errors).length > 0 ? true : false}

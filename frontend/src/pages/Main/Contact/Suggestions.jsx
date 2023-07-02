@@ -26,7 +26,6 @@ export default function Suggestions() {
       heightAuto: "80px"
     })
     emailjs
-
       .sendForm(
         "service_71iykcp",
         "template_xq3g5un",

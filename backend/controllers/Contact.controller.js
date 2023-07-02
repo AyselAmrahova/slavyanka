@@ -25,6 +25,19 @@ const ContactController = {
         await newContact.save();
         res.status(201).send("created");
     },
+    getByID: async (req, res) => {
+        const id = req.params.id;
+        const contact = await ContactModel.findById(id);
+        console.log("contact found: ", contact);
+        if (!contact) {
+            res.status(204).send("contact not found!");
+        } else {
+            res.status(200).send({
+                data: contact,
+                message: "data get success!",
+            });
+        }
+    },
     delete: async (req, res) => {
         const id = req.params.id;
         const contact = await ContactModel.findByIdAndDelete(id);

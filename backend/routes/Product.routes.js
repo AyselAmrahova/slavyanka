@@ -18,4 +18,6 @@ Product_router.post('/', ProductController.post)
 //delete Productc
 Product_router.delete('/:id', ProductController.delete)
 
+//edit Category
+Product_router.put('/:id', ProductController.edit)
 module.exports = Product_router

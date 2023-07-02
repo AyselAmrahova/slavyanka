@@ -23,15 +23,14 @@ export default function EditCategory() {
         }
         setOpen(false);
     };
+
     const navigate = useNavigate();
     const { id } = useParams();
     const [category, setCategory] = useState({});
+
     async function fetchData() {
         const datas = await getCategoryByID(id);
         setCategory(datas);
-        console.log(datas);
-        // console.log(datas.data);
-        // console.log(datas.data.releaseDate);
         formik.setValues({
             name: datas.name,
         });
@@ -43,7 +42,6 @@ export default function EditCategory() {
     const handleSubmit = async (values, actions) => {
         putCategory(id, values);
         setCategory(values);
-        console.log(values);
         navigate("/admin/categories");
         actions.resetForm();
     };
