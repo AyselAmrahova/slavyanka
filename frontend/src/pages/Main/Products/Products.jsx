@@ -57,8 +57,8 @@ export default function Products() {
             <ul id="products-main">
               <li className="products-actions-items" onClick={filterProducts}>Bütün məhsullar</li>
               {
-                categories.map((cat, index) => {
-                  return <li key={index} onClick={filterProducts} id={cat._id} className="products-actions-items">{cat.name}</li>
+                categories.map((cat) => {
+                  return <li key={cat._id} onClick={filterProducts} id={cat._id} className="products-actions-items">{cat.name}</li>
                 })
               }
             </ul>
@@ -71,8 +71,8 @@ export default function Products() {
             .filter((item) => {
               return search.toLocaleLowerCase() === "" ? item : item.name.toLocaleLowerCase().includes(search)
             })
-            .map((prod, index) => {
-              return <ProductItem key={index} product={prod} />
+            .map((prod) => {
+              return <ProductItem key={prod._id} product={prod} />
             })
         }
       </div>

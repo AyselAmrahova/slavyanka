@@ -6,36 +6,26 @@ import { useFormik } from 'formik'
 import { deleteProductByID, getAllProducts, postProduct } from '../../../api/requests';
 import Swal from 'sweetalert2'
 import { Input } from 'antd';
-import Snackbar from '@mui/material/Snackbar';
-import MuiAlert from '@mui/material/Alert';
 import { Link } from 'react-router-dom';
+import MuiAlert from '@mui/material/Alert';
+import Snackbar from '@mui/material/Snackbar';
 const Alert = React.forwardRef(function Alert(props, ref) {
   return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
 });
 export default function Products() {
   const [open, setOpen] = React.useState(false);
-
   const handleClick = () => {
     setOpen(true);
   };
-
   const handleClose = (event, reason) => {
     if (reason === 'clickaway') {
       return;
     }
-
     setOpen(false);
   };
-  // const [user, setUser] = useState(null);
-  // useEffect(() => {
-  //   if (localStorage.getItem('user')) {
-  //     setUser(localStorage.getItem('user'));
-  //   }
-  // }, [])
 
   const Validation = yup.object().shape({
     name: yup.string().min(3, 'Minimum 3 hərfdən ibarət ola bilər').required('Zəhmət olmasa xananı doldurun'),
-    // title: yup.string().min(3, 'Minimum 3 hərfdən ibarət ola bilər').required('Zəhmət olmasa xananı doldurun'),
     count: yup.number().required('Zəhmət olmasa xananı doldurun'),
     price: yup.number().required('Zəhmət olmasa xananı doldurun'),
     imageURL: yup.string().required('Zəhmət olmasa xananı doldurun'),
@@ -43,7 +33,7 @@ export default function Products() {
     categoryName: yup.string().min(3, 'Minimum 3 hərfdən ibarət ola bilər').required('Zəhmət olmasa xananı doldurun'),
     categoryID: yup.string().required('Zəhmət olmasa xananı doldurun'),
   })
-  const handleSubmit = async (values, actions) => {
+  const handleSubmit = async (values) => {
     await postProduct(values)
     console.log(values);
     Swal.fire(
@@ -51,13 +41,14 @@ export default function Products() {
       `${values.name} succsessfully added!`,
       'success'
     )
-    actions.resetForm()
+    console.log(values);
+
+    // actions.resetForm()
   }
 
   const formik = useFormik({
     initialValues: {
       name: '',
-      title: '',
       count: '',
       price: '',
       imageURL: '',
@@ -73,6 +64,7 @@ export default function Products() {
   useEffect(() => {
     getAllProducts().then(res => {
       setProducts(res);
+      console.log(res);
     })
   }, [])
 

@@ -35,11 +35,10 @@ const ProductController = {
         }
     },
     post: async (req, res) => {
-        const { name, title, count, price, imageURL, releaseDate, categoryName, categoryID } = req.body;
+        const { name, count, price, imageURL, releaseDate, categoryName, categoryID } = req.body;
 
         const product = new ProductModel({
             name: name,
-            title: title,
             count: count,
             price: price,
             imageURL: imageURL,
@@ -63,10 +62,9 @@ const ProductController = {
     },
     edit: async (req, res) => {
         const id = req.params.id;
-        const { name, title, count, price, imageURL, releaseDate, categoryName, categoryID } = req.body;
+        const { name, count, price, imageURL, releaseDate, categoryName, categoryID } = req.body;
         const existedProduct = await ProductModel.findByIdAndUpdate(id, {
             name: name,
-            title: title,
             count: count,
             price: price,
             imageURL: imageURL,

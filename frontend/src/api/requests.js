@@ -98,11 +98,9 @@ export const postProduct = async (payload) => {
 }
 
 //edit product
-export const editProduct = async (id, payload) => {
+export const putProduct = async (id, payload) => {
     await axios.put(`${base_url}/products/${id}`, payload);
-}
-
-
+};
 
 // 3CARDS------------------------------------------------------------------------------------------------------------------------------------
 export const getAllThreeCards = async () => {
