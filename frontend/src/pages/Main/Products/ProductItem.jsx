@@ -6,21 +6,23 @@ const ProductItem = (props) => {
   const handleClick = (e) =>{
     const id = e.target.id;
     
-    if(localStorage.getItem("basket")){
-      let basketItems = JSON.parse(localStorage.getItem("basket"));
-      let basketItem = basketItems.find(x=>x.id === id);
-      if(basketItem !== undefined){
-        basketItem.basketCount++;
+    if(id){
+      if(localStorage.getItem("basket")){
+        let basketItems = JSON.parse(localStorage.getItem("basket"));
+        let basketItem = basketItems.find(x=>x.id === id);
+        if(basketItem !== undefined){
+          basketItem.basketCount++;
+        }
+        else{
+          basketItem = {id:id,basketCount:1};
+          basketItems.push(basketItem);
+        }
+  
+        localStorage.setItem("basket",JSON.stringify(basketItems))
       }
       else{
-        basketItem = {id:id,basketCount:1};
-        basketItems.push(basketItem);
+        localStorage.setItem("basket",JSON.stringify([{id:id,basketCount:1}]))
       }
-
-      localStorage.setItem("basket",JSON.stringify(basketItems))
-    }
-    else{
-      localStorage.setItem("basket",JSON.stringify([{id:id,basketCount:1}]))
     }
   }
 

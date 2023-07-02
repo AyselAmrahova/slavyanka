@@ -25,9 +25,8 @@ export default function Basket() {
         const basketItems = JSON.parse(localStorage.getItem("basket"));
         const basketItem = basketItems.find(x => x.id === e.target.id);
         if (basketItem) {
-            const itemCount = basketItem.basketCount !== 0 ? --basketItem.basketCount : 0;
+            basketItem.basketCount !== 0 && --basketItem.basketCount;
             localStorage.setItem("basket", JSON.stringify(basketItems))
-            setCount(itemCount);
         }   
     }
 
@@ -35,9 +34,8 @@ export default function Basket() {
         const basketItems = JSON.parse(localStorage.getItem("basket"));
         const basketItem = basketItems.find(x => x.id === e.target.id);
         if (basketItem) {
-            const itemCount = basketItem.basketCount++;
+            basketItem.basketCount++;
             localStorage.setItem("basket", JSON.stringify(basketItems))
-            setCount(itemCount);
         }   
     }
 
