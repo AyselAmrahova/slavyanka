@@ -9,16 +9,20 @@ export default function Products() {
   const [search, setSearch] = useState('')
   const [categories, setCategories] = useState([]);
   const [products, setProducts] = useState([]);
+  const [data, setData] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     getAllCategories().then((res) => {
       setCategories(res);
+      setLoading(false);
     });
   }, []);
 
   useEffect(() => {
     getAllProducts().then((res) => {
       setProducts(res);
+      setLoading(false);
     });
   }, []);
 
@@ -42,9 +46,14 @@ export default function Products() {
       })
     }
   }
+
+  const handleClick = () => {
+    setData(JSON.parse(localStorage.getItem("basket")));
+  }
+
   return (
     <>
-      <Navbar />
+      <Navbar data={data} />
       <div className='products-search'>
         <Input style={{ padding: "10px" }} onChange={(e) => setSearch(e.target.value)} placeholder="Axtarış" />
       </div>
@@ -52,18 +61,20 @@ export default function Products() {
         <div className='products-header'>
           <span className="products-header-text">Saf, təbii və sağlam Slavyanka suları</span>
         </div>
-        <div className='products-actions'>
-          <div className='products-actions-col'>
-            <ul id="products-main">
-              <li className="products-actions-items" onClick={filterProducts}>Bütün məhsullar</li>
-              {
-                categories.map((cat) => {
-                  return <li key={cat._id} onClick={filterProducts} id={cat._id} className="products-actions-items">{cat.name}</li>
-                })
-              }
-            </ul>
+        {loading ? <div style={{ textAlign: "center" }} ><span class="loader"></span></div> : (
+          <div className='products-actions'>
+            <div className='products-actions-col'>
+              <ul id="products-main">
+                <li className="products-actions-items" onClick={filterProducts}>Bütün məhsullar</li>
+                {
+                  categories.map((cat, index) => {
+                    return <li key={index} onClick={filterProducts} id={cat._id} className="products-actions-items">{cat.name}</li>
+                  })
+                }
+              </ul>
+            </div>
           </div>
-        </div>
+        )}
       </div>
       <div className="products">
         {products &&
@@ -71,8 +82,8 @@ export default function Products() {
             .filter((item) => {
               return search.toLocaleLowerCase() === "" ? item : item.name.toLocaleLowerCase().includes(search)
             })
-            .map((prod) => {
-              return <ProductItem key={prod._id} product={prod} />
+            .map((prod, index) => {
+              return <ProductItem key={index} product={prod} onClick={handleClick} />
             })
         }
       </div>

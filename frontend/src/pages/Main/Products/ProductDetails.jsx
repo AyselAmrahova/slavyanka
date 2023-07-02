@@ -45,6 +45,10 @@ export default function ProductDetails() {
   return (
     <>
       <Navbar />
+      {/* {productsCategory.map((data) => (
+        <div key={data._id}>{data.name}</div>
+      ))} */}
+
       <div key={product._id} className='oneProduct'>
         <div className='one-product-image'>
           <img height={500} src={product.imageURL} alt="" />
@@ -52,7 +56,7 @@ export default function ProductDetails() {
         <div className='one-product-desc'>
           <h2>{product.name}</h2>
           <p className="colort2">{product.categoryName}</p>
-          <p className="colort1">“Slavyanka” Azərbaycanın ilk qazsız qablaşdırılmış mineral süfrə suyu markasıdır və 2004-cü ildən bəri Gədəbəy dağlarındakı saf bulaqlardan toplanan sulardan əldə olunur. Hazırda dəniz səviyyəsindən 1500 metr hündürlükdə yerləşən Gədəbəy dağlarındakı 12 bulaqdan fabrikimizə su daxil olur. Bulaqlardan gələn sular Gədəbəyin Zəhmət kəndindəki fabrikdə toplanır, mineral tərkibi qorunmaqla çox detallı təmizləmə prosedurlarından keçir, istehsal olunur və Azərbaycanın bütün regionlarına çatdırılır.</p>
+          <p className="colort1">{product.title}</p>
           <div className='makro-elements'>
             <div className="colort4"> CA2+ - &lt;32mq/l </div>
             <div className="colort4"> Na+-&lt;25mq/l</div>
@@ -96,7 +100,7 @@ export default function ProductDetails() {
       <div>
         <h2 className="text-center">Oxşar məhsullar</h2>
         <div className="products">
-          {productsCategory && productsCategory.map(x => {
+          {productsCategory.map(x => {
             return <div key={x._id} className='products-col'>
               <div className='col'>
                 <div className='product-card'>

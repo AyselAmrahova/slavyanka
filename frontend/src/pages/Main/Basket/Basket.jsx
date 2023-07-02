@@ -1,62 +1,67 @@
 import React, { useEffect, useState } from 'react'
 import './basket.scss'
 import Navbar from './../../../components/Main/NavbarOther/Navbar';
-import { getAllProducts } from '../../../api/requests';
 
 export default function Basket() {
-    const [products, setProducts] = useState([]);
-    const [count, setCount] = useState(0);
-    const basketArr = [];
+    const [isClick, setIsClick] = useState(false);
+    const [data, setData] = useState([]);
+    const [totalPrice, setTotalPrice] = useState(0);
     useEffect(() => {
-        getAllProducts().then(res => {
-            setProducts(res);
-        })
-    }, [])
+        console.log("use")
+        JSON.parse(localStorage.getItem("basket")) && setData(JSON.parse(localStorage.getItem("basket")))
+    }, [isClick])
 
-    JSON.parse(localStorage.getItem("basket")).forEach(element => {
-        for (let i = 0; i < products.length; i++) {
-            if (products[i]._id === element.id) {
-                basketArr.push({ ...products[i], basketCount: element.basketCount });
-            }
-        }
-    });
+    useEffect(() => {
+        console.log("use2");
+        setTotalPrice(data.reduce((acc, x) => acc + (Number(x.price) * Number(x.basketCount)), 0));
+    }, [data]);
 
     const decrementHandler = (e) => {
-        const basketItems = JSON.parse(localStorage.getItem("basket"));
-        const basketItem = basketItems.find(x => x.id === e.target.id);
+        console.log("dec")
+        const basketItem = data.find(x => x._id === e.target.id);
         if (basketItem) {
             basketItem.basketCount !== 0 && --basketItem.basketCount;
-            localStorage.setItem("basket", JSON.stringify(basketItems))
-        }   
+            if (basketItem.basketCount === 0) {
+                localStorage.setItem("basket", JSON.stringify(JSON.parse(localStorage.getItem("basket")).filter(x => x._id !== basketItem._id)))
+            }
+            else {
+                localStorage.setItem("basket", JSON.stringify(data))
+            }
+            setIsClick(true);
+            setData(JSON.parse(localStorage.getItem("basket")));
+        }
     }
 
     const incrementHandler = (e) => {
-        const basketItems = JSON.parse(localStorage.getItem("basket"));
-        const basketItem = basketItems.find(x => x.id === e.target.id);
+        console.log("inc")
+        const basketItem = data.find(x => x._id === e.target.id);
         if (basketItem) {
             basketItem.basketCount++;
-            localStorage.setItem("basket", JSON.stringify(basketItems))
-        }   
+            setIsClick(true);
+            localStorage.setItem("basket", JSON.stringify(data))
+            setData(JSON.parse(localStorage.getItem("basket")));
+        }
     }
 
     const deleteHandler = (e) => {
-        let basketItems = JSON.parse(localStorage.getItem("basket"));
-        const basketItem = basketItems.find(x => x.id === e.target.id);
+        console.log("del")
+        const basketItem = data.find(x => x._id === e.target.id);
         if (basketItem) {
-            basketItems = basketItems.filter(x=>x.id !== basketItem.id);
-            localStorage.setItem("basket", JSON.stringify(basketItems))
-        }   
+            setIsClick(true);
+            localStorage.setItem("basket", JSON.stringify(JSON.parse(localStorage.getItem("basket")).filter(x => x._id !== basketItem._id)))
+            setData(JSON.parse(localStorage.getItem("basket")));
+        }
     }
 
     return (
         <>
-            <Navbar />
+            <Navbar data={data} />
             <main className='basket-page'>
                 <div className='basket-content'>
                     <h1>Səbət</h1>
                     <div className='basket-items-list'>
                         <div className='basket'>
-                            {basketArr.map(x => {
+                            {data?.map(x => {
                                 return <div key={x._id} className='basket-products'>
                                     <div className='basket-product'>
                                         <div className="basket-product-img">
@@ -68,7 +73,7 @@ export default function Basket() {
                                                 <span className="solorized">Say: </span> <span>{x.count}</span>
                                             </div>
                                             <div className="product-total-amount">
-                                                <span className="solorized">Ümumi məbləğ:</span> <span>{x.price}</span>
+                                                <span className="solorized">Ümumi məbləğ:</span> <span>{x.price * x.basketCount}</span>
                                             </div>
                                         </div>
                                     </div>
@@ -100,7 +105,7 @@ export default function Basket() {
                                 <div className="col-12">
                                     <div className="subtotal">
                                         <div>Subtotal</div>
-                                        <div>8.40</div>
+                                        <div>{totalPrice}</div>
                                     </div>
                                     <div className="cargo">
                                         <div>Çatdırılma</div>
@@ -112,7 +117,7 @@ export default function Basket() {
                                     </div>
                                     <div className="total">
                                         <div>Total: </div>
-                                        <div>8.40</div>
+                                        <div>{totalPrice}</div>
                                     </div>
                                     <button className="book-btn">Sifarişi nəğd tamamla</button>
                                 </div>

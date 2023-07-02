@@ -6,7 +6,7 @@ import { FiLogOut } from "react-icons/fi";
 import { Button } from '@mui/material';
 import { getAllContact } from '../../../api/requests';
 import { useState, useEffect } from "react";
-// import Badge from '@mui/material/Badge';
+import Badge from '@mui/material/Badge';
 
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
@@ -21,7 +21,7 @@ export default function Navbar(props) {
         setAnchorEl(null);
     };
 
-
+    console.log(props.data)
 
     // const [user, setUser] = useUserContext();
     const [user, setUser] = useState(null);
@@ -91,9 +91,10 @@ export default function Navbar(props) {
                             <div className='navBasket'>
                                 <div className='navBasketIcon'>
                                     <Link to='http://localhost:3000/basket'>
-                                        {/* <Badge badgeContent={JSON.parse(localStorage.getItem("basket")).length} color="primary"> */}
-                                        <img src="https://slavyanka.az/static/media/ShoppingDark.b6cc94ef.svg" alt="Example" />
-                                        {/* </Badge> */}
+                                        {/* <Badge badgeContent={props.data?.length} color="primary"> */}
+                                        <Badge badgeContent={JSON.parse(localStorage.getItem("basket"))?.length} color="primary">
+                                            <img src="https://slavyanka.az/static/media/ShoppingDark.b6cc94ef.svg" alt="Example" />
+                                        </Badge>
                                     </Link>
                                 </div>
                             </div>

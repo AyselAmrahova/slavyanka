@@ -4,52 +4,54 @@ import { getAll, getAllAbout, getAllBenefit, getAllWater } from '../../../api/re
 
 export default function AboutSection() {
     const [imagees, setImagees] = useState([]);
+    const [loading, setLoading] = useState(true);
+
     useEffect(() => {
         getAll().then((res) => {
             setImagees(res);
+            setLoading(false);
         })
     }, [])
-
 
     const [abouts, setAbouts] = useState([]);
     useEffect(() => {
         getAllAbout().then((res) => {
             setAbouts(res);
+            setLoading(false);
+
         });
     }, []);
-
 
     const [water, setWater] = useState([]);
     useEffect(() => {
         getAllWater().then((res) => {
             setWater(res);
+            setLoading(false);
         });
     }, []);
-
 
     const [benefits, setBenefits] = useState([]);
     useEffect(() => {
         getAllBenefit().then((res) => {
             setBenefits(res);
+            setLoading(false);
         });
     }, []);
 
     return (
         <>
-            {/* {imagees && imagees.map((image) => {
-                return (
-                    <div  key={image._id}>
-                        <img className='about-img' src={image.aboutImg} width='100%' alt="banner" />
-                    </div>
-                )
-            })} */}
-            {imagees && imagees.map((image) => {
-                return (
-                    <div key={image._id}>
-                        <img width='100%' alt="banner" className='about-img' src={image.profileImg} />
-                    </div>
-                )
-            })}
+            {loading ? <div style={{ textAlign: "center" }} ><span class="loader"></span></div> : (
+                <div>
+                    {imagees && imagees.map((image) => {
+                        return (
+                            <div key={image._id}>
+                                <img width='100%' alt="banner" className='about-img' src={image.profileImg} />
+                            </div>
+                        )
+                    })}
+
+                </div>
+            )}
             <div className='container'>
                 <div className='about-row'>
                     {abouts && abouts.map((about) => {

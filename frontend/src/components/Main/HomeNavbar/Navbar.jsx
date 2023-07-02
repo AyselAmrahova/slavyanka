@@ -1,9 +1,7 @@
 import React from 'react'
 import './_navbarStyle.scss'
-import { Button } from '@mui/material';
-// import { Badge } from '@mui/material';
+import { Button, Badge } from '@mui/material';
 import { Link, useNavigate } from "react-router-dom";
-// import { useUserContext } from "../../../pages/Main/context/UserContext";
 import { FiLogOut } from "react-icons/fi";
 import { getAllContact } from '../../../api/requests';
 import { useState, useEffect } from "react";
@@ -91,15 +89,12 @@ export default function Navbar() {
                             <div className='navBasket'>
                                 <div className='navBasketIcon'>
                                     <Link to='http://localhost:3000/basket'>
-                                        {/* <Badge badgeContent={JSON.parse(localStorage.getItem("basket")).length} color="primary"> */}
-                                        <img src="https://slavyanka.az/static/media/ShoppingLight.8e403ab1.svg" alt="Example" />
-                                        {/* </Badge> */}
+                                        <Badge badgeContent={JSON.parse(localStorage.getItem("basket"))?.length} color="primary">
+                                            <img src="https://slavyanka.az/static/media/ShoppingLight.8e403ab1.svg" alt="Example" />
+                                        </Badge>
                                     </Link>
                                 </div>
                             </div>
-                            {/* <div className='navHamburger'>
-                                <img src="https://slavyanka.az/static/media/togglewhite.61779455.svg" alt="Example" />
-                            </div> */}
                             <div className='navHamburger' style={{ padding: "14px 0" }}>
                                 <Button
                                     id="basic-button"

@@ -5,10 +5,12 @@ import { useState, useEffect } from "react";
 import { getAllContact } from '../../../api/requests';
 
 export default function ContactInfo() {
+    const [loading, setLoading] = useState(true);
     const [contacts, setContacts] = useState([])
     useEffect(() => {
         getAllContact().then((res) => {
             setContacts(res);
+            setLoading(false)
         });
     }, []);
 
@@ -53,16 +55,18 @@ export default function ContactInfo() {
                                             </div>
                                         </div>
                                     </div>
-                                    <div className='contact-map'>
-                                        <iframe
-                                            title="Location"
-                                            src={`https://maps.google.com/maps?q=${contact.address}&t=&z=15&ie=UTF8&iwloc=&output=embed`}
-                                            width="600"
-                                            height="450"
-                                            style={{ border: 0 }}
-                                            allowFullScreen=""
-                                            loading="lazy"></iframe>
-                                    </div>
+                                    {loading ? <div style={{ textAlign: "center" }} ><span class="loader"></span></div> : (
+                                        <div className='contact-map'>
+                                            <iframe
+                                                title="Location"
+                                                src={`https://maps.google.com/maps?q=${contact.address}&t=&z=15&ie=UTF8&iwloc=&output=embed`}
+                                                width="600"
+                                                height="450"
+                                                style={{ border: 0 }}
+                                                allowFullScreen=""
+                                                loading="lazy"></iframe>
+                                        </div>
+                                    )}
                                 </>
                             )
                         })}

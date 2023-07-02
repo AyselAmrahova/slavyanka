@@ -1,29 +1,30 @@
 import { Link } from "react-router-dom"
 
 const ProductItem = (props) => {
-  console.log(props.product)
 
-  const handleClick = (e) =>{
+  const handleClick = (e) => {
     const id = e.target.id;
-    
-    if(id){
-      if(localStorage.getItem("basket")){
+
+    if (id) {
+      if (localStorage.getItem("basket")) {
         let basketItems = JSON.parse(localStorage.getItem("basket"));
-        let basketItem = basketItems.find(x=>x.id === id);
-        if(basketItem !== undefined){
+        let basketItem = basketItems.find(x => x._id === id);
+        if (basketItem !== undefined) {
           basketItem.basketCount++;
         }
-        else{
-          basketItem = {id:id,basketCount:1};
+        else {
+          basketItem = { ...props.product, basketCount: 1 };
           basketItems.push(basketItem);
         }
-  
-        localStorage.setItem("basket",JSON.stringify(basketItems))
+
+        localStorage.setItem("basket", JSON.stringify(basketItems))
       }
-      else{
-        localStorage.setItem("basket",JSON.stringify([{id:id,basketCount:1}]))
+      else {
+        localStorage.setItem("basket", JSON.stringify([{ ...props.product, basketCount: 1 }]))
       }
     }
+
+    props.onClick();
   }
 
   return (
