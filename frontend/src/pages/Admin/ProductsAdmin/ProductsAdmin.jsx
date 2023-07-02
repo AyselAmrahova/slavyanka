@@ -35,7 +35,7 @@ export default function Products() {
 
   const Validation = yup.object().shape({
     name: yup.string().min(3, 'Minimum 3 hərfdən ibarət ola bilər').required('Zəhmət olmasa xananı doldurun'),
-    title: yup.string().min(3, 'Minimum 3 hərfdən ibarət ola bilər').required('Zəhmət olmasa xananı doldurun'),
+    // title: yup.string().min(3, 'Minimum 3 hərfdən ibarət ola bilər').required('Zəhmət olmasa xananı doldurun'),
     count: yup.number().required('Zəhmət olmasa xananı doldurun'),
     price: yup.number().required('Zəhmət olmasa xananı doldurun'),
     imageURL: yup.string().required('Zəhmət olmasa xananı doldurun'),

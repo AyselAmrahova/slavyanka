@@ -49,9 +49,14 @@
 
         &:hover {
             background-color: #2a48682a;
-            color: #EDF2F9;
+            color: #668ab9;
+
         }
 
+        &:hover .editLink {
+            color: #668ab9;
+
+        }
     }
 
     .editLink {
