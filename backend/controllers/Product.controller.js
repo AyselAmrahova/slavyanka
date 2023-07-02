@@ -35,8 +35,8 @@ const ProductController = {
         }
     },
     post: async (req, res) => {
+        console.log(req.body);
         const { name, count, price, imageURL, releaseDate, categoryName, categoryID } = req.body;
-
         const product = new ProductModel({
             name: name,
             count: count,

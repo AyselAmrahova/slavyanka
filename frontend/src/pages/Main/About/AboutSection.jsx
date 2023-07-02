@@ -1,6 +1,9 @@
 import React, { useState, useEffect } from 'react'
 import './_aboutStyle.scss'
-import { getAll, getAllAbout, getAllBenefit, getAllWater } from '../../../api/requests';
+import { getAll } from '../../../api/Multer';
+import { getAllAbout } from '../../../api/About';
+import { getAllBenefit } from '../../../api/Benefit';
+import { getAllWater } from '../../../api/Water';
 
 export default function AboutSection() {
     const [imagees, setImagees] = useState([]);
@@ -18,7 +21,6 @@ export default function AboutSection() {
         getAllAbout().then((res) => {
             setAbouts(res);
             setLoading(false);
-
         });
     }, []);
 

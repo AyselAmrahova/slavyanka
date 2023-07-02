@@ -1,17 +1,42 @@
 import React, { useEffect, useState } from 'react';
-import { getAllProducts } from '../../../api/requests';
+import { getAllProducts } from '../../../api/Product';
 import { Link } from 'react-router-dom';
 
-const LatestProduct = () => {
+const LatestProduct = (props) => {
   const [products, setProducts] = useState([])
   useEffect(() => {
     getAllProducts().then((res) => {
       setProducts(res);
     });
   }, []);
-  // En son eklenen ürünü bulmak için releaseDate'e göre sıralıyoruz
   const latestProduct =
     products.sort((a, b) => new Date(b.releaseDate) - new Date(a.releaseDate))[0];
+
+  const handleClick = (e) => {
+      const id = e.target.id;
+      const product = products.find(x=>x._id === id);
+      if (id) {
+          if (localStorage.getItem("basket")) {
+              let basketItems = JSON.parse(localStorage.getItem("basket"));
+              let basketItem = basketItems.find(x => x._id === id);
+              if (basketItem !== undefined) {
+                  basketItem.basketCount++;
+              }
+              else {
+                  basketItem = { ...product, basketCount: 1 };
+                  basketItems.push(basketItem);
+              }
+
+              localStorage.setItem("basket", JSON.stringify(basketItems))
+              // setData(JSON.parse(localStorage.getItem("basket")))
+          }
+          else {
+              localStorage.setItem("basket", JSON.stringify([{ ...product, basketCount: 1 }]))
+          }
+      }
+
+      props.onClick();
+  }
 
   return (
     <div style={{ textAlign: "center", paddingTop: "15vh" }}>
@@ -32,7 +57,7 @@ const LatestProduct = () => {
                     </div>
                     <div className='product-count-basket'>
                       <p>{latestProduct.price} AZN</p>
-                      <div className='product-basket'>
+                      <div className='product-basket' onClick={handleClick} id={latestProduct._id}>
                         <img width={21} height={21} src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABcAAAAWCAYAAAArdgcFAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAHGSURBVHgBzVVBTuNAEKwee1c5rbw/8BPMZUNW2mX2B7svWCNy4Aa8gPAC4IaEEeEF5Ac4RBDgEviBf0AuICTCND2GSHY0FpDkQB2smZ5STU3PdJt0Pw5ZeQOAAgjMEzZ6P5MdzAEK3pdgLJwHPGxiTiD70YP1APd3Ift8IlPZiDPMAlbX3cX9f1SM/e43W6Tm45y+jr6rYkDVRjbXQ8wIcbyVLrSHJXEbYINdzATKYPy2HanJpVf3U8MYcd3Yy5ziuXvgCFOBsl5jvz2eKRdFGb+FKWBdl7aqIi5dNU/A0Hgn5LTd03pS4qtKMiPFByCnjSdjvouYtwRw/HIwvmFQ9fNkDJmp03u9xDfFjfJaBArtBXXrSYQp4RQX4f+5KcNHi/3VEO/ExYR754UuXTZvkfeYD4KQdn8kf8ZT5ebwcl5pnxnOtOizOGLP35bVQE6xldYPOlUCv86b68rjNTBlxKPltNHOxmvOtLDvHYuwlmEkz/BYD2Jn/u2TlZ/LtngMLV8MHRbXK4pIyEU8+BXPUemyK0RvijNxoe1SljaS1MVDzXSKFy85LrXryt6iL1f+wnCA2rdOurBTWaHa1oF6jGBoOGniGew+mLbFJMRAAAAAAElFTkSuQmCC" alt="" />
                       </div>
                     </div>

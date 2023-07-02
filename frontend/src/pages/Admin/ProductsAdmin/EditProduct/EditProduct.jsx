@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { useEffect } from 'react'
 import { useNavigate, useParams } from "react-router-dom";
 import { useFormik } from 'formik'
-import { putProduct, GetProductId } from '../../../../api/requests';
+import { putProduct, GetProductId } from '../../../../api/Product';
 import { Input } from 'antd';
 import * as Yup from "yup";
 
@@ -29,7 +29,7 @@ export default function EditProduct() {
   async function fetchData() {
     const datas = await GetProductId(id);
     setProduct(datas.data);
-    // console.log(datas.data);
+    console.log(datas.data);
     // console.log(datas.data.releaseDate);
     formik.setValues({
       name: datas.data.name,
@@ -74,7 +74,6 @@ export default function EditProduct() {
     onSubmit: handleSubmit,
     validationSchema: ServiceSchema,
   });
-
 
   return (
     <>

@@ -1,26 +1,37 @@
-import About from "../pages/Main/About/About";
-import Contact from "../pages/Main/Contact/Contact";
+// Main page
 import Home from "../pages/Main/Home/Home";
 import Products from "../pages/Main/Products/Products";
-import MainRoot from "../pages/Main/MainRoot";
+import About from "../pages/Main/About/About";
+import Contact from "../pages/Main/Contact/Contact";
+import Basket from "../pages/Main/Basket/Basket";
 import ProductDetails from './../pages/Main/Products/ProductDetails';
-// import NotFound from '../pages/Main/NotFound/NotFound'
 
+// Root
+import MainRoot from "../pages/Main/MainRoot";
+import AdminRoot from '../pages/Admin/AdminRoot'
+
+// Login/Register - Main
 import LoginM from "../pages/Main/Login/LoginM";
 import NewAcc from "../pages/Main/Login/NewAcc";
 import ForgetPassword from "../pages/Main/Login/ForgetPassword";
-// import Users from './../pages/Main/Login/Users';
-import Basket from "../pages/Main/Basket/Basket";
-
-import AdminRoot from '../pages/Admin/AdminRoot'
-import Dashboard from '../pages/Admin/Dashboard'
+// Login - Admin
 import Login from "../pages/Admin/Login/Login";
+
+// Admin page
+import Dashboard from '../pages/Admin/Dashboard'
+// Multer
 import AddImage from './../pages/Admin/Multer/AddImage';
-import ContactAdmin from '../pages/Admin/ContactAdmin/ContactAdmin'
-import Categories from "../pages/Admin/Categories/Categories";
 import Users from "../pages/Admin/Users/Users";
+// Contact - put delete post get-all
+import ContactAdmin from '../pages/Admin/ContactAdmin/ContactAdmin'
+import EditContact from "../pages/Admin/ContactAdmin/EditContact";
+// Category - put delete post get-all
+import Categories from "../pages/Admin/Categories/Categories";
+import EditCategory from "../pages/Admin/Categories/EditCategory";
+// Product - (put) delete post get-all
 import ProductsAdmin from "../pages/Admin/ProductsAdmin/ProductsAdmin";
 import EditProduct from "../pages/Admin/ProductsAdmin/EditProduct/EditProduct";
+
 
 export const ROUTES = [
   //Main Root - user side
@@ -56,10 +67,6 @@ export const ROUTES = [
         path: '/new-account',
         element: <NewAcc />
       },
-      // {
-      //   path: '/users',
-      //   element: <Users />
-      // },
       {
         path: '/products/:id',
         element: <ProductDetails />
@@ -68,10 +75,6 @@ export const ROUTES = [
         path: '/basket',
         element: <Basket />
       },
-      // {
-      //   path: '*',
-      //   element: <NotFound />
-      // },
     ],
   },
   //Admin Root - admin side
@@ -92,8 +95,16 @@ export const ROUTES = [
         element: <ContactAdmin />,
       },
       {
+        path: 'contact/edit/:id',
+        element: <EditContact />,
+      },
+      {
         path: 'categories',
         element: <Categories />,
+      },
+      {
+        path: 'categories/edit/:id',
+        element: <EditCategory />
       },
       {
         path: 'users',

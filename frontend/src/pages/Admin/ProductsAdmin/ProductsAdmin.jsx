@@ -1,9 +1,8 @@
 import React, { useEffect, useState } from 'react'
-
 import './products.scss'
 import * as yup from 'yup';
 import { useFormik } from 'formik'
-import { deleteProductByID, getAllProducts, postProduct } from '../../../api/requests';
+import { deleteProductByID, getAllProducts, postProduct } from '../../../api/Product';
 import Swal from 'sweetalert2'
 import { Input } from 'antd';
 import { Link } from 'react-router-dom';
@@ -13,6 +12,9 @@ const Alert = React.forwardRef(function Alert(props, ref) {
   return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
 });
 export default function Products() {
+  const [loading, setLoading] = useState(true);
+  const [isClicked, setIsClicked] = useState(false)
+
   const [open, setOpen] = React.useState(false);
   const handleClick = () => {
     setOpen(true);
@@ -33,17 +35,16 @@ export default function Products() {
     categoryName: yup.string().min(3, 'Minimum 3 hərfdən ibarət ola bilər').required('Zəhmət olmasa xananı doldurun'),
     categoryID: yup.string().required('Zəhmət olmasa xananı doldurun'),
   })
-  const handleSubmit = async (values) => {
+  const handleSubmit = async (values, actions) => {
+    setIsClicked(true)
+    console.log(values)
     await postProduct(values)
-    console.log(values);
     Swal.fire(
       'Good job!',
       `${values.name} succsessfully added!`,
       'success'
     )
-    console.log(values);
-
-    // actions.resetForm()
+    actions.resetForm()
   }
 
   const formik = useFormik({
@@ -62,11 +63,12 @@ export default function Products() {
 
   const [products, setProducts] = useState([])
   useEffect(() => {
+    console.log("salammm")
     getAllProducts().then(res => {
       setProducts(res);
-      console.log(res);
+      setLoading(false);
     })
-  }, [])
+  }, [isClicked])
 
 
 
@@ -200,66 +202,66 @@ export default function Products() {
           </div>
         </form>
       </main>
-      <section>
-        <div>
-          <div className="products products-admin-card">
-            {products && products.map((product) => {
-              return (
-                <>
-                  <div key={product._id} className='col'>
-                    <div className='product-card'>
-                      <div className='product-img-div'>
-                        <img className='product-img' width={250} height={250} src={product.imageURL} alt="product" />
-                        <div className='product-text'>
-                          <p>{product.name}</p>
-                          <p style={{ marginTop: "0.25rem", color: '#dc3545' }}>{product.count} ədəd</p>
-                        </div>
-                        <div className='product-count-basket'>
-                          <p>{product.price} AZN</p>
-                        </div>
-                        <div style={{ marginLeft: "8px", lineHeight: "1.4" }}>
-                          <h4>{product.categoryName}</h4>
-                          <p><b>ID : </b> {product.categoryID}</p>
-                        </div>
-                        <div className='products-btn' style={{ display: "flex" }}>
-                          <button className="editbtn"><Link className="editLink" to={`/admin/products/edit/${product._id}`}>Edit</Link></button>
-                          <button
-                            onClick={() => {
-                              Swal.fire({
-                                title: 'Are you sure?',
-                                text: "You won't be able to revert this!",
-                                icon: 'warning',
-                                showCancelButton: true,
-                                confirmButtonColor: '#3085d6',
-                                cancelButtonColor: '#d33',
-                                confirmButtonText: 'Yes, delete it!'
-                              }).then((result) => {
-                                if (result.isConfirmed) {
-                                  deleteProductByID(product._id).then((res) => {
-                                    Swal.fire(
-                                      'Deleted!',
-                                      'Your file has been deleted.',
-                                      'success'
-                                    )
-                                  })
-                                  setProducts(products.filter((x) => x._id !== product._id))
-                                }
-                              })
-                            }}
-                            className="editbtn">Delete</button>
+      {loading ? <div style={{ textAlign: "center" }} ><span className="loader"></span></div> : (
+        <section>
+          <div>
+            <div className="products products-admin-card">
+              {products && products.map((product) => {
+                return (
+                  <div key={product._id} >
+                    <div className='col'>
+                      <div className='product-card'>
+                        <div className='product-img-div'>
+                          <img className='product-img' width={250} height={250} src={product.imageURL} alt="product" />
+                          <div className='product-text'>
+                            <p>{product.name}</p>
+                            <p style={{ marginTop: "0.25rem", color: '#dc3545' }}>{product.count} ədəd</p>
+                          </div>
+                          <div className='product-count-basket'>
+                            <p>{product.price} AZN</p>
+                          </div>
+                          <div style={{ marginLeft: "8px", lineHeight: "1.4" }}>
+                            <h4>{product.categoryName}</h4>
+                            <p><b>ID : </b> {product.categoryID}</p>
+                          </div>
+                          <div className='products-btn' style={{ display: "flex" }}>
+                            <button className="editbtn"><Link className="editLink" to={`/admin/products/edit/${product._id}`}>Edit</Link></button>
+                            <button
+                              onClick={() => {
+                                Swal.fire({
+                                  title: 'Are you sure?',
+                                  text: "You won't be able to revert this!",
+                                  icon: 'warning',
+                                  showCancelButton: true,
+                                  confirmButtonColor: '#3085d6',
+                                  cancelButtonColor: '#d33',
+                                  confirmButtonText: 'Yes, delete it!'
+                                }).then((result) => {
+                                  if (result.isConfirmed) {
+                                    deleteProductByID(product._id).then((res) => {
+                                      Swal.fire(
+                                        'Deleted!',
+                                        'Your file has been deleted.',
+                                        'success'
+                                      )
+                                    })
+                                    setProducts(products.filter((x) => x._id !== product._id))
+                                  }
+                                })
+                              }}
+                              className="editbtn">Delete</button>
+                          </div>
                         </div>
                       </div>
                     </div>
                   </div>
-                </>
-              )
-            })}
+                )
+              })}
+            </div>
           </div>
-        </div>
+        </section>
 
-
-      </section>
-
+      )}
     </>
   )
 }

@@ -1,7 +1,7 @@
 import React from 'react'
 import "./_3cardsStyle.scss"
 import { useState, useEffect } from "react";
-import { getAllThreeCards } from '../../../api/requests';
+import { getAllThreeCards } from '../../../api/Cards';
 
 export default function ThreeCards() {
   const [threeCards, setThreeCards] = useState([])

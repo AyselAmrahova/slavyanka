@@ -3,12 +3,12 @@ import * as yup from 'yup';
 import { useFormik } from 'formik'
 import Swal from 'sweetalert2'
 import { Input } from 'antd';
-import MuiAlert from '@mui/material/Alert';
-import Snackbar from '@mui/material/Snackbar';
-import { deleteCategorytByID, getAllCategories, postCategory } from '../../../api/requests';
+import { deleteCategorytByID, getAllCategories, postCategory } from '../../../api/Category';
 import './categories.scss'
 import { Link } from 'react-router-dom';
 
+import MuiAlert from '@mui/material/Alert';
+import Snackbar from '@mui/material/Snackbar';
 const Alert = React.forwardRef(function Alert(props, ref) {
   return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
 });
@@ -27,7 +27,7 @@ export default function Categories() {
   const Validation = yup.object().shape({
     name: yup.string().min(3, 'Minimum 3 hərfdən ibarət ola bilər').required('Zəhmət olmasa xananı doldurun'),
   })
-  const handleSubmit = async (values) => {
+  const handleSubmit = async (values, actions) => {
     await postCategory(values)
     console.log(values);
     Swal.fire(
@@ -35,9 +35,8 @@ export default function Categories() {
       `${values.name} succsessfully added!`,
       'success'
     )
-    console.log(values);
-
-    // actions.resetForm()
+    // console.log(values);
+    actions.resetForm()
   }
 
   const formik = useFormik({
@@ -110,7 +109,7 @@ export default function Categories() {
                     alignItems: "center",
                     justifyContent: "center",
                     gap: "10px",
-                    marginTop:"10px"
+                    marginTop: "10px"
                   }}>
                   <h4
                     style={{
@@ -118,7 +117,7 @@ export default function Categories() {
                       marginRight: "10px"
                     }}>{category.name}: </h4>
                   <li>{category._id}</li>
-                  <div style={{ display: "flex", alignItems: "center", justifyContent: "center", gap:"10px" }}>
+                  <div style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: "10px" }}>
                     <button
                       style={{ padding: "5px", fontSize: "16px" }}
                       onClick={() => {

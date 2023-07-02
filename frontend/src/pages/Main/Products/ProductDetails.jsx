@@ -2,13 +2,14 @@ import React, { useEffect, useState } from 'react'
 import './_productsStyle.scss'
 import Navbar from './../../../components/Main/NavbarOther/Navbar';
 import { Link, useParams } from 'react-router-dom';
-import { GetProductId, getCategoryProducts } from '../../../api/requests';
-// import { getCategoryProducts} from '../../../api/requests';
+import { GetProductId, getCategoryProducts } from '../../../api/Product';
 
 export default function ProductDetails() {
   const [user, setUser] = useState(null);
   const [productsCategory, setProductsCategory] = useState([])
   const [product, setProduct] = useState({})
+  const [data, setData] = useState([]);
+
   const { id } = useParams()
 
   useEffect(() => {
@@ -18,17 +19,10 @@ export default function ProductDetails() {
   }, [])
 
 
-  // const categoryID = undefined
-
   useEffect(() => {
     GetProductId(id).then((res) => {
       setProduct(res.data)
     })
-
-    // getCategoryProducts(product.categoryID).then((res) => {
-    //   console.log("salam")
-    //   setProductsCategory(res.data)
-    // })
   }, [id])
 
   useEffect(() => {
@@ -42,13 +36,35 @@ export default function ProductDetails() {
 
   console.log(productsCategory)
 
+  const handleClick = (e) => {
+    const id = e.target.id;
+    console.log(e.target)
+    if (id) {
+      if (localStorage.getItem("basket")) {
+        let basketItems = JSON.parse(localStorage.getItem("basket"));
+        let basketItem = basketItems.find(x => x._id === id);
+        if (basketItem !== undefined) {
+          basketItem.basketCount++;
+        }
+        else {
+          basketItem = { ...product, basketCount: 1 };
+          basketItems.push(basketItem);
+        }
+
+        localStorage.setItem("basket", JSON.stringify(basketItems))
+        setData(JSON.parse(localStorage.getItem("basket")))
+      }
+      else {
+        localStorage.setItem("basket", JSON.stringify([{ ...product, basketCount: 1 }]))
+      }
+    }
+
+    // props.onClick();
+  }
+
   return (
     <>
-      <Navbar />
-      {/* {productsCategory.map((data) => (
-        <div key={data._id}>{data.name}</div>
-      ))} */}
-
+      <Navbar data={data} />
       <div key={product._id} className='oneProduct'>
         <div className='one-product-image'>
           <img height={500} src={product.imageURL} alt="" />
@@ -56,7 +72,7 @@ export default function ProductDetails() {
         <div className='one-product-desc'>
           <h2>{product.name}</h2>
           <p className="colort2">{product.categoryName}</p>
-          <p className="colort1">{product.title}</p>
+          <p className="colort1">“Slavyanka” Azərbaycanın ilk qazsız qablaşdırılmış mineral süfrə suyu markasıdır və 2004-cü ildən bəri Gədəbəy dağlarındakı saf bulaqlardan toplanan sulardan əldə olunur. Hazırda dəniz səviyyəsindən 1500 metr hündürlükdə yerləşən Gədəbəy dağlarındakı 12 bulaqdan fabrikimizə su daxil olur. Bulaqlardan gələn sular Gədəbəyin Zəhmət kəndindəki fabrikdə toplanır, mineral tərkibi qorunmaqla çox detallı təmizləmə prosedurlarından keçir, istehsal olunur və Azərbaycanın bütün regionlarına çatdırılır.</p>
           <div className='makro-elements'>
             <div className="colort4"> CA2+ - &lt;32mq/l </div>
             <div className="colort4"> Na+-&lt;25mq/l</div>
@@ -76,8 +92,8 @@ export default function ProductDetails() {
           </div>
           <div className='one-product-basket-div'>
             <div className='one-product-basket'>
-              <div className='one-product-basket-icon'>
-                <img style={{ verticalAlign: 'middle' }} src="https://slavyanka.az/static/media/ShoppingLight.8e403ab1.svg" alt="shop" />
+              <div className='one-product-basket-icon' >
+                <img style={{ verticalAlign: 'middle' }} onClick={handleClick} id={product._id} src="https://slavyanka.az/static/media/ShoppingLight.8e403ab1.svg" alt="shop" />
               </div>
               {user ? (
                 <div className='order-complete'>
@@ -112,7 +128,7 @@ export default function ProductDetails() {
                     </div>
                     <div className='product-count-basket'>
                       <p>{x.price} AZN</p>
-                      <div className='product-basket'>
+                      <div className='product-basket' onClick={handleClick} id={x._id} >
                         <img width={21} height={21} src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABcAAAAWCAYAAAArdgcFAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAHGSURBVHgBzVVBTuNAEKwee1c5rbw/8BPMZUNW2mX2B7svWCNy4Aa8gPAC4IaEEeEF5Ac4RBDgEviBf0AuICTCND2GSHY0FpDkQB2smZ5STU3PdJt0Pw5ZeQOAAgjMEzZ6P5MdzAEK3pdgLJwHPGxiTiD70YP1APd3Ift8IlPZiDPMAlbX3cX9f1SM/e43W6Tm45y+jr6rYkDVRjbXQ8wIcbyVLrSHJXEbYINdzATKYPy2HanJpVf3U8MYcd3Yy5ziuXvgCFOBsl5jvz2eKRdFGb+FKWBdl7aqIi5dNU/A0Hgn5LTd03pS4qtKMiPFByCnjSdjvouYtwRw/HIwvmFQ9fNkDJmp03u9xDfFjfJaBArtBXXrSYQp4RQX4f+5KcNHi/3VEO/ExYR754UuXTZvkfeYD4KQdn8kf8ZT5ebwcl5pnxnOtOizOGLP35bVQE6xldYPOlUCv86b68rjNTBlxKPltNHOxmvOtLDvHYuwlmEkz/BYD2Jn/u2TlZ/LtngMLV8MHRbXK4pIyEU8+BXPUemyK0RvijNxoe1SljaS1MVDzXSKFy85LrXryt6iL1f+wnCA2rdOurBTWaHa1oF6jGBoOGniGew+mLbFJMRAAAAAAElFTkSuQmCC" alt="" />
                       </div>
                     </div>

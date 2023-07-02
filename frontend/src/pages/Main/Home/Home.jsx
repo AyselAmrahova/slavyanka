@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import StaticSection from '../../../components/Main/StaticSect/StaticSection'
 import ThreeCards from '../../../components/Main/ThreeCards/ThreeCards'
 import Navbar from '../../../components/Main/HomeNavbar/Navbar';
@@ -14,6 +14,7 @@ import { Link } from 'react-router-dom';
 import SliderCardProduct from '../Products/SliderCardProduct';
 
 export default function Home() {
+  const [data, setData] = useState([]);
   const proprietes = {
     duration: 10500,
     transitionDuration: 500,
@@ -26,12 +27,17 @@ export default function Home() {
     "https://cdn.slavyanka.az/uploads/769036de-270c-45ee-8589-16f0f81e98f3.jpg",
     "https://cdn.slavyanka.az/uploads/bdc3369f-5058-4d3b-b7b0-2157b8e08430.jpg",
   ];
+
+  const handleClick = () =>{
+    setData(JSON.parse(localStorage.getItem("basket")));
+  }
+
   return (
     <>
       <Helmet>
         <title>Slavyanka || Gedebey Water</title>
       </Helmet>
-      <Navbar />
+      <Navbar data={data} />
       <div className="containerSlide">
         <Slide {...proprietes}>
           <div className="each-slide-1">
@@ -61,9 +67,9 @@ export default function Home() {
       </div >
       {/* <Slider /> */}
       <ThreeCards />
-      <LatestProduct />
+      <LatestProduct onClick={handleClick} />
       <StaticSection />
-      <SliderCardProduct />
+      <SliderCardProduct onClick={handleClick} />
     </>
   )
 }

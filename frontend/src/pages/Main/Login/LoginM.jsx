@@ -7,8 +7,7 @@ import { Link } from 'react-router-dom';
 
 import { useNavigate } from "react-router-dom";
 import { useFormik } from "formik";
-import { signIn } from '../../../api/requests';
-
+import { signIn } from '../../../api/LoginRegister';
 
 import Swal from "sweetalert2";
 import { useUserContext } from "../context/UserContext";
@@ -30,7 +29,7 @@ export default function LoginM() {
       Swal.fire({
         position: "top-end",
         icon: "success",
-        title: "User signed in successfully!",
+        title: "Uğurla daxil olundu!",
         showConfirmButton: false,
         timer: 1200,
       });

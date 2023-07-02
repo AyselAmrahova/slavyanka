@@ -4,45 +4,40 @@ import { useRef } from 'react'
 import { TextField } from '@mui/material';
 import './_suggestions.scss'
 import emailjs from "@emailjs/browser";
-import Snackbar from '@mui/material/Snackbar';
-import MuiAlert from '@mui/material/Alert';
 import * as yup from 'yup';
 import { useFormik } from 'formik'
+import Swal from 'sweetalert2';
 
-const Alert = React.forwardRef(function Alert(props, ref) {
-  return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
-});
 
 export default function Suggestions() {
-  const handleClick = () => {
-  };
-
-  const handleClose = (event, reason) => {
-    if (reason === 'clickaway') {
-      return;
-    }
-    setOpen(false);
-  };
-  const [open, setOpen] = React.useState(false);
 
 
   // mailjs
   const form = useRef();
   const sendEmail = (e) => {
     e.preventDefault();
-
+    Swal.fire({
+      position: 'top-end',
+      icon: 'success',
+      title: 'Detallar əlavə olundu',
+      showConfirmButton: false,
+      timer: 1500,
+      width: "400px",
+      heightAuto: "80px"
+    })
     emailjs
+
       .sendForm(
         "service_71iykcp",
         "template_xq3g5un",
         form.current,
         "VAT0bKgAVTIR1F0JD"
       )
+
       .then(
         (result) => {
           console.log(result.text);
           console.log("message sent");
-          setOpen(true);
         },
         (error) => {
           console.log(error.text);
@@ -73,7 +68,6 @@ export default function Suggestions() {
         <form
           ref={form}
           onSubmit={sendEmail}
-        // onSubmit={formik.handleSubmit}
         >
           <div className='suggestions-text'>
             <p>Təklif və iradlarını bildir!</p>
@@ -139,22 +133,13 @@ export default function Suggestions() {
           </div>
           <div className='input-div'>
             <button
-              // disabled={formik.isSubmitting || Object.keys(formik.errors).length > 0}
-              // disabled={Object.keys(formik.errors).length !== 0 ? true : false}
               disabled={formik.isSubmitting || Object.keys(formik.errors).length > 0 ? true : false}
+              style={{ cursor: "pointer" }}
               type="submit"
-              onClick={handleClick}
-              // value="Send"
               className='input-div-Button'
               variant="contained"
             >Göndər</button>
 
-            {/* success message (toasted) */}
-            <Snackbar open={open} autoHideDuration={2500} onClose={handleClose}>
-              <Alert onClose={handleClose} severity="success" sx={{ width: '100%' }}>
-                Göndərildi !
-              </Alert>
-            </Snackbar>
           </div>
         </form>
       </main>

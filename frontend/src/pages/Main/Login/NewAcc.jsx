@@ -6,7 +6,7 @@ import '../Login/_style.scss'
 
 import { useNavigate } from "react-router-dom";
 import { useFormik } from 'formik';
-import { signUp } from '../../../api/requests';
+import { signUp } from '../../../api/LoginRegister.js';
 import Swal from 'sweetalert2';
 
 export default function NewAcc() {
@@ -22,7 +22,7 @@ export default function NewAcc() {
         Swal.fire({
             position: 'top-end',
             icon: 'success',
-            title: 'User signed up successfully!',
+            title: 'Uğurla qeydiyyatdan keçildi!',
             showConfirmButton: false,
             timer: 1200
         })

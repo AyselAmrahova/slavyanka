@@ -1,10 +1,15 @@
 const express = require("express");
 const app = express();
 const cors = require("cors");
+app.use(cors());
+
+
 const bodyParser = require("body-parser");
 const dotenv = require('dotenv');
 const mongoose = require('mongoose');
-
+dotenv.config();
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: false }));
 const multer = require("multer");
 const uuid = require('uuid');
 const fs = require('fs');
@@ -17,19 +22,6 @@ const Water_router = require('./routes/Water.routes')
 const Benefit_router = require('./routes/Benefit.routes')
 const Product_router = require('./routes/Product.routes')
 const Category_router = require('./routes/Category.routes')
-
-dotenv.config();
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false }));
-app.use(cors());
-
-
-//MONGO DATABASE CONNECTION
-DB_CONNECTION = process.env.DB_CONNECTION
-DB_PASSWORD = process.env.DB_PASSWORD
-mongoose.connect(DB_CONNECTION.replace("<password>", DB_PASSWORD))
-    .then(() => console.log("Mongo DB Connected!"))
-
 
 //cards
 app.use('/api/three-cards/', ThreeCards_router)
@@ -49,12 +41,22 @@ app.use('/api/products/', Product_router)
 app.use('/api/categories/', Category_router)
 
 
+
+
+
+//MONGO DATABASE CONNECTION
+DB_CONNECTION = process.env.DB_CONNECTION
+DB_PASSWORD = process.env.DB_PASSWORD
+mongoose.connect(DB_CONNECTION.replace("<password>", DB_PASSWORD))
+    .then(() => console.log("Mongo DB Connected!"))
+
+
 PORT = process.env.PORT;
 app.listen(PORT, () => {
     console.log(`NODE APP listening on port ${PORT}`);
 });
 
-
+// Login/register
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 //verify JWT
@@ -76,12 +78,7 @@ const verifyJWT = (req, res, next) => {
     }
 }
 
-
-
-
-
-
-
+// Multer
 app.use(bodyParser.urlencoded({ extended: false }))
 const DIR = './uploads/';
 app.use('/uploads', express.static('uploads'));
@@ -106,19 +103,15 @@ var upload = multer({
     }
 });
 
-
 //Schema
 const ImageSchema = new mongoose.Schema({
     profileImg: String
 })
-
 const ImageModel = new mongoose.model('Imagees', ImageSchema);
-
 
 app.get('/', (req, res) => {
     res.send('welcome to our API!')
 })
-
 app.get('/api/imagees', async (req, res) => {
     const imagees = await ImageModel.find();
     res.json(imagees);
@@ -151,7 +144,6 @@ app.delete('/api/imagees/:id', async (req, res) => {
         message: 'deleted successfully!'
     })
 })
-//----------------------------------------------------------------------------
 
 
 

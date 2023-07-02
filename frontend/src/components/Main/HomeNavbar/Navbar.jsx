@@ -3,7 +3,7 @@ import './_navbarStyle.scss'
 import { Button, Badge } from '@mui/material';
 import { Link, useNavigate } from "react-router-dom";
 import { FiLogOut } from "react-icons/fi";
-import { getAllContact } from '../../../api/requests';
+import { getAllContact } from '../../../api/Contact';
 import { useState, useEffect } from "react";
 
 // import Button from '@mui/material/Button';

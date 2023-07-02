@@ -2,7 +2,7 @@ import React from 'react'
 import './_contactStyle.scss'
 import StaticSection from '../../../components/Main/StaticSect/StaticSection';
 import { useState, useEffect } from "react";
-import { getAllContact } from '../../../api/requests';
+import { getAllContact } from '../../../api/Contact';
 
 export default function ContactInfo() {
     const [loading, setLoading] = useState(true);

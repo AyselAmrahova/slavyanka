@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react"
-import { getUsers } from "../../../api/requests"
+import { getUsers } from "../../../api/LoginRegister"
 import { useNavigate } from "react-router-dom";
+import './users.scss';
 
 const Users = () => {
   const navigate = useNavigate();
@@ -18,11 +19,21 @@ const Users = () => {
     }
   }, [])
   return (
-    <ul>
-      {users && users.map((user) => {
-        return <li key={user._id}>{user.username}</li>
-      })}
-    </ul>
+    <>
+      <div className="admin-user-div">
+        <ul><li>Name</li></ul>
+        {users && users.map((user) => {
+          return (
+            <div >
+              <li key={user._id}>{user.username}</li>
+              <li>{user.name}</li>
+              <li>{user.email}</li>
+              {/* <li>{user}</li> */}
+            </div>
+          )
+        })}
+      </div>
+    </>
   )
 }
 
