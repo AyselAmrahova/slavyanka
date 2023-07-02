@@ -90,7 +90,7 @@
             display: block;
             overflow: hidden;
             transition: all 0.3s linear;
-            height: 408px !important;
+            // height: 408px !important;
             max-width: 264px !important;
             object-position: center;
             padding: 0.68rem !important;
@@ -373,4 +373,10 @@
         margin-top: 1rem;
         margin-bottom: 1rem;
     }
+}
+
+.products-search {
+    width: 30%;
+    margin: 0 auto;
+    margin-top: 20px;
 }

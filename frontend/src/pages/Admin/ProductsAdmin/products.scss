@@ -1,0 +1,66 @@
+.admin-p {
+    color: #5e6e82;
+    text-align: center;
+    font-size: 22px;
+    margin: 40px 0 25px;
+}
+
+.admin-product-div {
+    width: 40%;
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+
+    .admin-product-div {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+
+        .admin-product-inp {
+            padding: 10px;
+
+        }
+    }
+}
+
+// .admin-product {
+//     border: 1px solid red;
+
+//     .admin-product-img-div {}
+// }
+
+
+.products-btn {
+    width: 100%;
+    gap: 10px;
+
+    button {
+        background-color: #EDF2F9;
+        cursor: pointer;
+        width: 100%;
+        padding: 10px;
+        font-size: 18px;
+        border-radius: 10px;
+        border: 2px solid #010b16;
+        color: #010b16;
+        transition: all 0.2s ease;
+
+        &:hover {
+            background-color: #2a48682a;
+            color: #EDF2F9;
+        }
+
+    }
+
+    .editLink {
+        color: #010b16;
+        // border: 2px solid #010b16;
+    }
+
+}
+
+.products-admin-card {
+    border: 1px solid red;
+}

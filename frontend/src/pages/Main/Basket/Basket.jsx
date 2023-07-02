@@ -5,7 +5,7 @@ import { getAllProducts } from '../../../api/requests';
 
 export default function Basket() {
     const [products, setProducts] = useState([]);
-    const [ count, setCount ] = useState(0);
+    const [count, setCount] = useState(0);
     const basketArr = [];
     useEffect(() => {
         getAllProducts().then(res => {
@@ -16,17 +16,29 @@ export default function Basket() {
     JSON.parse(localStorage.getItem("basket")).forEach(element => {
         for (let i = 0; i < products.length; i++) {
             if (products[i]._id === element.id) {
-                basketArr.push({...products[i],count:element.basketCount});
+                basketArr.push({ ...products[i], basketCount: element.basketCount });
             }
         }
     });
 
-    const decrementHandler = () => {
-        setCount(count !== 0 ? count-1 : count);
+    const decrementHandler = (e) => {
+        const basketItems = JSON.parse(localStorage.getItem("basket"));
+        const basketItem = basketItems.find(x => x.id === e.target.id);
+        if (basketItem) {
+            const itemCount = basketItem.basketCount !== 0 ? --basketItem.basketCount : 0;
+            localStorage.setItem("basket", JSON.stringify(basketItems))
+            setCount(itemCount);
+        }   
     }
 
-    const incrementHandler = () => {
-        setCount(count+1);
+    const incrementHandler = (e) => {
+        const basketItems = JSON.parse(localStorage.getItem("basket"));
+        const basketItem = basketItems.find(x => x.id === e.target.id);
+        if (basketItem) {
+            const itemCount = basketItem.basketCount++;
+            localStorage.setItem("basket", JSON.stringify(basketItems))
+            setCount(itemCount);
+        }   
     }
 
     return (
@@ -38,7 +50,7 @@ export default function Basket() {
                     <div className='basket-items-list'>
                         <div className='basket'>
                             {basketArr.map(x => {
-                                return <div className='basket-products'>
+                                return <div key={x._id} className='basket-products'>
                                     <div className='basket-product'>
                                         <div className="basket-product-img">
                                             <img width="80px" alt="productImg" src={x.imageURL} />
@@ -49,16 +61,16 @@ export default function Basket() {
                                                 <span className="solorized">Say: </span> <span>{x.count}</span>
                                             </div>
                                             <div className="product-total-amount">
-                                                <span class="solorized">Ümumi məbləğ:</span> <span>{x.price}</span>
+                                                <span className="solorized">Ümumi məbləğ:</span> <span>{x.price}</span>
                                             </div>
                                         </div>
                                     </div>
                                     <div className='buttons'>
                                         <div className='pmcounter'>
                                             <div className='eMS'>
-                                                <div className="counter el-center" onClick={decrementHandler}>-</div>
-                                                <div className="counter-num">{count}</div>
-                                                <div className="counter el-center" onClick={incrementHandler}>+</div>
+                                                <div className="counter el-center" id={x._id} onClick={decrementHandler}>-</div>
+                                                <div className="counter-num">{x.basketCount}</div>
+                                                <div className="counter el-center" id={x._id} onClick={incrementHandler}>+</div>
                                             </div>
                                         </div>
                                         <div className="delete-from-basket">
@@ -74,7 +86,7 @@ export default function Basket() {
                     </div>
                 </div>
                 <div id="basketPrice">
-                    <div class="basket-amount">
+                    <div className="basket-amount">
                         <h1>Yekun</h1>
                         <div style={{ display: "flex", justifyContent: "center" }}>
                             <div className="total-div">

@@ -5,13 +5,13 @@ import './_style.scss'
 import { useNavigate } from "react-router-dom";
 import { useFormik } from "formik";
 import { signIn } from '../../../api/requests';
+import Swal from "sweetalert2";
 
 import { useUserContext } from "../../Main/context/UserContext";
 
 export default function Login() {
 
     const [user, setUser] = useUserContext();
-    console.log(user);
     const navigate = useNavigate();
     const handleSubmit = async (values, actions) => {
         const response = await signIn({
@@ -22,6 +22,13 @@ export default function Login() {
             localStorage.setItem('token', response.token);
             localStorage.setItem('user', JSON.stringify(response.user));
             setUser(response.user);
+            Swal.fire({
+                position: "top-end",
+                icon: "success",
+                title: "Admin signed in successfully!",
+                showConfirmButton: false,
+                timer: 1200,
+            });
             actions.resetForm();
             navigate("/admin");
         }

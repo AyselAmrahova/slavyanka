@@ -10,16 +10,17 @@ import LoginM from "../pages/Main/Login/LoginM";
 import NewAcc from "../pages/Main/Login/NewAcc";
 import ForgetPassword from "../pages/Main/Login/ForgetPassword";
 // import Users from './../pages/Main/Login/Users';
+import Basket from "../pages/Main/Basket/Basket";
 
 import AdminRoot from '../pages/Admin/AdminRoot'
 import Dashboard from '../pages/Admin/Dashboard'
-import Basket from "../pages/Main/Basket/Basket";
 import Login from "../pages/Admin/Login/Login";
 import AddImage from './../pages/Admin/Multer/AddImage';
 import ContactAdmin from '../pages/Admin/ContactAdmin/ContactAdmin'
 import Categories from "../pages/Admin/Categories/Categories";
 import Users from "../pages/Admin/Users/Users";
 import ProductsAdmin from "../pages/Admin/ProductsAdmin/ProductsAdmin";
+import EditProduct from "../pages/Admin/ProductsAdmin/EditProduct/EditProduct";
 
 export const ROUTES = [
   //Main Root - user side
@@ -105,6 +106,10 @@ export const ROUTES = [
       {
         path: 'imagees',
         element: <AddImage />,
+      },
+      {
+        path: 'products/edit/:id',
+        element: <EditProduct />
       },
     ],
   },

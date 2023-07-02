@@ -3,16 +3,19 @@ import Navbar from '../../../components/Main/NavbarOther/Navbar';
 import { getAllCategories, getAllProducts, getCategoryProducts } from '../../../api/requests';
 import ProductItem from './ProductItem';
 import './_productsStyle.scss'
+import { Input } from 'antd';
 
 export default function Products() {
+  const [search, setSearch] = useState('')
   const [categories, setCategories] = useState([]);
+  const [products, setProducts] = useState([]);
+
   useEffect(() => {
     getAllCategories().then((res) => {
       setCategories(res);
     });
   }, []);
-  
-  const [products, setProducts] = useState([]);
+
   useEffect(() => {
     getAllProducts().then((res) => {
       setProducts(res);
@@ -39,10 +42,12 @@ export default function Products() {
       })
     }
   }
-
   return (
     <>
       <Navbar />
+      <div className='products-search'>
+        <Input style={{ padding: "10px" }} onChange={(e) => setSearch(e.target.value)} placeholder="Axtarış" />
+      </div>
       <div className='products-page'>
         <div className='products-header'>
           <span className="products-header-text">Saf, təbii və sağlam Slavyanka suları</span>
@@ -61,10 +66,14 @@ export default function Products() {
         </div>
       </div>
       <div className="products">
-        {
-          products.map((prod, index) => {
-            return <ProductItem key={index} product={prod} />
-          })
+        {products &&
+          products
+            .filter((item) => {
+              return search.toLocaleLowerCase() === "" ? item : item.name.toLocaleLowerCase().includes(search)
+            })
+            .map((prod, index) => {
+              return <ProductItem key={index} product={prod} />
+            })
         }
       </div>
     </>
