@@ -41,6 +41,15 @@ export default function Basket() {
         }   
     }
 
+    const deleteHandler = (e) => {
+        let basketItems = JSON.parse(localStorage.getItem("basket"));
+        const basketItem = basketItems.find(x => x.id === e.target.id);
+        if (basketItem) {
+            basketItems = basketItems.filter(x=>x.id !== basketItem.id);
+            localStorage.setItem("basket", JSON.stringify(basketItems))
+        }   
+    }
+
     return (
         <>
             <Navbar />
@@ -77,7 +86,7 @@ export default function Basket() {
                                             <div className="icon">
                                                 <img src="https://slavyanka.az/static/media/TrashBox.96f72515.svg" alt="delete-icon" />
                                             </div>
-                                            <span className="cpointer">Səbətdən sil</span>
+                                            <span className="cpointer" onClick={deleteHandler} id={x._id}>Səbətdən sil</span>
                                         </div>
                                     </div>
                                 </div>
