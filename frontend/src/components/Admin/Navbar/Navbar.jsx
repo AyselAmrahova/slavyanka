@@ -59,7 +59,6 @@ export default function Navbar() {
                   </Link></button></>
             )}
           </ul>
-
           <ul className='admin-navbar'>
             <Link className='admin-navbar-link' to='' ><li style={{ color: "#5e6e82" }}>Dashboard</li></Link>
             <Link className='admin-navbar-link' to='contact'><li style={{ color: "#5e6e82" }}>Contact</li></Link>
