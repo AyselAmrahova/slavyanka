@@ -1,37 +1,48 @@
-const ThreeCardsModel = require('../models/ThreeCards.model');
+const CardsModel = require('../models/Cards.model');
 
-const ThreeCardsController = {
+const CardsController = {
   getAll: async (req, res) => {
-    const ThreeCards = await ThreeCardsModel.find();
-    if (ThreeCards === undefined) {
+    const Cards = await CardsModel.find();
+    if (Cards === undefined) {
       res.status(404).send("Data not found");
     } else {
       res.status(200).send({
-        data: ThreeCards,
+        data: Cards,
         message: "Data get success!",
       });
     }
   },
-
+  getByID: async (req, res) => {
+    const id = req.params.id;
+    const card = await CardsModel.findById(id);
+    if (!card) {
+      res.status(204).send("Data not found!");
+    } else {
+      res.status(200).send({
+        data: card,
+        message: "data get success!",
+      });
+    }
+  },
   post: async (req, res) => {
     const { title, desc, imageURL } = req.body;
-    const newThreeCards = new ThreeCardsModel({
+    const newCards = new CardsModel({
       title: title,
       desc: desc,
       imageURL: imageURL,
     });
-    await newThreeCards.save();
+    await newCards.save();
     res.status(201).send("created");
   },
   delete: async (req, res) => {
     const id = req.params.id;
-    const threeCard = await ThreeCardsModel.findByIdAndDelete(id);
-    await ThreeCardsModel.deleteMany({ threeCardID: id });
-    if (threeCard === undefined) {
+    const Card = await CardsModel.findByIdAndDelete(id);
+    await CardsModel.deleteMany({ CardID: id });
+    if (Card === undefined) {
       res.status(404).send("Data not found");
     } else {
       res.status(203).send({
-        data: threeCard,
+        data: Card,
         message: "Data deleted successfully",
       });
     }
@@ -39,12 +50,12 @@ const ThreeCardsController = {
   edit: async (req, res) => {
     const id = req.params.id;
     const { title, desc, imageURL } = req.body;
-    const existedThreeCard = await ThreeCardsModel.findByIdAndUpdate(id, {
+    const existedCard = await CardsModel.findByIdAndUpdate(id, {
       title: title,
       desc: desc,
       imageURL: imageURL,
     });
-    if (existedThreeCard == undefined) {
+    if (existedCard == undefined) {
       res.status(404).send("Data not found!");
     } else {
       res.status(200).send('Data updated successfully!');
@@ -52,4 +63,4 @@ const ThreeCardsController = {
   },
 };
 
-module.exports = ThreeCardsController
+module.exports = CardsController

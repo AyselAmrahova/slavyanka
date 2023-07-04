@@ -22,7 +22,6 @@ const CategoryController = {
     getByID: async (req, res) => {
         const id = req.params.id;
         const category = await CategoryModel.findById(id);
-        console.log("category found: ", category);
         if (!category) {
             res.status(204).send("category not found!");
         } else {

@@ -53,7 +53,7 @@ export default function EditContact() {
 
   return (
     <>
-      {loading ? <div style={{ marginTop: "150px", textAlign: "center" }}><span class="loader"></span></div> : (
+      {loading ? <div style={{ marginTop: "150px", textAlign: "center" }}><span className="loader"></span></div> : (
         <>
           <div style={{ textAlign: "center", marginTop: "30px", color: "#5e6e82" }}>
             <h3>Əlaqə məlumatları</h3>

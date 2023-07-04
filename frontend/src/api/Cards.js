@@ -1,24 +1,31 @@
 import { base_url } from "./base_url";
 import axios from "axios";
 
-export const getAllThreeCards = async () => {
+export const getAllCards = async () => {
     let globalData;
-    await axios.get(`${base_url}/three-cards`)
+    await axios.get(`${base_url}/cards`)
         .then((res) => {
             globalData = res.data.data;
         })
     return globalData;
 }
-export const deleteThreeCardsByID = async (id) => {
-    let deleteThreeCard;
-    await axios.delete(`${base_url}/three-cards/${id}`).then((res) => {
-        deleteThreeCard = res.data.data;
+export const getCardByID = async (ID) => {
+    let globalData;
+    await axios.get(`${base_url}/cards/${ID}`).then((res) => {
+        globalData = res.data.data;
     });
-    return deleteThreeCard;
+    return globalData;
 };
-export const postThreeCards = (payload) => {
-    axios.post(`${base_url}/three-cards`, payload);
+export const deleteCardByID = async (id) => {
+    let deleteCard;
+    await axios.delete(`${base_url}/cards/${id}`).then((res) => {
+        deleteCard = res.data.data;
+    });
+    return deleteCard;
 };
-export const editThreeCard = (id, payload) => {
-    axios.put(`${base_url}/three-cards/${id}`, payload);
+export const postCard = (payload) => {
+    axios.post(`${base_url}/cards`, payload);
+};
+export const putCard = (id, payload) => {
+    axios.put(`${base_url}/cards/${id}`, payload);
 }

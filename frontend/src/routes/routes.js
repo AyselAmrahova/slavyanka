@@ -20,6 +20,8 @@ import Categories from "../pages/Admin/Categories/Categories";
 import EditCategory from "../pages/Admin/Categories/EditCategory";
 import ProductsAdmin from "../pages/Admin/ProductsAdmin/ProductsAdmin";
 import EditProduct from "../pages/Admin/ProductsAdmin/EditProduct";
+import Cards from "../pages/Admin/Cards/Cards";
+import EditCard from "../pages/Admin/Cards/EditCard";
 // import ForgetPassword from "../pages/Main/Login/ForgetPassword";
 
 
@@ -102,20 +104,28 @@ export const ROUTES = [
         element: <EditCategory />
       },
       {
-        path: 'users',
-        element: <Users />,
-      },
-      {
         path: 'products',
         element: <ProductsAdmin />,
       },
       {
-        path: 'imagees',
-        element: <AddImage />,
-      },
-      {
         path: 'products/edit/:id',
         element: <EditProduct />
+      },
+      {
+        path: 'users',
+        element: <Users />,
+      },
+      {
+        path: 'cards',
+        element: <Cards />,
+      },
+      {
+        path: 'cards/edit/:id',
+        element: <EditCard />,
+      },
+      {
+        path: 'imagees',
+        element: <AddImage />,
       },
     ],
   },

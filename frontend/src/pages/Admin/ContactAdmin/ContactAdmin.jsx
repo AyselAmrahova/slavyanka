@@ -47,9 +47,10 @@ export default function ContactAdmin() {
       setLoading(false);
     })
   }, [])
+
   return (
     <>
-      {loading ? <div style={{ marginTop: "150px", textAlign: "center" }}><span class="loader"></span></div> : (
+      {loading ? <div style={{ marginTop: "150px", textAlign: "center" }}><span className="loader"></span></div> : (
         <>
           <div style={{ textAlign: "center", marginTop: "30px", color: "#5e6e82" }}>
             <h3>Əlaqə məlumatları</h3>
@@ -143,19 +144,19 @@ export default function ContactAdmin() {
                         style={{ padding: "5px", fontSize: "16px" }}
                         onClick={() => {
                           Swal.fire({
-                            title: 'Are you sure?',
-                            text: "You won't be able to revert this!",
+                            title: 'Əminsən?',
+                            text: "Bunu geri qaytara bilməyəcəksiniz!",
                             icon: 'warning',
                             showCancelButton: true,
                             confirmButtonColor: '#3085d6',
                             cancelButtonColor: '#d33',
-                            confirmButtonText: 'Yes, delete it!'
+                            confirmButtonText: 'Bəli, silin!'
                           }).then((result) => {
                             if (result.isConfirmed) {
                               deleteContactByID(contact._id).then((res) => {
                                 Swal.fire(
-                                  'Deleted!',
-                                  'Your file has been deleted.',
+                                  'Silindi!',
+                                  'Faylınız silindi.',
                                   'success'
                                 )
                               })

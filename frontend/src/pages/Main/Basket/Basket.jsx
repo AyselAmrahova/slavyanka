@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import './basket.scss'
 import Navbar from './../../../components/Main/NavbarOther/Navbar';
+import { Link } from 'react-router-dom';
 
 export default function Basket() {
     const [isClick, setIsClick] = useState(false);
@@ -60,12 +61,14 @@ export default function Basket() {
                                 return <div key={x._id} className='basket-products'>
                                     <div className='basket-product'>
                                         <div className="basket-product-img">
-                                            <img width="80px" alt="productImg" src={x.imageURL} />
+                                            <Link to={`http://localhost:3000/products/${x._id}`}>
+                                                <img width="80px" alt="productImg" src={x.imageURL} />
+                                            </Link>
                                         </div>
                                         <div className="basket-product-details">
                                             <div className='product-name'></div>
                                             <div className='product-count'>
-                                                <span className="solorized">Say: </span> <span>{x.count}</span>
+                                                <span className="solorized">Say: </span> <span>{x.count * x.basketCount}</span>
                                             </div>
                                             <div className="product-total-amount">
                                                 <span className="solorized">Ümumi məbləğ:</span> <span>{x.price * x.basketCount}</span>

@@ -13,7 +13,7 @@ const multer = require("multer");
 const uuid = require('uuid');
 const fs = require('fs');
 
-const ThreeCards_router = require('./routes/ThreeCards.routes');
+const Cards_router = require('./routes/Cards.routes');
 const Slider_router = require('./routes/Slider.routes')
 const Contact_router = require('./routes/Contact.routes')
 const About_router = require('./routes/About.routes')
@@ -23,7 +23,7 @@ const Product_router = require('./routes/Product.routes')
 const Category_router = require('./routes/Category.routes')
 
 //cards
-app.use('/api/three-cards/', ThreeCards_router)
+app.use('/api/cards/', Cards_router)
 // slider
 app.use('/api/slider/', Slider_router)
 // contact

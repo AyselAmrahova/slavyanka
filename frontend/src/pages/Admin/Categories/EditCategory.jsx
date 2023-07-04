@@ -61,7 +61,7 @@ export default function EditCategory() {
 
     return (
         <>
-            {loading ? <div style={{ marginTop: "150px", textAlign: "center" }}><span class="loader"></span></div> : (
+            {loading ? <div style={{ marginTop: "150px", textAlign: "center" }}><span className="loader"></span></div> : (
                 <>
                     <form onSubmit={formik.handleSubmit}>
                         <div className='admin-p'>

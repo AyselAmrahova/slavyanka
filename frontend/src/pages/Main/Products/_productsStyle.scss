@@ -1,3 +1,26 @@
+@mixin for-tablet-landscape-up {
+    @media (max-width:992px) {
+        @content;
+    }
+}
+
+// @include for-tablet-landscape-up(){}
+
+@mixin for-tablet-portrait-up {
+    @media (max-width: 768px) {
+        @content;
+    }
+}
+
+// @include for-tablet-portrait-up(){}
+
+@mixin for-mobile-L {
+    @media (max-width:576px) {
+        @content;
+    }
+}
+
+// @include for-mobile-L(){}
 .products-page {
     background-color: #FAFAFA;
 
@@ -28,20 +51,34 @@
             padding-left: 15px;
             padding-right: 15px;
 
+
             #products-main {
                 display: flex;
                 justify-content: space-between;
                 margin-top: 0;
                 margin-bottom: 1rem;
                 padding-left: 2rem;
+                width: 100%;
+                gap: 20px;
+
+                @include for-tablet-landscape-up() {
+                    width: 80%;
+                }
+
+                @include for-tablet-portrait-up() {
+                    width: 65%;
+                }
+
 
                 li {
+                    width: 40%;
                     padding: 0 5%;
                     height: 55px;
                     line-height: 55px;
                     text-align: center;
                     border-radius: 8px;
                     background-color: #fff;
+
                 }
 
                 .ON {
@@ -53,6 +90,14 @@
                     font-size: 14px;
                     font-weight: 500;
                     cursor: pointer;
+
+                    @include for-tablet-portrait-up() {
+                        font-size: 12px;
+                    }
+
+                    @include for-mobile-L() {
+                        width: 50%;
+                    }
                 }
             }
         }
@@ -64,7 +109,6 @@
     padding: 0;
     display: flex;
     justify-content: center;
-
     flex-wrap: wrap;
 }
 
@@ -73,6 +117,20 @@
     justify-content: space-around;
     width: 23%;
     padding: 0 0.75rem;
+
+    @include for-tablet-landscape-up() {
+        width: 30%;
+    }
+
+    @include for-tablet-portrait-up() {
+        width: 40%;
+    }
+
+    @include for-mobile-L() {
+        width: 100%;
+    }
+
+
 }
 
 .col {
@@ -389,8 +447,10 @@
     width: 48px;
     height: 48px;
     animation: spin 1s linear infinite;
-  }
-  .loader:after, .loader:before {
+}
+
+.loader:after,
+.loader:before {
     content: "";
     width: 24px;
     height: 24px;
@@ -399,14 +459,15 @@
     background: #051934;
     animation: spin 1s linear infinite;
     transform-origin: 0px 100%;
-  }
-  .loader:before {
+}
+
+.loader:before {
     transform-origin: 0 50%;
     background: #fff;
-  }
-  @keyframes spin {
+}
+
+@keyframes spin {
     to {
-      transform: rotate(360deg);
+        transform: rotate(360deg);
     }
-  }
-      
+}

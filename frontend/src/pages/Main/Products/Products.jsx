@@ -63,20 +63,28 @@ export default function Products() {
         <div className='products-header'>
           <span className="products-header-text">Saf, təbii və sağlam Slavyanka suları</span>
         </div>
-        {loading ? <div style={{ textAlign: "center" }} ><span className="loader"></span></div> : (
-          <div className='products-actions'>
-            <div className='products-actions-col'>
-              <ul id="products-main">
-                <li className="products-actions-items ON" onClick={filterProducts}>Bütün məhsullar</li>
-                {
-                  categories.map((cat, index) => {
-                    return <li key={index} onClick={filterProducts} id={cat._id} className="products-actions-items">{cat.name}</li>
+        {loading ?
+          <div style={{ textAlign: "center" }} >
+            <span className="loader"></span>
+          </div> : (
+            <div className='products-actions'>
+              <div className='products-actions-col'>
+                <ul id="products-main">
+                  <li
+                    className="products-actions-items ON"
+                    onClick={filterProducts}>Bütün sular</li>
+                  {categories.map((cat, index) => {
+                    return <li
+                      key={index}
+                      onClick={filterProducts}
+                      id={cat._id}
+                      className="products-actions-items">{cat.name}</li>
                   })
-                }
-              </ul>
+                  }
+                </ul>
+              </div>
             </div>
-          </div>
-        )}
+          )}
       </div>
       <div className="products">
         {products &&

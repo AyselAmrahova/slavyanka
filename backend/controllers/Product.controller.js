@@ -3,8 +3,6 @@ const ProductModel = require('../models/Product.model');
 const ProductController = {
     getCategoryAllProducts: async (req, res) => {
         const id = req.params.categoryID;
-        // console.log(req.params)
-
         const products = await ProductModel.find({ categoryID: id });
         if (products == undefined) {
             res.status(404).send("Products not found!");
@@ -33,7 +31,6 @@ const ProductController = {
         }
     },
     post: async (req, res) => {
-        console.log(req.body);
         const { name, count, price, imageURL, releaseDate, categoryName, categoryID } = req.body;
         const product = new ProductModel({
             name: name,

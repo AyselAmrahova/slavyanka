@@ -78,7 +78,7 @@ export default function EditProduct() {
   return (
     <>
       {loading ? <div style={{ marginTop: "150px", textAlign: "center" }}>
-        <span class="loader"></span></div> : (
+        <span className="loader"></span></div> : (
         <>
           <form onSubmit={formik.handleSubmit}>
             <div className='admin-p'>

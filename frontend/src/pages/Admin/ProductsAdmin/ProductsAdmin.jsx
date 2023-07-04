@@ -57,7 +57,7 @@ export default function Products() {
   return (
     <>
       {loading ? <div style={{ marginTop: "150px", textAlign: "center" }}>
-        <span class="loader"></span></div> : (
+        <span className="loader"></span></div> : (
         <>
           <main>
             <form onSubmit={formik.handleSubmit}>
@@ -208,19 +208,19 @@ export default function Products() {
                               <button
                                 onClick={() => {
                                   Swal.fire({
-                                    title: 'Are you sure?',
-                                    text: "You won't be able to revert this!",
+                                    title: 'Əminsən?',
+                                    text: "Bunu geri qaytara bilməyəcəksiniz!",
                                     icon: 'warning',
                                     showCancelButton: true,
                                     confirmButtonColor: '#3085d6',
                                     cancelButtonColor: '#d33',
-                                    confirmButtonText: 'Yes, delete it!'
+                                    confirmButtonText: 'Bəli, silin!'
                                   }).then((result) => {
                                     if (result.isConfirmed) {
                                       deleteProductByID(product._id).then((res) => {
                                         Swal.fire(
-                                          'Deleted!',
-                                          'Your file has been deleted.',
+                                          'Silindi!',
+                                          'Faylınız silindi.',
                                           'success'
                                         )
                                       })

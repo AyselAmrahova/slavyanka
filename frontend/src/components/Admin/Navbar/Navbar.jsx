@@ -16,7 +16,7 @@ export default function Navbar() {
             display: "flex",
             justifyContent: "center",
             alignItems: "center",
-            gap:"15px"
+            gap: "15px"
           }}>
             <li>
               <Link to='http://localhost:3000/admin'>
@@ -45,9 +45,9 @@ export default function Navbar() {
                     localStorage.removeItem('user');
                     await setUser(null);
                   }} color="inherit"
-                  style={{ border: '1px solid #7a9ac5', padding:"10px"}}
+                    style={{ border: '1px solid #7a9ac5', padding: "10px" }}
                   >
-                    <FiLogOut style={{ fontSize: '21px', color:"#5e6e82"  }} />
+                    <FiLogOut style={{ fontSize: '21px', color: "#5e6e82" }} />
                   </Button>
                 </li>
               </>
@@ -65,8 +65,9 @@ export default function Navbar() {
             <Link className='admin-navbar-link' to='contact'><li style={{ color: "#5e6e82" }}>Contact</li></Link>
             <Link className='admin-navbar-link' to='categories'><li style={{ color: "#5e6e82" }}>Categories</li></Link>
             <Link className='admin-navbar-link' to='products'><li style={{ color: "#5e6e82" }}>Products</li></Link>
-            <Link className='admin-navbar-link' to='imagees'><li style={{ color: "#5e6e82" }}>Multer</li></Link >
+            <Link className='admin-navbar-link' to='cards'><li style={{ color: "#5e6e82" }}>Cards</li></Link >
             <Link className='admin-navbar-link' to='users'><li style={{ color: "#5e6e82" }}>Users</li></Link >
+            <Link className='admin-navbar-link' to='imagees'><li style={{ color: "#5e6e82" }}>Multer</li></Link >
           </ul >
         </div >
       </div>
