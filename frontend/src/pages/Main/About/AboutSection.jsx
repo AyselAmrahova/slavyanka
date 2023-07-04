@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import './_aboutStyle.scss'
+import './style.scss'
 import { getAll } from '../../../api/Multer';
 import { getAllAbout } from '../../../api/About';
 import { getAllBenefit } from '../../../api/Benefit';
@@ -42,8 +42,9 @@ export default function AboutSection() {
 
     return (
         <>
-            {loading ? <div style={{ textAlign: "center" }} ><span class="loader"></span></div> : (
-                <div>
+            {loading ? <div style={{ marginTop: "150px", textAlign: "center" }}><span class="loader"></span></div> : (
+                <>
+                    {/* Multer image */}
                     {imagees && imagees.map((image) => {
                         return (
                             <div key={image._id}>
@@ -51,50 +52,49 @@ export default function AboutSection() {
                             </div>
                         )
                     })}
-
-                </div>
+                    <div className='container'>
+                        <div className='about-row'>
+                            {abouts && abouts.map((about) => {
+                                return (
+                                    <div key={about._id}>
+                                        <div className='about-first'>
+                                            <h3>{about.title}</h3>
+                                            <p>{about.desc}</p>
+                                        </div>
+                                        <img className='about-first-img' src={about.imageURL} alt="banner" />
+                                    </div>
+                                )
+                            })}
+                            {water && water.map((data) => {
+                                return (
+                                    <div key={data._id} className='about-second'>
+                                        <div className='about-second-img-div'>
+                                            <img src={data.imageURL} alt="banner" />
+                                        </div>
+                                        <div className='about-second-text-div'>
+                                            <h1 className="text-danger">{data.title}</h1>
+                                            <p>{data.desc}</p>
+                                        </div>
+                                    </div>
+                                )
+                            })}
+                            {benefits && benefits.map((benefit) => {
+                                return (
+                                    <div key={benefit._id} className='about-third'>
+                                        <div className='about-third-text-div'>
+                                            <h1 className="text-danger">{benefit.title} </h1>
+                                            <p>{benefit.desc}</p>
+                                        </div>
+                                        <div className='about-third-img-div'>
+                                            <img src={benefit.imageURL} alt="banner" width='100%' />
+                                        </div>
+                                    </div>
+                                )
+                            })}
+                        </div>
+                    </div>
+                </>
             )}
-            <div className='container'>
-                <div className='about-row'>
-                    {abouts && abouts.map((about) => {
-                        return (
-                            <div key={about._id}>
-                                <div className='about-first'>
-                                    <h3>{about.title}</h3>
-                                    <p>{about.desc}</p>
-                                </div>
-                                <img className='about-first-img' src={about.imageURL} alt="banner" />
-                            </div>
-                        )
-                    })}
-                    {water && water.map((data) => {
-                        return (
-                            <div key={data._id} className='about-second'>
-                                <div className='about-second-img-div'>
-                                    <img src={data.imageURL} alt="banner" />
-                                </div>
-                                <div className='about-second-text-div'>
-                                    <h1 className="text-danger">{data.title}</h1>
-                                    <p>{data.desc}</p>
-                                </div>
-                            </div>
-                        )
-                    })}
-                    {benefits && benefits.map((benefit) => {
-                        return (
-                            <div key={benefit._id} className='about-third'>
-                                <div className='about-third-text-div'>
-                                    <h1 className="text-danger">{benefit.title} </h1>
-                                    <p>{benefit.desc}</p>
-                                </div>
-                                <div className='about-third-img-div'>
-                                    <img src={benefit.imageURL} alt="banner" width='100%' />
-                                </div>
-                            </div>
-                        )
-                    })}
-                </div>
-            </div>
         </>
     )
 }

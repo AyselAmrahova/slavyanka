@@ -7,17 +7,14 @@ export default function Basket() {
     const [data, setData] = useState([]);
     const [totalPrice, setTotalPrice] = useState(0);
     useEffect(() => {
-        console.log("use")
         JSON.parse(localStorage.getItem("basket")) && setData(JSON.parse(localStorage.getItem("basket")))
     }, [isClick])
 
     useEffect(() => {
-        console.log("use2");
         setTotalPrice(data.reduce((acc, x) => acc + (Number(x.price) * Number(x.basketCount)), 0));
     }, [data]);
 
     const decrementHandler = (e) => {
-        console.log("dec")
         const basketItem = data.find(x => x._id === e.target.id);
         if (basketItem) {
             basketItem.basketCount !== 0 && --basketItem.basketCount;
@@ -33,7 +30,6 @@ export default function Basket() {
     }
 
     const incrementHandler = (e) => {
-        console.log("inc")
         const basketItem = data.find(x => x._id === e.target.id);
         if (basketItem) {
             basketItem.basketCount++;
@@ -44,7 +40,6 @@ export default function Basket() {
     }
 
     const deleteHandler = (e) => {
-        console.log("del")
         const basketItem = data.find(x => x._id === e.target.id);
         if (basketItem) {
             setIsClick(true);

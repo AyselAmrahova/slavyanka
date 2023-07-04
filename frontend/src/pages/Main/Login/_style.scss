@@ -46,7 +46,6 @@
     padding: 10px;
 
     .login-desc {
-        // text-align: left;
         font-style: normal;
         letter-spacing: 0;
         font-weight: 700;
@@ -58,20 +57,18 @@
     }
 
     form {
-
         .input-div {
-            padding-top: 1rem !important;
+            padding-top: 1rem;
             display: flex;
-            // justify-content: center;
             width: 100%;
             min-height: 1px;
             padding-right: 15px;
             padding-left: 15px;
 
             .form-input {
-                width: 100% !important;
-                border: 1px solid rgba(0, 0, 0, .04) !important;
-                border-radius: 8px !important;
+                width: 100%;
+                border: 1px solid rgba(0, 0, 0, .04);
+                border-radius: 8px;
                 font-size: 16px;
                 color: rgba(0, 0, 0, .5);
                 font-weight: 500;
@@ -84,7 +81,7 @@
 
 .login-forget-password {
     font-weight: 500;
-    color: #bb221a !important;
+    color: #bb221a;
     cursor: pointer;
     font-size: 15px;
     font-style: normal;
@@ -105,7 +102,7 @@
     align-items: center;
     width: 100%;
     min-height: 1px;
-    padding: 1.5rem 15px 3rem 15px !important;
+    padding: 1.5rem 15px 3rem 15px;
 
     div {
         font-size: 15px;
@@ -151,7 +148,10 @@
         border: 1px solid transparent;
         font-size: 1rem;
         border-radius: 0.25rem;
-        transition: color .15s ease-in-out, background-color .15s ease-in-out, border-color .15s ease-in-out, box-shadow .15s ease-in-out;
+        transition: color .15s ease-in-out,
+            background-color .15s ease-in-out,
+            border-color .15s ease-in-out,
+            box-shadow .15s ease-in-out;
 
         &:hover {
             color: #fff;
@@ -162,7 +162,7 @@
 }
 
 .login-btn {
-    margin-bottom: 1.5rem !important;
+    margin-bottom: 1.5rem;
 }
 
 .na-sub-text {

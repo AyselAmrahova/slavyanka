@@ -27,10 +27,12 @@ export default function EditCategory() {
     const navigate = useNavigate();
     const { id } = useParams();
     const [category, setCategory] = useState({});
+    const [loading, setLoading] = useState(true);
 
     async function fetchData() {
         const datas = await getCategoryByID(id);
         setCategory(datas);
+        setLoading(false);
         formik.setValues({
             name: datas.name,
         });
@@ -59,47 +61,51 @@ export default function EditCategory() {
 
     return (
         <>
-            <form onSubmit={formik.handleSubmit}>
-                <div className='admin-p'>
-                    <p>Category add</p>
-                </div>
-                <div style={{
-                    width: "40%",
-                    margin: "0 auto"
-                }}>
-                    <Input
-                        style={{
-                            padding: "10px"
-                        }}
-                        placeholder='name'
-                        type="text"
-                        name="name"
-                        onChange={formik.handleChange}
-                        onBlur={formik.handleBlur}
-                        value={formik.values.name}
-                    />
-                    {formik.errors.name && formik.touched.name ? (
-                        <span style={{ color: "#bb221a", marginBottom: "10px" }}>{formik.errors.name}</span>
-                    ) : <span style={{ visibility: "hidden", marginBottom: "10px" }}>error message</span>}
+            {loading ? <div style={{ marginTop: "150px", textAlign: "center" }}><span class="loader"></span></div> : (
+                <>
+                    <form onSubmit={formik.handleSubmit}>
+                        <div className='admin-p'>
+                            <p>Category add</p>
+                        </div>
+                        <div style={{
+                            width: "40%",
+                            margin: "0 auto"
+                        }}>
+                            <Input
+                                style={{
+                                    padding: "10px"
+                                }}
+                                placeholder='name'
+                                type="text"
+                                name="name"
+                                onChange={formik.handleChange}
+                                onBlur={formik.handleBlur}
+                                value={formik.values.name}
+                            />
+                            {formik.errors.name && formik.touched.name ? (
+                                <span style={{ color: "#bb221a", marginBottom: "10px" }}>{formik.errors.name}</span>
+                            ) : <span style={{ visibility: "hidden", marginBottom: "10px" }}>error message</span>}
 
-                    <div className='input-div'>
-                        <button
-                            disabled={formik.isSubmitting || Object.keys(formik.errors).length > 0 ? true : false}
-                            type="submit"
-                            style={{ cursor: "pointer" }}
-                            className='input-div-Button'
-                            variant="contained"
-                            onClick={handleClick}
-                        >Göndər</button>
+                            <div className='product-send'>
+                                <button
+                                    disabled={formik.isSubmitting || Object.keys(formik.errors).length > 0 ? true : false}
+                                    type="submit"
+                                    style={{ cursor: "pointer", marginTop: "20px" }}
+                                    className='input-div-Button'
+                                    variant="contained"
+                                    onClick={handleClick}
+                                >Göndər</button>
 
-                        <Snackbar open={open} autoHideDuration={6000} onClose={handleClose}>
-                            <Alert onClose={handleClose} severity="success" sx={{ width: '100%' }}>
-                                Əlavə olundu !
-                            </Alert>
-                        </Snackbar>
-                    </div>
-                </div>
-            </form>
+                                <Snackbar open={open} autoHideDuration={6000} onClose={handleClose}>
+                                    <Alert onClose={handleClose} severity="success" sx={{ width: '100%' }}>
+                                        Əlavə olundu !
+                                    </Alert>
+                                </Snackbar>
+                            </div>
+                        </div>
+                    </form>
+                </>
+            )}
         </>
     )
 }

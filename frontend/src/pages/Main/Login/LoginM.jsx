@@ -1,27 +1,24 @@
 import React from 'react'
-import Navbar from '../../../components/Main/HomeNavbar/Navbar'
-import { Button, TextField } from '@mui/material';
 import '../Login/_style.scss'
-import { Link } from 'react-router-dom';
-
-
-import { useNavigate } from "react-router-dom";
-import { useFormik } from "formik";
-import { signIn } from '../../../api/LoginRegister';
-
 import Swal from "sweetalert2";
+import { Link } from 'react-router-dom';
+import { useFormik } from "formik";
+import { useNavigate } from "react-router-dom";
+import { Button, TextField } from '@mui/material';
+
+import Navbar from '../../../components/Main/HomeNavbar/Navbar'
+import { signIn } from '../../../api/LoginRegister';
 import { useUserContext } from "../context/UserContext";
 
 export default function LoginM() {
-
   const [user, setUser] = useUserContext();
   const navigate = useNavigate();
+
   const handleSubmit = async (values, actions) => {
     const response = await signIn({
       email: values.email,
       password: values.password,
     });
-    console.log(response);
     if (response.auth) {
       localStorage.setItem('token', response.token);
       localStorage.setItem('user', JSON.stringify(response.user));
@@ -79,11 +76,11 @@ export default function LoginM() {
               type="submit"
             >Daxil ol</Button>
           </div>
-          <div className='login-forget-password-div'>
+          {/* <div className='login-forget-password-div'>
             <Link className='login-forget-password' to='http://localhost:3000/forget-password'>
               Şifrəmi unutdum
             </Link>
-          </div>
+          </div> */}
           <div className='login-text'>
             <div>Hesabınız yoxdur?
               <span style={{ borderBottom: '1px solid #051934' }}>

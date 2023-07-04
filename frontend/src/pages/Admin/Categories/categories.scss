@@ -6,3 +6,33 @@
     line-height: 1.8;
     margin-top: 30px;
 }
+
+.category-delete-btn {
+    cursor: pointer;
+    border-radius: 12px;
+    font-size: 16px;
+    color: #2d4464;
+    border: 1px solid #132D4F;
+    background-color: white;
+    padding: 10px;
+    transition: all 0.3s ease;
+
+    button {
+        color: #2d4464;
+        background-color: transparent;
+        border: transparent;
+        cursor: pointer;
+    }
+
+    &:hover button {
+        color: white;
+    }
+
+    &:hover {
+        color: white;
+        background-color: #2d4464;
+    }
+
+
+
+}

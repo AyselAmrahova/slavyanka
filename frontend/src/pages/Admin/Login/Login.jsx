@@ -1,18 +1,15 @@
 import React from 'react'
-import { Button, TextField } from '@mui/material';
 import './_style.scss'
-
 import { useNavigate } from "react-router-dom";
 import { useFormik } from "formik";
+import { Button, TextField } from '@mui/material';
 import { signIn } from '../../../api/LoginRegister';
-// import Swal from "sweetalert2";
-
 import { useUserContext } from "../../Main/context/UserContext";
 
 export default function Login() {
-
     const [user, setUser] = useUserContext();
     const navigate = useNavigate();
+
     const handleSubmit = async (values, actions) => {
         const response = await signIn({
             email: values.email,
@@ -22,13 +19,6 @@ export default function Login() {
             localStorage.setItem('token', response.token);
             localStorage.setItem('user', JSON.stringify(response.user));
             setUser(response.user);
-            // Swal.fire({
-            //     position: "top-end",
-            //     icon: "success",
-            //     title: "Admin signed in successfully!",
-            //     showConfirmButton: false,
-            //     timer: 1200,
-            // });
             actions.resetForm();
             navigate("/admin");
         }
@@ -42,7 +32,6 @@ export default function Login() {
     });
     return (
         <>
-            {/* <Navbar /> */}
             <div style={{ marginTop: "90px" }} className='login-div'>
                 <div className='login-desc'>Şəxsi kabinetə giriş</div>
                 <form onSubmit={formik.handleSubmit}>

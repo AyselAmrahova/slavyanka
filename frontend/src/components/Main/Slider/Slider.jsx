@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom';
 
 export default function Slider() {
     const proprietes = {
-        duration: 10500,
+        duration: 1300,
         transitionDuration: 500,
         infinite: true,
         indicators: true,

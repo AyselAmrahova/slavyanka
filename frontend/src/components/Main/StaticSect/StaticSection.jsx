@@ -3,13 +3,16 @@ import "./_staticSectStyle.scss"
 import { Link } from 'react-router-dom';
 import { getAllContact } from '../../../api/Contact';
 import { useState, useEffect } from "react";
+
 export default function StaticSection() {
     const [contacts, setContacts] = useState([])
+
     useEffect(() => {
         getAllContact().then((res) => {
             setContacts(res);
         });
     }, []);
+
     return (
         <>
             {/* STATIC SECTION */}

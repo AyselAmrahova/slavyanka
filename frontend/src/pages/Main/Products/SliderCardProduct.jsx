@@ -1,13 +1,12 @@
 import React, { useEffect, useState } from 'react'
+import { Link } from 'react-router-dom';
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
 import { getAllProducts } from '../../../api/Product';
-import { Link } from 'react-router-dom';
 
 export default function SliderCardProduct(props) {
     const responsive = {
         superLargeDesktop: {
-            // the naming can be any, depends on you.
             breakpoint: { max: 4000, min: 3000 },
             items: 5
         },
@@ -35,8 +34,7 @@ export default function SliderCardProduct(props) {
 
     const handleClick = (e) => {
         const id = e.target.id;
-        const product = products.find(x=>x._id === id);
-        console.log(product)
+        const product = products.find(x => x._id === id);
         if (id) {
             if (localStorage.getItem("basket")) {
                 let basketItems = JSON.parse(localStorage.getItem("basket"));
@@ -48,7 +46,6 @@ export default function SliderCardProduct(props) {
                     basketItem = { ...product, basketCount: 1 };
                     basketItems.push(basketItem);
                 }
-
                 localStorage.setItem("basket", JSON.stringify(basketItems))
                 // setData(JSON.parse(localStorage.getItem("basket")))
             }

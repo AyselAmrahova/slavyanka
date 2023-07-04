@@ -25,13 +25,6 @@
     }
 }
 
-// .admin-product {
-//     border: 1px solid red;
-
-//     .admin-product-img-div {}
-// }
-
-
 .products-btn {
     width: 100%;
     gap: 10px;
@@ -43,7 +36,7 @@
         padding: 10px;
         font-size: 18px;
         border-radius: 10px;
-        border: 2px solid #010b16;
+        border: 2px solid #1f4369;
         color: #010b16;
         transition: all 0.2s ease;
 
@@ -61,15 +54,34 @@
 
     .editLink {
         color: hsl(211, 91%, 5%);
-        // border: 2px solid #010b16;
     }
 
 }
 
-// .products-admin-card {
-//     border: 1px solid red;
-// }
+.product-send {
+    width: 40%;
+    margin: 0 auto;
+    text-align: center;
 
+    button {
+        padding: 10px 20px;
+        border-radius: 20px;
+        border-color: transparent;
+        background-color: transparent;
+        background-color: #2d4464;
+        color: #ffffff;
+        transition: all 0.2s ease;
+        border: 2px solid #132d4e;
+
+        &:hover {
+            color: #5e6e82;
+            background-color: #010b16;
+
+        }
+    }
+}
+
+// spinner loading
 .loader {
     width: 48px;
     height: 48px;
@@ -79,13 +91,14 @@
     display: inline-block;
     box-sizing: border-box;
     animation: rotation 1s linear infinite;
-    }
+}
 
-    @keyframes rotation {
+@keyframes rotation {
     0% {
         transform: rotate(0deg);
     }
+
     100% {
         transform: rotate(360deg);
     }
-    } 
+}

@@ -3,15 +3,29 @@ import './_navbarStyle.scss'
 import { Button, Badge } from '@mui/material';
 import { Link, useNavigate } from "react-router-dom";
 import { FiLogOut } from "react-icons/fi";
-import { getAllContact } from '../../../api/Contact';
 import { useState, useEffect } from "react";
-
-// import Button from '@mui/material/Button';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
+import { getAllContact } from '../../../api/Contact';
 
 export default function Navbar() {
+    const [user, setUser] = useState(null);
+    const [contacts, setContacts] = useState([])
     const [anchorEl, setAnchorEl] = React.useState(null);
+    const navigate = useNavigate();
+
+    useEffect(() => {
+        if (localStorage.getItem('user')) {
+            setUser(localStorage.getItem('user'));
+        }
+    }, [])
+
+    useEffect(() => {
+        getAllContact().then((res) => {
+            setContacts(res);
+        });
+    }, []);
+
     const open = Boolean(anchorEl);
     const handleClick = (event) => {
         setAnchorEl(event.currentTarget);
@@ -20,23 +34,6 @@ export default function Navbar() {
         setAnchorEl(null);
     };
 
-
-    // const [user, setUser] = useUserContext();
-    const [user, setUser] = useState(null);
-    useEffect(() => {
-        if (localStorage.getItem('user')) {
-            setUser(localStorage.getItem('user'));
-        }
-    }, [])
-
-    const navigate = useNavigate();
-
-    const [contacts, setContacts] = useState([])
-    useEffect(() => {
-        getAllContact().then((res) => {
-            setContacts(res);
-        });
-    }, []);
     return (
         <>
             <div className='navbarSlider'>

@@ -3,6 +3,7 @@ import Navbar from '../../../components/Main/HomeNavbar/Navbar'
 // import { Input, Space } from 'antd';
 import { Button, TextField } from '@mui/material';
 import '../Login/_style.scss'
+import * as yup from 'yup';
 
 import { useNavigate } from "react-router-dom";
 import { useFormik } from 'formik';
@@ -11,6 +12,18 @@ import Swal from 'sweetalert2';
 
 export default function NewAcc() {
     const navigate = useNavigate();
+
+    const Validation = yup.object().shape({
+        name: yup.string().min(3, 'Minimum 3 hərfdən ibarət ola bilər').required('Zəhmət olmasa xananı doldurun'),
+        username: yup.string().required('Zəhmət olmasa xananı doldurun'),
+        // email: yup.min(3,'Zəhmət olmasa email hesabınızı yazın').required('Zəhmət olmasa xananı doldurun'),
+        password: yup.string().min(3).required('Zəhmət olmasa xananı doldurun')
+            .matches(
+                /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$/),
+        confirmPassword: yup.string().oneOf([yup.ref('password'), null], "Password mismatch").required('Zəhmət olmasa xananı doldurun'),
+    })
+
+
     const handleSubmit = async (values, actions) => {
         await signUp({
             name: values.name,
@@ -38,7 +51,8 @@ export default function NewAcc() {
             password: '',
             confirmPassword: ''
         },
-        onSubmit: handleSubmit
+        onSubmit: handleSubmit,
+        validationSchema: Validation,
     })
     return (
         <>
@@ -51,7 +65,7 @@ export default function NewAcc() {
                     Müvafiq xanalara məlumatları daxil edin
                 </div>
                 <form onSubmit={formik.handleSubmit}>
-                    <div className='input-div'>
+                    <div style={{ display: "flex", flexDirection: "column" }} className='input-div'>
                         <TextField
                             name="name"
                             label="Ad"
@@ -61,8 +75,11 @@ export default function NewAcc() {
                             value={formik.values.name}
                             onChange={formik.handleChange}
                         />
+                        {formik.errors.name && formik.touched.name ? (
+                            <span style={{ color: "#bb221a", marginBottom: "10px" }}>{formik.errors.name}</span>
+                        ) : <span style={{ visibility: "hidden", marginBottom: "10px" }}>error message</span>}
                     </div>
-                    <div className='input-div' >
+                    <div style={{ display: "flex", flexDirection: "column" }} className='input-div' >
                         <TextField
                             type='text'
                             label='Soyad'
@@ -72,35 +89,11 @@ export default function NewAcc() {
                             value={formik.values.username}
                             onChange={formik.handleChange}
                         />
+                        {formik.errors.username && formik.touched.username ? (
+                            <span style={{ color: "#bb221a", marginBottom: "10px" }}>{formik.errors.username}</span>
+                        ) : <span style={{ visibility: "hidden", marginBottom: "10px" }}>error message</span>}
                     </div>
-                    {/* <div className='input-div'>
-                        <Space.Compact style={{
-                            width: '100%',
-                            height: '60px',
-                            border: '1px solid rgba(0, 0, 0, .04) !important'
-                        }}>
-                            <Input
-                                style={{
-                                    width: '20%',
-                                    backgroundColor: '#ffffff',
-                                    color: 'black',
-                                    fontSize: '16px',
-                                    border: '1px solid rgba(0, 0, 0, .04) !important'
-                                }}
-                                defaultValue="+994"
-                                disabled={true}
-                            />
-                            <Input
-                                style={{
-                                    fontSize: '16px',
-                                    border: '1px solid rgba(0, 0, 0, .04) !important'
-                                }}
-                                type='number'
-                                placeholder='xxxxxxxxx'
-                            />
-                        </Space.Compact>
-                    </div> */}
-                    <div className='input-div'>
+                    <div style={{ display: "flex", flexDirection: "column" }} className='input-div'>
                         <TextField
                             name="email"
                             label="Email"
@@ -110,9 +103,13 @@ export default function NewAcc() {
                             value={formik.values.email}
                             onChange={formik.handleChange}
                         />
+                        {formik.errors.email && formik.touched.email ? (
+                            <span style={{ color: "#bb221a", marginBottom: "10px" }}>{formik.errors.email}</span>
+                        ) : <span style={{ visibility: "hidden", marginBottom: "10px" }}>error message</span>}
                     </div>
-                    <div className='input-div' >
+                    <div style={{ display: "flex", flexDirection: "column" }} className='input-div' >
                         <TextField
+                            title="Minimum 1 rəqəm, 1 kiçik hərf və 1 böyük hərf olmalıdır"
                             type='password'
                             name="password"
                             label='Şifrəniz'
@@ -121,8 +118,11 @@ export default function NewAcc() {
                             onChange={formik.handleChange}
                             value={formik.values.password}
                         />
+                        {formik.errors.password && formik.touched.password ? (
+                            <span style={{ color: "#bb221a", marginBottom: "10px" }}>{formik.errors.password}</span>
+                        ) : <span style={{ visibility: "hidden", marginBottom: "10px" }}>error message</span>}
                     </div>
-                    <div className='input-div' >
+                    <div style={{ display: "flex", flexDirection: "column" }} className='input-div' >
                         <TextField
                             name="confirmPassword"
                             type="password"
@@ -132,9 +132,13 @@ export default function NewAcc() {
                             onChange={formik.handleChange}
                             value={formik.values.confirmPassword}
                         />
+                        {formik.errors.confirmPassword && formik.touched.confirmPassword ? (
+                            <span style={{ color: "#bb221a", marginBottom: "10px" }}>{formik.errors.confirmPassword}</span>
+                        ) : <span style={{ visibility: "hidden", marginBottom: "10px" }}>error message</span>}
                     </div>
                     <div className='login-btn-div'>
                         <Button
+                            disabled={formik.isSubmitting || Object.keys(formik.errors).length > 0 ? true : false}
                             className='login-btn'
                             variant="contained"
                             type="submit"

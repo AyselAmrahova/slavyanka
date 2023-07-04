@@ -2,13 +2,16 @@ import React, { useEffect, useState } from 'react'
 import './_footerStyle.scss'
 import { Link } from 'react-router-dom';
 import { getAllContact } from '../../../api/Contact';
+
 export default function Footer() {
   const [contacts, setContacts] = useState([])
+
   useEffect(() => {
     getAllContact().then((res) => {
       setContacts(res);
     });
   }, []);
+  
   return (
     <>
       <footer>

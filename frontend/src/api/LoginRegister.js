@@ -24,3 +24,15 @@ export const getUsers = async (token) => {
     })
     return users;
 }
+//users------------------------------------------------------------------------------------------------------------------------------------
+export const deleteUser = async (id, token) => {
+    let users;
+    await axios.delete(`${base_url}/users/${id}`, {
+        headers: {
+            'x-access-token': token
+        }
+    }).then((res) => {
+        users = res.data;
+    })
+    return users;
+}

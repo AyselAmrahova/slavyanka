@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react'
-import './_productsStyle.scss'
-import Navbar from './../../../components/Main/NavbarOther/Navbar';
 import { Link, useParams } from 'react-router-dom';
+import './_productsStyle.scss'
+
+import Navbar from './../../../components/Main/NavbarOther/Navbar';
 import { GetProductId, getCategoryProducts } from '../../../api/Product';
 
 export default function ProductDetails() {
@@ -18,7 +19,6 @@ export default function ProductDetails() {
     }
   }, [])
 
-
   useEffect(() => {
     GetProductId(id).then((res) => {
       setProduct(res.data)
@@ -28,17 +28,13 @@ export default function ProductDetails() {
   useEffect(() => {
     if (product.categoryID) {
       getCategoryProducts(product.categoryID).then((res) => {
-        console.log(res)
         setProductsCategory(res)
       })
     }
   }, [id, product])
 
-  console.log(productsCategory)
-
   const handleClick = (e) => {
     const id = e.target.id;
-    console.log(e.target)
     if (id) {
       if (localStorage.getItem("basket")) {
         let basketItems = JSON.parse(localStorage.getItem("basket"));
@@ -113,6 +109,7 @@ export default function ProductDetails() {
           </div>
         </div>
       </div>
+      {/* Oxşar məhsullar */}
       <div>
         <h2 className="text-center">Oxşar məhsullar</h2>
         <div className="products">

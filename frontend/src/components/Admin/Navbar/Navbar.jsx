@@ -44,7 +44,6 @@ export default function Navbar() {
                     localStorage.removeItem('token');
                     localStorage.removeItem('user');
                     await setUser(null);
-                    // navigate('/admin');
                   }} color="inherit"
                   style={{ border: '1px solid #7a9ac5', padding:"10px"}}
                   >

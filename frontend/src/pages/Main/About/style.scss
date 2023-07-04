@@ -3,9 +3,7 @@
         @content;
     }
 }
-
 // @include for-tablet-landscape-up(){}
-
 
 @mixin for-tablet-portrait-up {
     @media (max-width: 768px) {
@@ -62,7 +60,6 @@
             padding-bottom: 1rem;
             width: 100%;
         }
-
     }
 }
 

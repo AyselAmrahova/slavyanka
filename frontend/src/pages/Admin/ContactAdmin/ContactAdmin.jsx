@@ -9,6 +9,7 @@ import { Link } from 'react-router-dom';
 
 export default function ContactAdmin() {
   const [loading, setLoading] = useState(true);
+  const [contacts, setContacts] = useState([])
 
   const Validation = yup.object().shape({
     address: yup.string().min(3, 'Minimum 3 hərfdən ibarət ola bilər').required('Zəhmət olmasa xananı doldurun'),
@@ -18,7 +19,6 @@ export default function ContactAdmin() {
   })
   const handleSubmit = async (values, actions) => {
     await postContact(values)
-    console.log(values);
     Swal.fire({
       position: 'top-end',
       icon: 'success',
@@ -41,7 +41,6 @@ export default function ContactAdmin() {
     validationSchema: Validation,
   })
 
-  const [contacts, setContacts] = useState([])
   useEffect(() => {
     getAllContact().then(res => {
       setContacts(res);
@@ -50,7 +49,7 @@ export default function ContactAdmin() {
   }, [])
   return (
     <>
-      {loading ? <div style={{marginTop:"150px", textAlign:"center"}}><span class="loader"></span></div> : (
+      {loading ? <div style={{ marginTop: "150px", textAlign: "center" }}><span class="loader"></span></div> : (
         <>
           <div style={{ textAlign: "center", marginTop: "30px", color: "#5e6e82" }}>
             <h3>Əlaqə məlumatları</h3>
@@ -127,7 +126,7 @@ export default function ContactAdmin() {
                 style={{ cursor: "pointer" }}
                 className='input-div-Button'
                 variant="contained"
-              >Göndər</button>
+              >Əlavə et</button>
             </div>
           </form>
           <div>
@@ -164,8 +163,13 @@ export default function ContactAdmin() {
                             }
                           })
                         }}
-                        className="editbtn">Delete</button>
-                      <button style={{ padding: "5px", fontSize: "16px" }}><Link to={`/admin/contact/edit/${contact._id}`} style={{ color: "white" }}>Edit</Link></button>
+                        className="editbtn">Sil</button>
+                      <button
+                        style={{ padding: "5px", fontSize: "16px" }}>
+                        <Link
+                          to={`/admin/contact/edit/${contact._id}`}
+                          style={{ color: "white" }}>Redaktə et</Link>
+                      </button>
                     </div>
                   </div>
                 </div>

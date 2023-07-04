@@ -13,29 +13,29 @@ const LatestProduct = (props) => {
     products.sort((a, b) => new Date(b.releaseDate) - new Date(a.releaseDate))[0];
 
   const handleClick = (e) => {
-      const id = e.target.id;
-      const product = products.find(x=>x._id === id);
-      if (id) {
-          if (localStorage.getItem("basket")) {
-              let basketItems = JSON.parse(localStorage.getItem("basket"));
-              let basketItem = basketItems.find(x => x._id === id);
-              if (basketItem !== undefined) {
-                  basketItem.basketCount++;
-              }
-              else {
-                  basketItem = { ...product, basketCount: 1 };
-                  basketItems.push(basketItem);
-              }
+    const id = e.target.id;
+    const product = products.find(x => x._id === id);
+    if (id) {
+      if (localStorage.getItem("basket")) {
+        let basketItems = JSON.parse(localStorage.getItem("basket"));
+        let basketItem = basketItems.find(x => x._id === id);
+        if (basketItem !== undefined) {
+          basketItem.basketCount++;
+        }
+        else {
+          basketItem = { ...product, basketCount: 1 };
+          basketItems.push(basketItem);
+        }
 
-              localStorage.setItem("basket", JSON.stringify(basketItems))
-              // setData(JSON.parse(localStorage.getItem("basket")))
-          }
-          else {
-              localStorage.setItem("basket", JSON.stringify([{ ...product, basketCount: 1 }]))
-          }
+        localStorage.setItem("basket", JSON.stringify(basketItems))
+        // setData(JSON.parse(localStorage.getItem("basket")))
       }
+      else {
+        localStorage.setItem("basket", JSON.stringify([{ ...product, basketCount: 1 }]))
+      }
+    }
 
-      props.onClick();
+    props.onClick();
   }
 
   return (

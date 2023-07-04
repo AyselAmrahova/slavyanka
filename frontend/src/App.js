@@ -1,10 +1,7 @@
 import './_App.scss';
 import { ROUTES } from './routes/routes'
-import {
-  createBrowserRouter,
-  RouterProvider,
-} from "react-router-dom";
 import { UserContextProvider } from "../src/pages/Main/context/UserContext";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
 const router = createBrowserRouter(ROUTES)
 

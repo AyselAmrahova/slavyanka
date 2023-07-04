@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from 'react'
-import Navbar from '../../../components/Main/NavbarOther/Navbar';
-import { getAllCategories } from '../../../api/Category'
-import { getAllProducts, getCategoryProducts } from '../../../api/Product';
-import ProductItem from './ProductItem';
-import './_productsStyle.scss'
 import { Input } from 'antd';
+import './_productsStyle.scss'
+
+import ProductItem from './ProductItem';
+import { getAllCategories } from '../../../api/Category'
+import Navbar from '../../../components/Main/NavbarOther/Navbar';
+import { getAllProducts, getCategoryProducts } from '../../../api/Product';
 
 export default function Products() {
   const [search, setSearch] = useState('')

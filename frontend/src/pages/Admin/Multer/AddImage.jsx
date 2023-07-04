@@ -12,6 +12,8 @@ const Alert = React.forwardRef(function Alert(props, ref) {
 
 const AddImage = () => {
   const [open, setOpen] = React.useState(false);
+  const [selectedImage, setSelectedImage] = useState(null);
+  const buttonRef = useRef();
 
   const handleClick = () => {
   };
@@ -20,19 +22,13 @@ const AddImage = () => {
     if (reason === 'clickaway') {
       return;
     }
-
     setOpen(false);
   };
 
-
-  const [selectedImage, setSelectedImage] = useState(null);
-  const buttonRef = useRef();
   function handleSubmit(values, actions) {
-    console.log(selectedImage);
     const formData = new FormData();
     formData.append("profileImg", selectedImage);
     setOpen(true);
-
     postImg(formData);
     buttonRef.current.style.background = '#1976D2';
     buttonRef.current.textContent = 'Upload File';
@@ -77,12 +73,11 @@ const AddImage = () => {
           </div>
           <div className="multer-add-div">
             <button
-              disabled={formik.isSubmitting || Object.keys(formik.errors).length > 0 ? true :false }
+              disabled={formik.isSubmitting || Object.keys(formik.errors).length > 0 ? true : false}
               onClick={handleClick}
               className="multer-add-btn"
               type="submit" >Add image</button>
           </div>
-
           {/* success message (toasted) */}
           <Snackbar open={open} autoHideDuration={2500} onClose={handleClose}>
             <Alert onClose={handleClose} severity="success" sx={{ width: '100%' }}>

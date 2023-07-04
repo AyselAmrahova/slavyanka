@@ -1,4 +1,3 @@
-// import { useForm } from "react-hook-form";
 import React from 'react'
 import { useRef } from 'react'
 import { TextField } from '@mui/material';
@@ -8,10 +7,7 @@ import * as yup from 'yup';
 import { useFormik } from 'formik'
 import Swal from 'sweetalert2';
 
-
 export default function Suggestions() {
-
-
   // mailjs
   const form = useRef();
   const sendEmail = (e) => {
@@ -32,7 +28,6 @@ export default function Suggestions() {
         form.current,
         "VAT0bKgAVTIR1F0JD"
       )
-
       .then(
         (result) => {
           console.log(result.text);
@@ -138,7 +133,6 @@ export default function Suggestions() {
               className='input-div-Button'
               variant="contained"
             >Göndər</button>
-
           </div>
         </form>
       </main>
