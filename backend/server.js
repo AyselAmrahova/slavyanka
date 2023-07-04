@@ -146,27 +146,6 @@ app.delete('/api/imagees/:id', async (req, res) => {
 })
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 // LOGIN REGISTER
 
 

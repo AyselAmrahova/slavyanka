@@ -1,5 +1,6 @@
 import { base_url } from "./base_url";
 import axios from "axios";
+
 export const getAllCategories = async () => {
     let globalData;
     await axios.get(`${base_url}/categories`)

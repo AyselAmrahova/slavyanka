@@ -6,25 +6,11 @@ import { deleteProductByID, getAllProducts, postProduct } from '../../../api/Pro
 import Swal from 'sweetalert2'
 import { Input } from 'antd';
 import { Link } from 'react-router-dom';
-import MuiAlert from '@mui/material/Alert';
-import Snackbar from '@mui/material/Snackbar';
-const Alert = React.forwardRef(function Alert(props, ref) {
-  return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
-});
+
 export default function Products() {
   const [loading, setLoading] = useState(true);
   const [isClicked, setIsClicked] = useState(false)
 
-  const [open, setOpen] = React.useState(false);
-  const handleClick = () => {
-    setOpen(true);
-  };
-  const handleClose = (event, reason) => {
-    if (reason === 'clickaway') {
-      return;
-    }
-    setOpen(false);
-  };
 
   const Validation = yup.object().shape({
     name: yup.string().min(3, 'Minimum 3 hərfdən ibarət ola bilər').required('Zəhmət olmasa xananı doldurun'),
@@ -192,13 +178,7 @@ export default function Products() {
               style={{ cursor: "pointer" }}
               className='input-div-Button'
               variant="contained"
-              onClick={handleClick}
             >Göndər</button>
-            <Snackbar open={open} autoHideDuration={6000} onClose={handleClose}>
-              <Alert onClose={handleClose} severity="success" sx={{ width: '100%' }}>
-                Əlavə olundu !
-              </Alert>
-            </Snackbar>
           </div>
         </form>
       </main>
