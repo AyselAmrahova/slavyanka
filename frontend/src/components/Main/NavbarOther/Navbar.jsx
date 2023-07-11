@@ -11,6 +11,7 @@ import { getAllContact } from '../../../api/Contact';
 
 export default function Navbar(props) {
     const [user, setUser] = useState(null);
+
     const [contacts, setContacts] = useState([])
     const [anchorEl, setAnchorEl] = React.useState(null);
     const navigate = useNavigate();

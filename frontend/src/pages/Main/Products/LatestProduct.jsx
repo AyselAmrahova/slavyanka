@@ -34,7 +34,6 @@ const LatestProduct = (props) => {
         localStorage.setItem("basket", JSON.stringify([{ ...product, basketCount: 1 }]))
       }
     }
-
     props.onClick();
   }
 

@@ -7,12 +7,17 @@ import { getAllCategories } from '../../../api/Category'
 import Navbar from '../../../components/Main/NavbarOther/Navbar';
 import { getAllProducts, getCategoryProducts } from '../../../api/Product';
 
+
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faSort } from '@fortawesome/free-solid-svg-icons'
+
 export default function Products() {
   const [search, setSearch] = useState('')
   const [categories, setCategories] = useState([]);
   const [products, setProducts] = useState([]);
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [sort, setSort] = useState(true)
 
   useEffect(() => {
     getAllCategories().then((res) => {
@@ -53,11 +58,25 @@ export default function Products() {
     setData(JSON.parse(localStorage.getItem("basket")));
   }
 
+  const sortData = () => {
+    const sortedData = [...products].sort((a, b) => {
+      if (sort) {
+        return a.price - b.price
+      }
+      else {
+        return b.price - a.price
+      }
+    });
+    setProducts(sortedData);
+    setSort(!sort)
+  };
+
   return (
     <>
       <Navbar data={data} />
-      <div className='products-search'>
+      <div className='products-search' style={{ display: "flex", alignItems: "center" }}>
         <Input style={{ padding: "10px" }} onChange={(e) => setSearch(e.target.value)} placeholder="Axtarış" />
+        <FontAwesomeIcon onClick={sortData} icon={faSort} style={{ marginLeft: "20px", cursor: "pointer", fontSize: "25px" }} />
       </div>
       <div className='products-page'>
         <div className='products-header'>

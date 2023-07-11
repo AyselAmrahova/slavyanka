@@ -12,11 +12,7 @@ export default function Slider() {
         indicators: true,
         arrows: true
     }
-    const images = [
-        "https://cdn.slavyanka.az/uploads/9f172eaf-03f8-475d-b3d4-9fdf0f88223b.png",
-        "https://cdn.slavyanka.az/uploads/769036de-270c-45ee-8589-16f0f81e98f3.jpg",
-        "https://cdn.slavyanka.az/uploads/bdc3369f-5058-4d3b-b7b0-2157b8e08430.jpg",
-    ];
+
     return (
         <>
             <div className="containerSlide">
@@ -34,20 +30,10 @@ export default function Slider() {
                                 </Link>
                             </div>
                         </div>
-                        <div className='slide-1-img'>
-                            <img src={images[0]} alt="img0" />
-                        </div>
+                        <div className='slide-1-img'></div>
                     </div >
-                    <div className="each-slide">
-                        <div>
-                            <img src={images[1]} alt="img1" />
-                        </div>
-                    </div>
-                    <div className="each-slide">
-                        <div>
-                            <img src={images[2]} alt="img2" />
-                        </div>
-                    </div>
+                    <div className="each-slide"></div>
+                    <div className="each-slide-3"></div>
                 </Slide >
             </div >
         </>

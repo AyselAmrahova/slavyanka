@@ -136,6 +136,10 @@
 .col {
     flex-grow: 1;
 
+    @include for-tablet-portrait-up() {
+        width: 100% !important;
+    }
+
     .product-card {
         display: flex;
         justify-content: center;

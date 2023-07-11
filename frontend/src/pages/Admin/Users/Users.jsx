@@ -9,6 +9,8 @@ const Users = () => {
   const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
 
+  const filteredUsers = users.filter(user => !user.isAdmin);
+
   useEffect(() => {
     if (!localStorage.getItem('user')) {
       navigate('/login');
@@ -27,7 +29,7 @@ const Users = () => {
   return (
     <>
       {loading ? <div style={{ marginTop: "150px", textAlign: "center" }}>
-        <span class="loader"></span></div> : (
+        <span className="loader"></span></div> : (
         <>
           <div style={{ width: "50%", margin: "0 auto", marginTop: "60px" }} className="admin-user-div">
             <TableContainer style={{ width: "100%" }} component={Paper}>
@@ -40,12 +42,12 @@ const Users = () => {
                   </TableRow>
                 </TableHead>
                 <TableBody style={{ width: "100%" }}>
-                  {users && users.map((user) => {
+                  {filteredUsers && filteredUsers.map((data) => {
                     return (
-                      <TableRow style={{ width: "100%" }} key={user._id} sx={{ '&:last-child td, &:last-child th': { border: 0 } }} >
-                        <TableCell component="th">{user.name}</TableCell>
-                        <TableCell align="left">{user.username}</TableCell>
-                        <TableCell align="left">{user.email}</TableCell>
+                      <TableRow style={{ width: "100%" }} key={data._id} sx={{ '&:last-child td, &:last-child th': { border: 0 } }} >
+                        <TableCell component="th">{data.isAdmin ? "" : data.name}</TableCell>
+                        <TableCell align="left">{data.username}</TableCell>
+                        <TableCell align="left">{data.email}</TableCell>
                       </TableRow>
                     )
                   })}

@@ -28,8 +28,10 @@ const AddImage = () => {
   function handleSubmit(values, actions) {
     const formData = new FormData();
     formData.append("profileImg", selectedImage);
+    console.log(selectedImage);
     setOpen(true);
     postImg(formData);
+    console.log(values);
     buttonRef.current.style.background = '#1976D2';
     buttonRef.current.textContent = 'Upload File';
     setSelectedImage(null);

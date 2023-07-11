@@ -26,8 +26,8 @@ export default function Products() {
     setIsClicked(true)
     await postProduct(values)
     Swal.fire(
-      'Good job!',
-      `${values.name} succsessfully added!`,
+      'Əla!',
+      `Məhsul uğurla əlavə olundu!`,
       'success'
     )
     actions.resetForm()

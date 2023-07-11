@@ -14,8 +14,8 @@ export default function Cards() {
 
   return (
     <>
-      <div className='container'>
-        <div className="row">
+      <div className='container-cards'>
+        <div className="row-cards">
           <div className='cards'>
             {
               cards && cards.map((card) => {

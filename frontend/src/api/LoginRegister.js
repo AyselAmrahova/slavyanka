@@ -25,14 +25,15 @@ export const getUsers = async (token) => {
     return users;
 }
 //users------------------------------------------------------------------------------------------------------------------------------------
-export const deleteUser = async (id, token) => {
-    let users;
-    await axios.delete(`${base_url}/users/${id}`, {
-        headers: {
-            'x-access-token': token
-        }
-    }).then((res) => {
-        users = res.data;
-    })
-    return users;
-}
+// export const deleteUser = async (userId, token) => {
+//     let userDelete
+//     await axios.delete(`${base_url}/users/${userId}`, {
+//         headers: {
+//             Authorization: `Bearer ${token}`
+//         }
+//     })
+//         .then((res) => {
+//             userDelete = res.data
+//         })
+//     return userDelete;
+// }

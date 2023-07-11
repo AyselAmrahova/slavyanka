@@ -16,73 +16,87 @@
     display: none !important;
 }
 
+@media screen and (min-width: 1024px) {
+    .react-slideshow-wrapper {
+        padding: 0 !important;
+    }
+}
+
 .containerSlide {
     height: 550px;
     width: 100%;
-    margin-bottom: 100px;
-
-    // @include for-tablet-portrait-up() {
-    //     height: 250px;
-    // }
-
-    background-color: linear-gradient(250deg, rgb(162 191 218) -0.1%, rgb(4, 63, 144) 97.67%);
 
     .each-slide {
         height: 550px;
-        background: linear-gradient(250deg, rgb(162 191 218) -0.1%, rgb(4, 63, 144) 97.67%);
+        width: 100%;
+        background-image: url("https://cdn.slavyanka.az/uploads/769036de-270c-45ee-8589-16f0f81e98f3.jpg");
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: center;
+    }
 
-        img {
-            object-fit: cover;
-            vertical-align: middle;
-            height: 100%;
+    .each-slide-3 {
+        background-image: url("https://cdn.slavyanka.az/uploads/bdc3369f-5058-4d3b-b7b0-2157b8e08430.jpg");
+        height: 550px;
+        width: 100%;
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: center;
+    }
+}
+
+.each-slide-1 {
+    background: linear-gradient(250deg, rgb(162 191 218) -0.1%, rgb(4, 63, 144) 97.67%);
+    display: flex;
+    justify-content: space-around;
+    height: 550px;
+    width: 100%;
+
+    @include for-tablet-portrait-up() {
+        flex-direction: column;
+        flex-wrap: wrap;
+    }
+
+    .slide-1-text {
+        color: #f8f9fa;
+        display: flex;
+        margin: auto 0;
+        flex-direction: column;
+        padding-left: 6rem;
+        padding-top: 6rem;
+        width: 50%;
+        height: 100%;
+
+        @include for-tablet-portrait-up() {
             width: 100%;
+        }
+
+        h1 {
+            max-width: 350px;
+            line-height: 1.5;
+            white-space: wrap;
+            margin-bottom: 1rem;
+            font-size: 39px;
+        }
+
+        p {
+            margin: 1rem 0;
+            opacity: 0.7;
+            max-width: 350px;
+            line-height: 1.5;
+            text-align: justify;
+            white-space: wrap;
         }
     }
 
-    .each-slide-1 {
-        background: linear-gradient(250deg, rgb(162 191 218) -0.1%, rgb(4, 63, 144) 97.67%);
-        display: flex;
-        justify-content: space-around;
-
-        .slide-1-text {
-            color: #f8f9fa;
-            display: flex;
-            margin: auto 0;
-            flex-direction: column;
-            padding-left: 3rem;
-
-            @include for-tablet-portrait-up() {
-                width: 100%;
-            }
-
-            h1 {
-                max-width: 350px;
-                line-height: 1.5;
-                white-space: wrap;
-                margin-bottom: 1rem;
-                font-size: 39px;
-            }
-
-            p {
-                margin: 1rem 0;
-                opacity: 0.7;
-                max-width: 350px;
-                line-height: 1.5;
-                text-align: justify;
-                white-space: wrap;
-            }
-        }
-
-        .slide-1-img {
-            height: 550px;
-
-            img {
-                object-fit: contain;
-                height: 100%;
-                width: 100%;
-                vertical-align: middle;
-            }
-        }
+    .slide-1-img {
+        height: 50%;
+        width: 30%;
+        background-image: url("https://cdn.slavyanka.az/uploads/9f172eaf-03f8-475d-b3d4-9fdf0f88223b.png");
+        height: 550px;
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: center;
     }
 }
 

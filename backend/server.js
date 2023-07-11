@@ -9,6 +9,7 @@ const mongoose = require('mongoose');
 dotenv.config();
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
+
 const multer = require("multer");
 const uuid = require('uuid');
 const fs = require('fs');
@@ -77,6 +78,49 @@ var upload = multer({
         }
     }
 });
+
+//Schema
+const ImageSchema = new mongoose.Schema({
+    profileImg: String
+})
+const ImageModel = new mongoose.model('Imagees', ImageSchema);
+
+app.get('/', (req, res) => {
+    res.send('welcome to our API!')
+})
+app.get('/api/imagees', async (req, res) => {
+    const imagees = await ImageModel.find();
+    res.json(imagees);
+})
+
+app.post('/api/imagees', upload.single('profileImg'), async (req, res) => {
+    const url = req.protocol + '://' + req.get('host');
+    const newImage = new ImageModel({
+        profileImg: url + '/uploads/' + req.file.filename
+    })
+    newImage.save().then(result => {
+        res.status(201).json({
+            message: "Image posted successfully!",
+            userCreated: newImage
+        })
+    }).catch(err => {
+        console.log(err),
+            res.status(500).json({
+                error: err
+            });
+    })
+})
+app.delete('/api/imagees/:id', async (req, res) => {
+    const id = req.params.id;
+    const deleted = await ImageModel.findByIdAndDelete(id);
+    const idx = deleted.profileImg.indexOf("uploads/");
+    const imageName = deleted.profileImg.substr(idx);
+    fs.unlinkSync('./' + imageName);
+    res.status(200).send({
+        message: 'deleted successfully!'
+    })
+})
+
 
 // Login/register
 const bcrypt = require('bcrypt');
@@ -196,47 +240,6 @@ app.delete('/users/:id', async (req, res) => {
 })
 
 
-//Schema
-const ImageSchema = new mongoose.Schema({
-    profileImg: String
-})
-const ImageModel = new mongoose.model('Imagees', ImageSchema);
-
-app.get('/', (req, res) => {
-    res.send('welcome to our API!')
-})
-app.get('/api/imagees', async (req, res) => {
-    const imagees = await ImageModel.find();
-    res.json(imagees);
-})
-
-app.post('/api/imagees', upload.single('profileImg'), async (req, res) => {
-    const url = req.protocol + '://' + req.get('host');
-    const newImage = new ImageModel({
-        profileImg: url + '/uploads/' + req.file.filename
-    })
-    newImage.save().then(result => {
-        res.status(201).json({
-            message: "Image posted successfully!",
-            userCreated: newImage
-        })
-    }).catch(err => {
-        console.log(err),
-            res.status(500).json({
-                error: err
-            });
-    })
-})
-app.delete('/api/imagees/:id', async (req, res) => {
-    const id = req.params.id;
-    const deleted = await ImageModel.findByIdAndDelete(id);
-    const idx = deleted.profileImg.indexOf("uploads/");
-    const imageName = deleted.profileImg.substr(idx);
-    fs.unlinkSync('./' + imageName);
-    res.status(200).send({
-        message: 'deleted successfully!'
-    })
-})
 
 
 

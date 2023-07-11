@@ -10,20 +10,16 @@ export default function Root() {
 
     return (
         <>
-            {/* <Navbar />
-            <Outlet /> */}
-            <>
-                {
-                    user?.isAdmin ? (
-                        <>
-                            <Navbar />
-                            <Outlet />
-                        </>
-                    ) : (
-                        <Login />
-                    )
-                }
-            </>
+            {
+                user?.isAdmin ? (
+                    <>
+                        <Navbar />
+                        <Outlet />
+                    </>
+                ) : (
+                    <Login />
+                )
+            }
         </>
     )
 }

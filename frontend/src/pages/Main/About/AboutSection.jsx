@@ -42,7 +42,7 @@ export default function AboutSection() {
 
     return (
         <>
-            {loading ? <div style={{ marginTop: "150px", textAlign: "center" }}><span class="loader"></span></div> : (
+            {loading ? <div style={{ marginTop: "150px", textAlign: "center" }}><span className="loader"></span></div> : (
                 <>
                     {/* Multer image */}
                     {imagees && imagees.map((image) => {
@@ -52,7 +52,7 @@ export default function AboutSection() {
                             </div>
                         )
                     })}
-                    <div className='container'>
+                    <div style={{ marginTop: "25px" }} className='container'>
                         <div className='about-row'>
                             {abouts && abouts.map((about) => {
                                 return (
