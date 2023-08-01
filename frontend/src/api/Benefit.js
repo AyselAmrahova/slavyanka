@@ -1,4 +1,4 @@
-import { base_url } from "./a";
+import { base_url } from "./base_url";
 import axios from "axios";
 
 
